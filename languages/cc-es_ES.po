@@ -1,0 +1,349 @@
+# Copyright (C) 2018 LeisRef
+# This file is distributed under the same license as the LeisRef package.
+msgid ""
+msgstr ""
+"Project-Id-Version: LeisRef 0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/centers\n"
+"POT-Creation-Date: 2023-09-25T14:36:43+00:00\n"
+"PO-Revision-Date: 2023-09-25 12:12-0300\n"
+"Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. Plugin Name of the plugin
+#: centers.php:91 centers.php:226
+msgid "Cooperating Centers"
+msgstr "Centros Cooperantes"
+
+#. Plugin URI of the plugin
+msgid "https://github.com/bireme/centers-wp-plugin/"
+msgstr ""
+
+#. Description of the plugin
+msgid "VHL Cooperating Centers Directory WordPress plugin"
+msgstr ""
+
+#. Author of the plugin
+msgid "BIREME/OPAS/OMS"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://reddes.bvsalud.org/"
+msgstr ""
+
+#: centers.php:91 settings.php:8
+msgid "Cooperating Centers Settings"
+msgstr "Centros Cooperantes Ajustes"
+
+#: centers.php:140
+msgid "Cooperating Centers Area"
+msgstr "Centros Cooperantes Area"
+
+#: centers.php:151
+msgid "Cooperating Centers Header"
+msgstr "Centros Cooperantes Encabezado"
+
+#: lib/Paginator.php:34 lib/Paginator.php:35 lib/Paginator.php:46
+#: lib/Paginator.php:52 lib/Paginator.php:61 lib/Paginator.php:62
+#: lib/Paginator.php:68 lib/Paginator.php:69
+msgid "go to page"
+msgstr "ir a la página"
+
+#: settings.php:17
+msgid "Plugin page"
+msgstr "Pagina del plugin"
+
+#: settings.php:21
+msgid "Google Analytics code"
+msgstr "Código del Google Analytics"
+
+#: settings.php:25
+msgid "Initial filter query"
+msgstr "Filtro inicial"
+
+#: settings.php:38 settings.php:51
+msgid "Page title"
+msgstr "Titulo"
+
+#: settings.php:43 settings.php:56
+msgid "Home URL"
+msgstr "Enlace de la página inicial"
+
+#: settings.php:64
+msgid "Save changes"
+msgstr "Guardar cambios"
+
+#: template-functions.php:71
+msgid "of"
+msgstr "de"
+
+#: template/footer.php:6
+msgid "Terms and conditions of use"
+msgstr "Términos y condiciones de uso"
+
+#: template/footer.php:7
+msgid "Privacy Policy"
+msgstr "Política de Privacidad"
+
+#: template/header.php:6 template/header.php:51 template/home.php:97
+msgid "VHL Network Directory"
+msgstr "Directorio de la Red BVS"
+
+#: template/header.php:79 template/header.php:85
+msgid "Search"
+msgstr "Buscar"
+
+#: template/home.php:70 template/translations.php:14
+msgid "CoordinatingCentersRg"
+msgstr "Centros Coordinadores Regionales"
+
+#: template/home.php:71 template/translations.php:15
+msgid "CoordinatingCentersNc"
+msgstr "Centros Coordinadores Nacionales"
+
+#: template/home.php:72 template/translations.php:17
+msgid "CooperatingCenters"
+msgstr "Centros Cooperantes"
+
+#: template/home.php:73 template/translations.php:18
+msgid "CooperatingCentersLILACS"
+msgstr "Centros Cooperantes LILACS"
+
+#: template/home.php:74 template/translations.php:19
+msgid "CooperatingCentersLEYES"
+msgstr "Centros Cooperantes LEYES"
+
+#: template/home.php:75 template/translations.php:20
+msgid "ParticipantsUnits"
+msgstr "Unidades Participantes"
+
+#: template/home.php:76 template/translations.php:21
+msgid "VHLNetwork"
+msgstr "Red BVS"
+
+#: template/home.php:77 template/translations.php:22
+msgid "Editor"
+msgstr ""
+
+#: template/home.php:79 template/translations.php:24
+msgid "MedCarib"
+msgstr "MedCarib"
+
+#: template/home.php:80 template/translations.php:25
+msgid "Nursing"
+msgstr "Enfermería"
+
+#: template/home.php:81 template/translations.php:26
+msgid "Border"
+msgstr "Salud Fronteriza México-Estados Unidos"
+
+#: template/home.php:82 template/translations.php:27
+msgid "Disastres"
+msgstr "Disastres"
+
+#: template/home.php:83 template/translations.php:28
+msgid "Psychology"
+msgstr "Psicología"
+
+#: template/home.php:84 template/translations.php:29
+msgid "MTCI"
+msgstr "Medicina Tradicional y Complementaria"
+
+#: template/home.php:94 template/results.php:123
+msgid "Home"
+msgstr "Inicio"
+
+#: template/home.php:340 template/results.php:272 template/translations.php:38
+msgid "VHL Network"
+msgstr "Red BVS"
+
+#: template/home.php:360 template/results.php:295 template/translations.php:39
+msgid "Thematic Networks"
+msgstr "Redes Tematicas"
+
+#: template/results.php:131
+msgid "No results found"
+msgstr "No se han encontrado resultados"
+
+#: template/results.php:133
+msgid "Institutions"
+msgstr "Instituciones"
+
+#: template/results.php:154
+msgid "INACTIVE"
+msgstr "INACTIVA"
+
+#: template/results.php:156
+msgid "CLOSED"
+msgstr "CERRADA"
+
+#: template/results.php:319 template/translations.php:40
+msgid "Country"
+msgstr "País"
+
+#: template/results.php:340
+msgid "show more"
+msgstr "mostrar más"
+
+#: template/results.php:341
+msgid "loading"
+msgstr "cargando"
+
+#: template/translations.php:16
+msgid "CoordinatingCentersTh"
+msgstr "Centros Coordinadores Temáticos"
+
+#: template/translations.php:30
+msgid "BIBLIOSUS"
+msgstr "Bibliotecas del SUS"
+
+#: template/translations.php:31
+msgid "BVSVET"
+msgstr "Veterinaria"
+
+#: template/translations.php:32
+msgid "EPORT"
+msgstr "ePORTUGUÊSe"
+
+#: template/translations.php:33
+msgid "EVIPNET"
+msgstr "Políticas Basadas en Evidencia"
+
+#: template/translations.php:34
+msgid "ODONTOLOGIA"
+msgstr "Odontología"
+
+#: template/translations.php:35
+msgid "SES-SP"
+msgstr "Departamento de Salud del Estado de São Paulo"
+
+#: template/translations.php:36
+msgid "SMS-SP"
+msgstr "Departamento Municipal de Salud de São Paulo"
+
+#~ msgid "Page layout"
+#~ msgstr "Diseño de página"
+
+#~ msgid "Show filters as whole page"
+#~ msgstr "Mostrar filtros como página completa"
+
+#~ msgid "Show normal page"
+#~ msgstr "Mostrar página normal"
+
+#~ msgid "Search filters"
+#~ msgstr "Filtros de búsqueda"
+
+#~ msgid "Available"
+#~ msgstr "Disponible"
+
+#~ msgid "Selected"
+#~ msgstr "Seleccionados"
+
+#~ msgid "Search result"
+#~ msgstr "Resultado de la búsqueda"
+
+#~ msgid "Enter one or more words"
+#~ msgstr "Ingrese una o más palabras"
+
+#~ msgid "Filters"
+#~ msgstr "Filtros"
+
+#~ msgid "Selected filters"
+#~ msgstr "Filtros seleccionados"
+
+#~ msgid "Centers"
+#~ msgstr "Centros"
+
+#~ msgid "Legislation Settings"
+#~ msgstr "Ajustes Legislación"
+
+#~ msgid "Legislation"
+#~ msgstr "Legislación"
+
+#~ msgid "Legislation sidebar"
+#~ msgstr "Legislación sidebar"
+
+#~ msgid "Legislation header"
+#~ msgstr "Legislación sidebar superior"
+
+#~ msgid "Legislation settings"
+#~ msgstr "Legislación ajustes"
+
+#~ msgid "Fulltext"
+#~ msgstr "Texto completo"
+
+#~ msgid "Present alternative fulltext links"
+#~ msgstr "Presentar enlaces alternativos de texto completo"
+
+#~ msgid "Portuguese"
+#~ msgstr "Português"
+
+#~ msgid "Spanish"
+#~ msgstr "Español"
+
+#~ msgid "English"
+#~ msgstr "Inglês"
+
+#~ msgid "Act"
+#~ msgstr "Ato"
+
+#~ msgid "Share"
+#~ msgstr "Compartir"
+
+#~ msgid "Related articles"
+#~ msgstr "Artículos relacionados"
+
+#~ msgid "Normative Acts"
+#~ msgstr "Actos Normativos"
+
+#~ msgid "Act country/region"
+#~ msgstr "País/región del acto"
+
+#~ msgid "Organ issuer"
+#~ msgstr "Órgano Emisor"
+
+#~ msgid "Act scope"
+#~ msgstr "Esfera del acto"
+
+#~ msgid "Source"
+#~ msgstr "Fuente"
+
+#~ msgid "Language"
+#~ msgstr "Idioma"
+
+#~ msgid "Collection"
+#~ msgstr "Colección"
+
+#~ msgid "Text in"
+#~ msgstr "Texto en"
+
+#~ msgid "Read more"
+#~ msgstr "Vea mas"
+
+#~ msgid "Display filters"
+#~ msgstr "Mostrar filtros"
+
+#~ msgid "Subject"
+#~ msgstr "Asunto"
+
+#~ msgid "Act type"
+#~ msgstr "Tipo del acto"
+
+#~ msgid "Database"
+#~ msgstr "Base de datos"
+
+#~ msgid "Year"
+#~ msgstr "Año"
+
+#~ msgid "Total"
+#~ msgstr "Total"
+
+#~ msgid "Ementa"
+#~ msgstr "Ementa"
+
+#~ msgid "Legislation found"
+#~ msgstr "Legislación encontrada"
