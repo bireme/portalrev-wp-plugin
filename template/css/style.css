@@ -5,7 +5,8 @@ body{
  	font-weight: 400;
 }
 #header{
-	background: #ededed;
+	background: #ededed; 
+	background:  radial-gradient(circle, rgba(238,238,238,1) 0%, rgba(232,232,232,1) 100%);;
 	padding: 30px 0px 30px 0px;
     margin-top:0;
 	margin-bottom: 30px;
@@ -89,13 +90,13 @@ body{
 	border: 0;
 	padding: 10px;
 	height: 50px;
-	width: 50px;
+	width: 50px; cursor: pointer;
 }
 .btnBoxSearch button:hover{
 	background: #464bbb;
 }
 .btnBoxSearch button i{
-	font-size: 30px;
+	font-size: 20px;
 }
 .textBTSearch{
 	display: none;
@@ -134,7 +135,7 @@ body{
 	max-width: 500px;
 }
 #filterRight{
-	padding: 20px 0 0 0 ;
+	padding: 20px 20px 0 0 ;
 }
 #filterRight ul{
 	padding-left: 20px;
@@ -143,7 +144,7 @@ body{
 	top: 0;
 	font-size: 14px;
 	padding: 20px;
-	background: #fff4f4;
+	background: #eeeeee;
 	border-radius: 10px;
 	/*border-bottom: 3px solid #ddd;*/
 	/*border-top: 3px solid #ddd;*/
@@ -163,11 +164,11 @@ body{
 	padding: 20px;
 	margin-bottom: 20px;
 	transition: border .5s ease;
-	word-break: break-word;
+	word-break: break-word;     background: #eee;
+    border: 1px solid #ddd;
 }
 .box1:hover{
-	background-color: #fff4f4;
-	border-radius: 10px;
+	background-color: #e5e5e5;
 }
 .box1Title{
 	font-size: 20px;
@@ -177,7 +178,7 @@ body{
 }
 .box1Title::after{
 	content: " ";
-	background-color: #3f0;
+	background-color: #f36f23;
 	position: absolute;
 	bottom: -15px;
 	left: 0;
@@ -198,6 +199,9 @@ body{
 }
 #speakBtn{
     display:none;
+}
+.cc-banner .wp-block-image img {
+	width: 100%;
 }
 @media (max-width: 768px){
 	#header{
@@ -244,4 +248,18 @@ body{
 		max-width: 100%;
 		margin-top: 20px;
 	}
+}
+.menu-header{
+	border: #9c9c9c 2px solid;
+	margin-bottom: 20px; border-radius: 5px;;
+	margin-top:20px; padding-top:20px;
+}
+.more{
+	background-color: #3b8ab4;
+    color: #fff;
+    padding: 5px 20px;
+    border-radius: 6.5px;
+}
+.more a{
+	color: #fff;
 }

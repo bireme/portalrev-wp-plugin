@@ -32,7 +32,7 @@ if ($cc_initial_filter != ''){
 }
 $start = ($page * $count) - $count;
 
-$cc_search = $cc_service_url . 'api/institution/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&lang=' . $lang;
+$cc_search = $cc_service_url . 'api/title/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&lang=' . $lang;
 
 if ( $user_filter != '' ) {
     $user_filter_list = preg_split("/ AND /", $user_filter);

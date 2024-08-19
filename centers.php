@@ -146,9 +146,19 @@ if(!class_exists('CC_Plugin')) {
 		    register_sidebar( $args );
 
             $args2 = array(
-                'name' => 'Cooperating Centers Header',
+                'name' => 'Header Banner Plugin Title',
                 'id'   => 'cc-header',
-                'description' => __('Cooperating Centers Header', 'cc'),
+                'description' => __('Header Plugin Title', 'cc'),
+                'before_widget' => '<section id="%1$s" class="row-fluid widget %2$s">',
+                'after_widget'  => '</section>',
+                'before_title'  => '<header class="row-fluid border-bottom marginbottom15"><h1 class="h1-header">',
+                'after_title'   => '</h1></header>',
+            );
+            register_sidebar( $args2 );
+            $args2 = array(
+                'name' => 'Banner Plugin Title',
+                'id'   => 'cc-banner',
+                'description' => __('Banner Plugin Title', 'cc'),
                 'before_widget' => '<section id="%1$s" class="row-fluid widget %2$s">',
                 'after_widget'  => '</section>',
                 'before_title'  => '<header class="row-fluid border-bottom marginbottom15"><h1 class="h1-header">',

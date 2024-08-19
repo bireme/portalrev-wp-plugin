@@ -12,7 +12,7 @@ $cluster = $_POST['cluster'];
 $cluster_fb = ( $_POST['cluster'] ) ? $_POST['cluster'].':'.$fb : '';
 $count = 1;
 
-$cc_service_request = $cc_service_url . 'api/institution/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&fb=' . $cluster_fb . '&lang=' . $lang . '&count=' . $count;
+$cc_service_request = $cc_service_url . 'api/title/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&fb=' . $cluster_fb . '&lang=' . $lang . '&count=' . $count;
 
 //echo "<pre>"; echo " | "; echo($cc_service_request); echo "</pre>"; die();
 

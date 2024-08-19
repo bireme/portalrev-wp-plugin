@@ -43,6 +43,8 @@ $total = 0;
 $count = 10;
 $filter = '';
 
+$ide = sanitize_text_field($_GET['id']);
+
 if ($user_filter != ''){
     if (substr($user_filter, 0, strlen($cc_initial_filter)) === $cc_initial_filter){
         $filter = $user_filter;
@@ -54,7 +56,7 @@ if ($user_filter != ''){
 }
 $start = ($page * $count) - $count;
 
-$cc_search = $cc_service_url . 'api/title/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&lang=' . $lang;
+$cc_search = $cc_service_url . 'api/title/'.$ide.'/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&lang=' . $lang;
 
 if ( $user_filter != '' ) {
     $user_filter_list = preg_split("/ AND /", $user_filter);
@@ -72,9 +74,13 @@ $response = @file_get_contents($cc_search);
 if ($response){
     $response_json = json_decode($response);
     //var_dump($response_json);
-    $total = $response_json->diaServerResponse[0]->response->numFound;
-    $start = $response_json->diaServerResponse[0]->response->start;
-    $center_list = $response_json->diaServerResponse[0]->response->docs;
+    //var_dump($response_json);
+
+    $center_list = $response_json;
+
+    //var_dump($center_list);
+
+    
 
     $type_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->institution_type;
     $thematic_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->institution_thematic;
@@ -141,23 +147,18 @@ if ( function_exists( 'pll_the_languages' ) ) {
 
 	<div class="row">
     <div class="col-12 cc-banner">
-        <?php dynamic_sidebar('cc-banner');?>
                 </div>
         <div class="col-12 col-md-8 col-lg-9">
             <div class="row">
             
                 <?php
-                foreach ( $center_list as $resource) {
                     $pos++;
-                    echo '<article class="col-lg-' . '12' . '">';
+                    $resource = $center_list;
+                    echo '<article class="col-lg-12">';
                     echo '<div class="box1">';
                     echo '<span class="badge text-bg-info">' . strval( intval($start) + $pos ) . '/' . $total . '</span>';
                     echo '<h3 class="box1Title">';
-                    ?>
-                                    
-
-<?php
-                    echo $resource->title;
+                    echo $center_list->title;
                     if ($resource->status == '2'){
                         echo ' <span class="badge text-bg-warning">' . __('INACTIVE', 'cc') . '</span>';
                     }elseif($resource->status == '3'){
@@ -170,19 +171,29 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '</small>';
                     }
                     echo '</h3>';
-
                     echo '<table class="table table-sm ">';
                     echo '<tr>';
                     echo '  <td width="30px"></td>';
                     echo '  <td>' . $resource->cooperative_center_code . '</td>';
                     echo '</tr>';
 
-                    if ($resource->institution_type){
+                    echo '<tr>';
+                    echo '  <td width="30px"></td>';
+                    echo '  <td>Editor comercial' . $center_list->comercial_editor . '</td>';
+                    echo '</tr>';
+
+                    echo '<tr>';
+                    echo '  <td width="30px"></td>';
+                    echo '  <td>Editor comercial' . $center_list->medline_shortened_title . '</td>';
+                    echo '</tr>';
+
+                   
+                    if ($resource->online){
                         echo '<tr>';
                         echo '  <td valign="top"><i class="fas fa-table"></i></td>';
                         echo '    <td>';
                         $exclude_common_types = array('CooperatingCenters', 'ParticipantsUnits', 'VHLNetwork');
-                        foreach ( $resource->institution_type as $type ){
+                        foreach ( $resource->online as $type ){
                             echo $type_translated[$type] . '<br/>';
                         }
                         echo '   </td>';
@@ -219,13 +230,9 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '</td>';
                         echo '</tr>';
                     }
-                    ?>
-                    <span class="more"><a href="<?php echo real_site_url($cc_plugin_slug); ?>/detail/?id=<?php echo $resource->django_id; ?>"><?php _e('See more details','lis'); ?></a></span>
-                    <?php
                     echo '</table>';
                     echo '</div>';
                     echo '</article>';
-                }
                 ?>
 
             </div> <!-- /row results area -->

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php _e('VHL Network Directory', 'cc'); ?></title>
+    <title><?php _e('Portal de Revistas Cientificas', 'cc'); ?></title>
 
     <?php if ($cc_config['google_analytics_code'] != ''): ?>
         <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -43,12 +43,15 @@
 <header id="header">
     <div class="container">
         <div class="row">
+            <div class="col-md-12 menu-header">
+        <?php dynamic_sidebar('cc-header');?>
+    </div>
             <div class="col-md-3" id="logo">
                 <a href="index.php"><img src="http://logos.bireme.org/img/<?php echo $lang; ?>/bvs_color.svg" alt="" class="img-fluid imgBlack" ></a>
             </div>
             <div class="col-md-9">
                 <div id="titleMain" class="float-left">
-                    <div class="titleMain1"><?php _e('VHL Network Directory', 'cc'); ?></div>
+                    <div class="titleMain1"><?php _e('Traditional, Complementary and Integrative Medicine', 'cc'); ?></div>
                 </div>
                 <?php if ( $available_languages ) : ?>
                 <div class="lang">
@@ -71,6 +74,7 @@
                 </div>
             <?php endif; ?>
                 <div class="clearfix"></div>
+               
                 <div class="headerSearch" >
                     <form action="?results">
                         <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
