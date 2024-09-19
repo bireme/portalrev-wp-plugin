@@ -183,8 +183,8 @@ foreach($resource->issn as $issn){
                         //echo '<BR>titulo abreviado:'. $sortened ;
                     }
                     ?><BR>
-                    <a href="<?php echo real_site_url($cc_plugin_slug); ?>/detail/?id=<?php echo $resource->django_id; ?>" style="background: #31286b;  padding: 5px 20px">
-                    <?php echo $resource->title . '</a>';?>
+                    <a href="<?php echo real_site_url($cc_plugin_slug); ?>/detail/?id=<?php echo $resource->django_id; ?>" style="">
+                    ver mais</a>
                     
                     <?php
 
