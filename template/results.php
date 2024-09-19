@@ -115,9 +115,12 @@ if ( function_exists( 'pll_the_languages' ) ) {
 ?>
 
 <?php include('header.php') ?>
+<?php //var_dump($cc_initial_filter);
 
-<section class="container" id="main_container">
-    <nav>
+//echo 'gggggggg= ' . $cc_search;
+
+?>
+<nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="<?php echo ($home_url != '') ? $home_url : real_site_url() ?>"><?php _e('Home','cc'); ?></a>
@@ -130,7 +133,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     if ( isset($total) && strval($total) == 0) {
                        echo __('No results found','cc');
                    }elseif (strval($total) > 1) {
-                       echo $total . ' ' . __('Institutions','cc');
+                       echo $total . ' ' . __('titles','cc');
                    }else{
                        echo $center_list[0]->title;
                    }
@@ -138,10 +141,17 @@ if ( function_exists( 'pll_the_languages' ) ) {
             </li>
         </ol>
     </nav>
+    <div class="row">
+    <div class="col-12 cc-banner">
+        <?php dynamic_sidebar('cc-banner');?>
+                </div>
+                </div>
+<section class="container" id="main_container">
+    
 
 	<div class="row">
     <div class="col-12 cc-banner">
-        <?php dynamic_sidebar('cc-banner');?>
+        <?php //dynamic_sidebar('cc-banner');?>
                 </div>
         <div class="col-12 col-md-8 col-lg-9">
             <div class="row">
@@ -156,21 +166,40 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     ?>
                                     
 
-<?php
-                    echo $resource->title;
+<?php 
+                    ?><a href="<?php echo real_site_url($cc_plugin_slug); ?>/detail/?id=<?php echo $resource->django_id; ?>">
+                    <?php echo $resource->title . '</a>';
+
+foreach($resource->issn as $issn){
+    echo '-- ISSN:'. $issn . '';
+    }
+
                     if ($resource->status == '2'){
                         echo ' <span class="badge text-bg-warning">' . __('INACTIVE', 'cc') . '</span>';
                     }elseif($resource->status == '3'){
                         echo ' <span class="badge text-bg-warning">' . __('CLOSED', 'cc') . '</span>';
                     }
-                    echo '<br/>';
+                    foreach($resource->shortened_title as $sortened){
+                        //echo '<BR>titulo abreviado:'. $sortened ;
+                    }
+                    ?><BR>
+                    <a href="<?php echo real_site_url($cc_plugin_slug); ?>/detail/?id=<?php echo $resource->django_id; ?>" style="background: #31286b;  padding: 5px 20px">
+                    <?php echo $resource->title . '</a>';?>
+                    
+                    <?php
+
+
+
+
+                    echo '<br/></h3>';
+                    /*
                     if ($resource->django_id){
                         echo '<small>';
                             echo $resource->django_id . '<br/>';
                         echo '</small>';
                     }
                     echo '</h3>';
-
+/*
                     echo '<table class="table table-sm ">';
                     echo '<tr>';
                     echo '  <td width="30px"></td>';
@@ -189,6 +218,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '</tr>';
                     }
 
+                    /*
                     if ($resource->title){
                         echo '<tr>';
                         echo '    <td valign="top"><i class="fas fa-map-marker-alt"></i></td>';
@@ -197,7 +227,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '    </td>';
                         echo '</tr>';
                     }
-
+*//*
                     if ($resource->contact){
                         echo '<tr>';
                         echo '    <td valign="top"><i class="far fa-envelope-open"></i></td>';
@@ -208,6 +238,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '</td>';
                         echo '</tr>';
                     }
+                    /*
                     if ($resource->link){
                         echo '<tr>';
                         echo '	<td valign="top"><i class="fas fa-tv"></i></td>';
@@ -219,10 +250,11 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '</td>';
                         echo '</tr>';
                     }
+                        */
                     ?>
-                    <span class="more"><a href="<?php echo real_site_url($cc_plugin_slug); ?>/detail/?id=<?php echo $resource->django_id; ?>"><?php _e('See more details','lis'); ?></a></span>
-                    <?php
-                    echo '</table>';
+                    <!--<span class="more"><a href="<?php echo real_site_url($cc_plugin_slug); ?>/detail/?id=<?php echo $resource->django_id; ?>"><?php _e('See more details','lis'); ?></a></span>
+                --><?php
+                    //echo '</table>';
                     echo '</div>';
                     echo '</article>';
                 }

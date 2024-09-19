@@ -5,7 +5,7 @@ class Paginator{
     var $start;
     var $output;
     var $pag = array();
-    var $default_count = 10;
+    var $default_count = 20;
     var $current_page;
 
     function __construct($total, $start)

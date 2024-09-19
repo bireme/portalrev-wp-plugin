@@ -18,7 +18,7 @@ $sanitize_user_filter = sanitize_text_field($_GET['filter']);
 $user_filter = stripslashes($sanitize_user_filter);
 $page = ( isset($_GET['page']) ? sanitize_text_field($_GET['page']) : 1 );
 $total = 0;
-$count = 10;
+$count = 20;
 $filter = '';
 
 if ($cc_initial_filter != ''){
@@ -98,7 +98,7 @@ $thematic_translated['MTCI'] = __('MTCI','cc');
                 </li>
             </ol>
         </nav>
-        Teste teste xx
+        Teste teste xx <?php var_dump($cc_initial_filter); ?>
 		<div class="row">
 			<div class="col-12 col-md-8 col-lg-9">
 				<div class="row">

@@ -173,21 +173,81 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     echo '</h3>';
                     echo '<table class="table table-sm ">';
                     echo '<tr>';
-                    echo '  <td width="30px"></td>';
+                    echo '  <td ></td>';
                     echo '  <td>' . $resource->cooperative_center_code . '</td>';
                     echo '</tr>';
-
+                
                     echo '<tr>';
-                    echo '  <td width="30px"></td>';
-                    echo '  <td>Editor comercial' . $center_list->comercial_editor . '</td>';
+                    echo '  <td >Titulo abreviado:</td>';
+                    echo '  <td colspan="3">' . $center_list->shortened_title . '</td>';
                     echo '</tr>';
 
                     echo '<tr>';
-                    echo '  <td width="30px"></td>';
-                    echo '  <td>Editor comercial' . $center_list->medline_shortened_title . '</td>';
+                    echo '  <td >ISSN:</td>';
+                    echo '  <td >' . $center_list->issn . '</td>';
+                    echo '  <td width="220px">' . '</td>';
                     echo '</tr>';
 
-                   
+                    if ($resource->responsibility_mention){
+                        foreach ( $resource->responsibility_mention as $type ){
+                    echo '<tr>';
+                    echo '  <td ></td>';
+                    echo '  <td>Menção de responsabilidade:' . $center_list->responsibility_mention . '</td>';
+                    echo '</tr>';
+                        }
+                    }
+                    /*
+                    echo '<tr>';
+                    echo '  <td >Editora: </td>';
+                    echo '  <td>' . $center_list->medline_shortened_title . '</td>';
+                    echo '</tr>';
+                    */
+                    if ($resource->responsibility_mention){
+                    echo '<tr>';
+                    echo '  <td >Menção de responsabilidade:</td>';
+                    echo '  <td>' . $center_list->responsibility_mention . '</td>';
+                    echo '</tr>';
+                    }
+
+                    if ($resource->city){
+                    echo '<tr>';
+                    echo '  <td >Cidade:</td>';
+                    echo '  <td> ' . $center_list->city . '</td>';
+                    echo '</tr>';
+                    }
+
+                    if ($resource->initial_date){
+                        echo '<tr>';
+                        echo '  <td >Publicação iniciada em: </td>';
+                        echo '  <td> ' . $center_list->initial_date . '</td>';
+                        echo '</tr>';
+                        }
+
+                    
+                    if($center_list->thematic_area != ''){
+                    echo '<tr>';
+                    echo '  <td >Area tematica:</td>';
+                    echo '  <td> ' . $center_list->thematic_area . '</td>';
+                    echo '</tr>';
+                    }  
+                    if($center_list->descriptors != ''){
+                        echo '<tr>';
+                        echo '  <td >Assuntos:</td>';
+                        echo '    <td>';
+                        foreach ( $resource->descriptors as $descriptors){
+                            echo $descriptors . ' <BR>';
+                        }
+                        echo '   </td>';
+                        echo '</tr>';
+                    }
+                    if ($resource->secs_number){
+                        echo '<tr>';
+                        echo '    <td>No secs Bireme:</td>';
+                        echo '    <td>';
+                        echo '      <a href="https://www.google.com/maps/search/' . $resource->secs_number . '" target="_blank">' . $resource->secs_number . '</a>';
+                        echo '    </td>';
+                        echo '</tr>';
+                    }     
                     if ($resource->online){
                         echo '<tr>';
                         echo '  <td valign="top"><i class="fas fa-table"></i></td>';
@@ -197,37 +257,6 @@ if ( function_exists( 'pll_the_languages' ) ) {
                             echo $type_translated[$type] . '<br/>';
                         }
                         echo '   </td>';
-                        echo '</tr>';
-                    }
-
-                    if ($resource->title){
-                        echo '<tr>';
-                        echo '    <td valign="top"><i class="fas fa-map-marker-alt"></i></td>';
-                        echo '    <td>';
-                        echo '      <a href="https://www.google.com/maps/search/' . $resource->title . '" target="_blank">' . $resource->title . '</a>';
-                        echo '    </td>';
-                        echo '</tr>';
-                    }
-
-                    if ($resource->contact){
-                        echo '<tr>';
-                        echo '    <td valign="top"><i class="far fa-envelope-open"></i></td>';
-                        echo '    <td>';
-                        foreach ( $resource->contact as $contact ){
-                            echo $contact . '<br/>';
-                        }
-                        echo '</td>';
-                        echo '</tr>';
-                    }
-                    if ($resource->link){
-                        echo '<tr>';
-                        echo '	<td valign="top"><i class="fas fa-tv"></i></td>';
-                        echo '  <td>';
-                        foreach ( $resource->link as $link ){
-                            $link_norm = ( substr($link, 0, 4) != 'http' ? 'http://' . $link : $link );
-                        	echo '<p><a href="' . $link_norm . '" target="_blank">'  . $link . '</a></p>';
-                        }
-                        echo '</td>';
                         echo '</tr>';
                     }
                     echo '</table>';
@@ -244,7 +273,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
         <div class="col-md-4 col-lg-3" id="filterRight">
             <div class="boxFilter">
                 <?php if ($applied_filter_list) :?>
-                    <form method="get" name="searchFilter" id="formFilters" action="?results">
+                    <form method="get" name="searchFilter" id="formFilters" action="<?php echo site_url($lang_slug . '/' . $cc_plugin_slug) . 'results.php?results'?>">
                         <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
                         <input type="hidden" name="q" id="query" value="<?php echo $query; ?>" >
                         <input type="hidden" name="filter" id="filter" value="" >
@@ -285,6 +314,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
 
                 <section>
                     <h5 class="box1Title"><?php _e('Filtros','cc'); ?></h5>
+                    <?php var_dump($resource);?>
                     <ul class="filter-list">
                         <?php foreach ( $type_list as $type ) { ?>
                             <li class="cat-item">

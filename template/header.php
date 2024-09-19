@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php _e('Portal de Revistas Cientificas', 'cc'); ?></title>
+    <title><?php _e('portal de Revistas Científicas em Ciências da Saúde', 'cc'); ?></title>
 
     <?php if ($cc_config['google_analytics_code'] != ''): ?>
         <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -51,7 +51,7 @@
             </div>
             <div class="col-md-9">
                 <div id="titleMain" class="float-left">
-                    <div class="titleMain1"><?php _e('Traditional, Complementary and Integrative Medicine', 'cc'); ?></div>
+                    <div class="titleMain1"><?php _e('portal de Revistas Científicas em Ciências da Saúde', 'cc'); ?></div>
                 </div>
                 <?php if ( $available_languages ) : ?>
                 <div class="lang">
@@ -76,7 +76,7 @@
                 <div class="clearfix"></div>
                
                 <div class="headerSearch" >
-                    <form action="?results">
+                    <form action="<?php echo site_url($lang_slug . '/' . $cc_plugin_slug) . '/?results'?>">
                         <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
                         <div class="row">
                             <div class="col-md-10 inputBoxSearch">

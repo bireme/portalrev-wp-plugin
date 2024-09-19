@@ -162,7 +162,7 @@ body{
 }
 .box1{
 	padding: 20px;
-	margin-bottom: 20px;
+	margin-bottom: 0px;
 	transition: border .5s ease;
 	word-break: break-word;     background: #eee;
     border: 1px solid #ddd;
@@ -171,14 +171,14 @@ body{
 	background-color: #e5e5e5;
 }
 .box1Title{
-	font-size: 20px;
+	font-size: 14px;
 	font-weight: 600;
 	position: relative;
 	margin-bottom: 30px;
 }
 .box1Title::after{
 	content: " ";
-	background-color: #f36f23;
+	background-color: #31286b;
 	position: absolute;
 	bottom: -15px;
 	left: 0;
