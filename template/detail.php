@@ -126,6 +126,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
+                <!--<a href="<?php echo ($home_url != '') ? $home_url : real_site_url() ?>"><?php _e('Home','cc'); ?></a>-->
                 <a href="<?php echo ($home_url != '') ? $home_url : real_site_url() ?>"><?php _e('Home','cc'); ?></a>
             </li>
             <li class="breadcrumb-item">
@@ -133,13 +134,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
             </li>
             <li class="breadcrumb-item" aria-current="page">
                 <?php
-                    if ( isset($total) && strval($total) == 0) {
-                       echo __('No results found','cc');
-                   }elseif (strval($total) > 1) {
-                       echo $total . ' ' . __('Institutions','cc');
-                   }else{
-                       echo $center_list[0]->title;
-                   }
+                       echo $center_list->title;
                 ?>
             </li>
         </ol>
@@ -152,11 +147,13 @@ if ( function_exists( 'pll_the_languages' ) ) {
             <div class="row">
             
                 <?php
+
                     $pos++;
                     $resource = $center_list;
                     echo '<article class="col-lg-12">';
+                    echo '<h1>' . $center_list->title . '</h1>';
                     echo '<div class="box1">';
-                    echo '<span class="badge text-bg-info">' . strval( intval($start) + $pos ) . '/' . $total . '</span>';
+                    //echo '<span class="badge text-bg-info">' . strval( intval($start) + $pos ) . '/' . $total . '</span>';
                     echo '<h3 class="box1Title">';
                     echo $center_list->title;
                     if ($resource->status == '2'){
@@ -171,15 +168,31 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '</small>';
                     }
                     echo '</h3>';
-                    echo '<table class="table table-sm ">';
+                    echo '<table class="table table-sm table-detail">';
                     echo '<tr>';
                     echo '  <td ></td>';
                     echo '  <td>' . $resource->cooperative_center_code . '</td>';
                     echo '</tr>';
                 
+                    if ($resource->subtitle){
                     echo '<tr>';
-                    echo '  <td >Titulo abreviado:</td>';
-                    echo '  <td colspan="3">' . $center_list->shortened_title . '</td>';
+                    echo '  <td >Subtitulo</td>';
+                    echo '  <td colspan="3">' . $center_list->subtitle . '</td>';
+                    echo '</tr>';
+                    }
+
+                    if ($resource->section){
+                        foreach ( $resource->section as $value ){
+                        echo '<tr>';
+                        echo '  <td >Seção/Parte:</td>';
+                        echo '  <td>'.$value . '</td>';
+                        echo '</tr>';
+                        }
+                    }
+
+                    echo '<tr>';
+                    echo '  <td ><b>Titulo abreviado:</b>';
+                    echo '  ' . $center_list->shortened_title . '</td>';
                     echo '</tr>';
 
                     echo '<tr>';
@@ -188,14 +201,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     echo '  <td width="220px">' . '</td>';
                     echo '</tr>';
 
-                    if ($resource->responsibility_mention){
-                        foreach ( $resource->responsibility_mention as $type ){
-                    echo '<tr>';
-                    echo '  <td ></td>';
-                    echo '  <td>Menção de responsabilidade:' . $center_list->responsibility_mention . '</td>';
-                    echo '</tr>';
-                        }
-                    }
+
                     /*
                     echo '<tr>';
                     echo '  <td >Editora: </td>';
@@ -208,12 +214,27 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     echo '  <td>' . $center_list->responsibility_mention . '</td>';
                     echo '</tr>';
                     }
+                    if ($resource->comercial_editor){
+                        echo '<tr>';
+                        echo '  <td >Editor:</td>';
+                        echo '  <td>' . $center_list->comercial_editor . '</td>';
+                        echo '</tr>';
+                    }
 
                     if ($resource->city){
                     echo '<tr>';
                     echo '  <td >Cidade:</td>';
                     echo '  <td> ' . $center_list->city . '</td>';
                     echo '</tr>';
+                    }
+
+                    if ($resource->country){
+                        foreach ( $resource->country as $value ){
+                    echo '<tr>';
+                    echo '  <td>País</td>';
+                    echo '  <td>' . $value . '</td>';
+                    echo '</tr>';
+                        }
                     }
 
                     if ($resource->initial_date){
@@ -223,10 +244,35 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '</tr>';
                         }
 
-                    
+                    if ($resource->final_date){
+                            echo '<tr>';
+                            echo '  <td >Publicação encerrada em: </td>';
+                            echo '  <td> ' . $center_list->final_date . '</td>';
+                            echo '</tr>';
+                    }
+                    if($center_list->continued_by != ''){
+                        echo '<tr>';
+                        echo '  <td >Continuação parcial de:</td>';
+                        echo '    <td>';
+                        foreach ( $resource->continued_by as $values){
+                            echo $values . ' <BR>';
+                        }
+                        echo '   </td>';
+                        echo '</tr>';
+                    }
+                    if($center_list->partial_continuation != ''){
+                        echo '<tr>';
+                        echo '  <td >Continuação parcial de:</td>';
+                        echo '    <td>';
+                        foreach ( $resource->partial_continuation as $values){
+                            echo $values . ' <BR>';
+                        }
+                        echo '   </td>';
+                        echo '</tr>';
+                    }
                     if($center_list->thematic_area != ''){
                     echo '<tr>';
-                    echo '  <td >Area tematica:</td>';
+                    echo '  <td >Área temática:</td>';
                     echo '  <td> ' . $center_list->thematic_area . '</td>';
                     echo '</tr>';
                     }  
@@ -311,7 +357,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         <?php endforeach; ?>
                     </form>
                 <?php endif; ?>
-
+<!--
                 <section>
                     <h5 class="box1Title"><?php _e('Filtros','cc'); ?></h5>
                     <?php var_dump($resource);?>
@@ -388,6 +434,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         <?php endif; ?>
                     </section>
                 <?php endif; ?>
+                        -->
             </div>
         </div>
     </div>

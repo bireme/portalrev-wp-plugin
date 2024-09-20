@@ -121,9 +121,11 @@ if ( function_exists( 'pll_the_languages' ) ) {
 
 ?>
 <nav>
+        <div class="container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="<?php echo ($home_url != '') ? $home_url : real_site_url() ?>"><?php _e('Home','cc'); ?></a>
+                <!--<a href="<?php echo ($home_url != '') ? $home_url : real_site_url() ?>"><?php _e('Home','cc'); ?></a>-->
+                <?php _e('Home','cc'); ?>
             </li>
             <li class="breadcrumb-item">
                 <a href="<?php echo real_site_url($cc_plugin_slug); ?>"><?php echo $plugin_title ?></a>
@@ -140,10 +142,11 @@ if ( function_exists( 'pll_the_languages' ) ) {
                 ?>
             </li>
         </ol>
+                </div>
     </nav>
     <div class="row">
     <div class="col-12 cc-banner">
-        <?php dynamic_sidebar('cc-banner');?>
+        <?php //dynamic_sidebar('cc-banner');?>
                 </div>
                 </div>
 <section class="container" id="main_container">
@@ -167,12 +170,10 @@ if ( function_exists( 'pll_the_languages' ) ) {
                                     
 
 <?php 
-                    ?><a href="<?php echo real_site_url($cc_plugin_slug); ?>/detail/?id=<?php echo $resource->django_id; ?>">
+                    ?><a href="<?php echo real_site_url($cc_plugin_slug); ?>/detail/?id=<?php echo $resource->django_id; ?>" class="linkTitulo">
                     <?php echo $resource->title . '</a>';
 
-foreach($resource->issn as $issn){
-    echo '-- ISSN:'. $issn . '';
-    }
+
 
                     if ($resource->status == '2'){
                         echo ' <span class="badge text-bg-warning">' . __('INACTIVE', 'cc') . '</span>';
@@ -182,16 +183,23 @@ foreach($resource->issn as $issn){
                     foreach($resource->shortened_title as $sortened){
                         //echo '<BR>titulo abreviado:'. $sortened ;
                     }
-                    ?><BR>
-                    <a href="<?php echo real_site_url($cc_plugin_slug); ?>/detail/?id=<?php echo $resource->django_id; ?>" style="">
-                    ver mais</a>
+                    echo '</h3>';
+
+                    foreach($resource->issn as $issn){
+                        echo '<span class="texto">ISSN:'. $issn . '</span><br>';
+                        echo '<span class="texto">ISSN:'. $issn . '</span><br>';
+                        }
+                    ?>
+                    <br>
+                    <a href="<?php echo real_site_url($cc_plugin_slug); ?>/detail/?id=<?php echo $resource->django_id; ?>" class="btnDetalhes">
+                    <?php _e('ver mais detalhes', 'cc')?></a>
                     
                     <?php
 
 
 
 
-                    echo '<br/></h3>';
+  
                     /*
                     if ($resource->django_id){
                         echo '<small>';
@@ -371,7 +379,7 @@ foreach($resource->issn as $issn){
                                 ?>
                                 <li class="cat-item">
                                     <a href='<?php echo $filter_link; ?>'><?php print_lang_value($country[0], $site_language)?></a>
-                                    <span class="cat-item-count">(<?php echo $country[1] ?>)</span>
+                                    <span class="cat-item-count"><?php echo $country[1] ?></span>
                                 </li>
                             <?php } ?>
                         </ul>

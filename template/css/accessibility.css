@@ -86,6 +86,9 @@ ex: ".bodyBlack .noticias" para div noticia
 .bodyBlack .table tr:hover{
 	color: #999;
 }
+.bodyBlack .box1{
+	background: #383d41;
+}   
 /********************* Breakpoint *********************/
 @media (max-width: 768px){
 	#topAcessibility,

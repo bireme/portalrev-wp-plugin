@@ -1,17 +1,36 @@
-    <footer id="footer">
-    	<div class="container">
+    
+	<footer id="footer" class="py-5 px-5">
+    	<!--<div class="container">-->
     		<div class="row">
-    			<div class="col-md-5">
-    				<small>
-    					<a href="https://politicas.bireme.org/terminos/<?php echo $lang ?>" target="_blank"><?php _e('Terms and conditions of use', 'cc'); ?></a> |
-    					<a href="https://politicas.bireme.org/privacidad/<?php echo $lang ?>" target="_blank"><?php _e('Privacy Policy', 'cc'); ?></a>
-    				</small>
+    			<div class="col-lg-8">
+					<div class="row">
+				<div class="col-md-2">
+				<a href="index.php"><img src="http://logos.bireme.org/img/<?php echo $lang; ?>/bvs_color.svg" alt="" class="img-fluid imgBlack" style="max-width:120px" ></a>
+</div>
+				<div class="col-md-10 text-justify" >
+
+				A BVS é um produto colaborativo, coordenado pela BIREME/OPAS/OMS. Como biblioteca, oferece acesso abrangente à informação científica e técnica em saúde. A BVS coleta, indexa e armazena citações de documentos publicados por diversas organizações. A inclusão de qualquer artigo, documento ou citação na coleção da BVS não implica endosso ou concordância da BIREME/OPAS/OMS com o seu conteúdo.
+				</div>
+				</div>
+
     			</div>
-    			<div class="col-md-7 text-right" id="logoOPAS">
-    				<img src="https://logos.bireme.org/img/<?php echo $lang ?>/h_bir_color.svg" alt="" class="img-fluid imgBlack">
+    			<div class="col-lg-4 text-center" id="logoOPAS">
+    				<img src="https://logos.bireme.org/img/<?php echo $lang ?>/v_bir_white.svg" alt="" class="imgBlack" style="max-width:100%">
     			</div>
     		</div>
-    	</div>
+			<hr class="text-white">
+			<div class="row">
+			<div class="col-md-12 text-center">
+
+			<small>
+    					<a href="https://politicas.bireme.org/terminos/<?php echo $lang ?>" target="_blank"><?php _e('Terms and conditions of use', 'cc'); ?></a> |
+    					<a href="https://politicas.bireme.org/privacidad/<?php echo $lang ?>" target="_blank"><?php _e('Privacy Policy', 'cc'); ?></a>
+    				</small><br>
+					<img style="max-width:110px" src="https://bvsalud.org/wp-content/themes/portal-regional/img/powered.png">
+
+</div>
+</div>
+    	<!--</div>-->
     </footer>
 	<?php wp_footer() ?>
 </body>

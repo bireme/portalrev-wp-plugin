@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php _e('portal de Revistas Científicas em Ciências da Saúde', 'cc'); ?></title>
-
+    <title><?php _e('Portal de Revistas Científicas em Ciências da Saúde', 'cc'); ?></title>
     <?php if ($cc_config['google_analytics_code'] != ''): ?>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $cc_config['google_analytics_code'] ?>"></script>
@@ -41,17 +40,21 @@
 </section>	<!-- Topo -->
 
 <header id="header">
-    <div class="container">
+    <div class="container  py-3">
         <div class="row">
-            <div class="col-md-12 menu-header">
-        <?php dynamic_sidebar('cc-header');?>
-    </div>
-            <div class="col-md-3" id="logo">
+            <div class="col-md-12">
+        <?php //dynamic_sidebar('cc-header');?>
+            </div>
+            <div class="col-md-2" id="logo">
                 <a href="index.php"><img src="http://logos.bireme.org/img/<?php echo $lang; ?>/bvs_color.svg" alt="" class="img-fluid imgBlack" ></a>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-10">
                 <div id="titleMain" class="float-left">
-                    <div class="titleMain1"><?php _e('portal de Revistas Científicas em Ciências da Saúde', 'cc'); ?></div>
+                    <?php if($cc_plugin_title != ''){?>
+                    <div class="titleMain1"><?php _e($cc_plugin_title, 'cc'); ?></div>
+                    <?php }else{ ?>
+                    <div class="titleMain1"><?php _e('Defina um titulo nas configuracoes do plugin', 'cc'); ?></div>
+                    <?php } ?>
                 </div>
                 <?php if ( $available_languages ) : ?>
                 <div class="lang">
@@ -95,4 +98,6 @@
             </div>
         </div>
     </div>
+    <div class="row" style="background-color:#31286b!important">dd
+                        </div>
 </header>
