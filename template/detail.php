@@ -127,7 +127,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <!--<a href="<?php echo ($home_url != '') ? $home_url : real_site_url() ?>"><?php _e('Home','cc'); ?></a>-->
-                <a href="<?php echo ($home_url != '') ? $home_url : real_site_url() ?>"><?php _e('Home','cc'); ?></a>
+                <?php _e('Home','cc'); ?>
             </li>
             <li class="breadcrumb-item">
                 <a href="<?php echo real_site_url($cc_plugin_slug); ?>"><?php echo $plugin_title ?></a>
@@ -164,14 +164,14 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     echo '<br/>';
                     if ($resource->django_id){
                         echo '<small>';
-                            echo $resource->django_id . '<br/>';
+                            //echo $resource->django_id . '<br/>';
                         echo '</small>';
                     }
                     echo '</h3>';
                     echo '<table class="table table-sm table-detail">';
                     echo '<tr>';
                     echo '  <td ></td>';
-                    echo '  <td>' . $resource->cooperative_center_code . '</td>';
+                    //echo '  <td>' . $resource->cooperative_center_code . '</td>';
                     echo '</tr>';
                 
                     if ($resource->subtitle){
@@ -191,9 +191,27 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     }
 
                     echo '<tr>';
-                    echo '  <td ><b>Titulo abreviado:</b>';
-                    echo '  ' . $center_list->shortened_title . '</td>';
+                    echo '  <td >Titulo abreviado:</td>';
+                    echo '  <td >'. $center_list->shortened_title . '</td>';
                     echo '</tr>';
+
+                    if ($resource->parallel_titles){
+                        foreach ( $resource->parallel_titles as $value ){
+                    echo '<tr>';
+                    echo '  <td>Título paralelo:</td>';
+                    echo '  <td>' . $value . '</td>';
+                    echo '</tr>';
+                        }
+                    }
+
+                    if ($resource->other_titles){
+                        foreach ( $resource->other_titles as $value ){
+                    echo '<tr>';
+                    echo '  <td>Outras variações:</td>';
+                    echo '  <td>' . $value . '</td>';
+                    echo '</tr>';
+                        }
+                    }
 
                     echo '<tr>';
                     echo '  <td >ISSN:</td>';
@@ -216,7 +234,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     }
                     if ($resource->comercial_editor){
                         echo '<tr>';
-                        echo '  <td >Editor:</td>';
+                        echo '  <td >Editora:</td>';
                         echo '  <td>' . $center_list->comercial_editor . '</td>';
                         echo '</tr>';
                     }
@@ -252,7 +270,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     }
                     if($center_list->continued_by != ''){
                         echo '<tr>';
-                        echo '  <td >Continuação parcial de:</td>';
+                        echo '  <td >Continuação por:</td>';
                         echo '    <td>';
                         foreach ( $resource->continued_by as $values){
                             echo $values . ' <BR>';
@@ -286,6 +304,16 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '   </td>';
                         echo '</tr>';
                     }
+                    if($center_list->index_range != ''){
+                        echo '<tr>';
+                        echo '  <td >Título indexado em:</td>';
+                        echo '    <td>';
+                        foreach ( $resource->index_range as $index_range){
+                            echo $index_range . ' <BR>';
+                        }
+                        echo '   </td>';
+                        echo '</tr>';
+                    }
                     if ($resource->secs_number){
                         echo '<tr>';
                         echo '    <td>No secs Bireme:</td>';
@@ -294,17 +322,40 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '    </td>';
                         echo '</tr>';
                     }     
+
                     if ($resource->online){
                         echo '<tr>';
-                        echo '  <td valign="top"><i class="fas fa-table"></i></td>';
+                        echo '  <td valign="top"><i class="fas fa-table"></i>online</td>';
                         echo '    <td>';
                         $exclude_common_types = array('CooperatingCenters', 'ParticipantsUnits', 'VHLNetwork');
                         foreach ( $resource->online as $type ){
-                            echo $type_translated[$type] . '<br/>';
+                            echo $type . '<br/>';
                         }
                         echo '   </td>';
                         echo '</tr>';
                     }
+
+                    if ($resource->online_type){
+                        echo '<tr>';
+                        echo '  <td valign="top"><i class="fas fa-table"></i>online type</td>';
+                        echo '    <td>';
+                        foreach ( $resource->online_type as $type ){
+                            echo $type . '<br/>';
+                        }
+                        echo '   </td>';
+                        echo '</tr>';
+                    }
+                    if ($resource->online_notes){
+                        echo '<tr>';
+                        echo '  <td valign="top"><i class="fas fa-table"></i>online notes</td>';
+                        echo '    <td>';
+                        foreach ( $resource->online_notes as $type ){
+                            echo $type . '<br/>';
+                        }
+                        echo '   </td>';
+                        echo '</tr>';
+                    }
+
                     echo '</table>';
                     echo '</div>';
                     echo '</article>';

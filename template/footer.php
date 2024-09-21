@@ -22,12 +22,14 @@
 			<div class="row">
 			<div class="col-md-12 text-center">
 
-			<small>
+
+					<a href ="https://www.paho.org/<?php echo $lang ?>/bireme"  target="_blank">
+					<img style="max-width:110px" src="https://bvsalud.org/wp-content/themes/portal-regional/img/powered.png">
+					</a><br><br>
+					<small>
     					<a href="https://politicas.bireme.org/terminos/<?php echo $lang ?>" target="_blank"><?php _e('Terms and conditions of use', 'cc'); ?></a> |
     					<a href="https://politicas.bireme.org/privacidad/<?php echo $lang ?>" target="_blank"><?php _e('Privacy Policy', 'cc'); ?></a>
-    				</small><br>
-					<img style="max-width:110px" src="https://bvsalud.org/wp-content/themes/portal-regional/img/powered.png">
-
+    				</small>
 </div>
 </div>
     	<!--</div>-->
