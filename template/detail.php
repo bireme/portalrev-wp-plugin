@@ -309,7 +309,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '  <td >Título indexado em:</td>';
                         echo '    <td>';
                         foreach ( $resource->index_range as $index_range){
-                            echo $index_range . ' <BR>';
+                            echo tratarIndexadoEm($index_range) . ' <BR>';
                         }
                         echo '   </td>';
                         echo '</tr>';
@@ -323,13 +323,91 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '</tr>';
                     }     
 
+
+function separar_indices($texto) {
+    // Regex para capturar os campos ^a até ^f
+    preg_match_all('/\^a([^\^]*)/', $texto, $matches_a);
+    preg_match_all('/\^b([^\^]*)/', $texto, $matches_b);
+    preg_match_all('/\^c([^\^]*)/', $texto, $matches_c);
+    preg_match_all('/\^d([^\^]*)/', $texto, $matches_d);
+    preg_match_all('/\^e([^\^]*)/', $texto, $matches_e);
+    preg_match_all('/\^f([^\^]*)/', $texto, $matches_f);
+    
+    $resultados = [];
+    
+    // Iterar através dos resultados e construir um array associativo
+    for ($i = 0; $i < count($matches_a[1]); $i++) {
+        $resultados[] = [
+            'a' => $matches_a[1][$i],
+            'b' => isset($matches_b[1][$i]) ? $matches_b[1][$i] : '',
+            'c' => isset($matches_c[1][$i]) ? $matches_c[1][$i] : '',
+            'd' => isset($matches_d[1][$i]) ? $matches_d[1][$i] : '',
+            'e' => isset($matches_e[1][$i]) ? $matches_e[1][$i] : '',
+            'f' => isset($matches_f[1][$i]) ? $matches_f[1][$i] : ''
+        ];
+    }
+    
+    return $resultados;
+}
+
+function susbtituirSiglas($texto){
+    $texto = str_replace("ALAP", "Permitido para assinantes do formato impresso", $texto);
+    $texto = str_replace("AAEL", "Para assinantes do formato eletrônico", $texto);
+    $texto = str_replace("ACOP", "Não disponível", $texto);
+    $texto = str_replace("ALIV", "Gratuito", $texto);
+    return $texto;
+}
+function susbtituirSiglasD($texto){
+    $texto = str_replace("IP", "Acesso controlado por IP", $texto);
+    $texto = str_replace("PASS", "Acesso controlado por senha", $texto);
+    $texto = str_replace("LIVRE", "Livre acesso", $texto);
+    $texto = str_replace("IP/PASS", "Acesso controlado por IP e senha", $texto);
+    return $texto;
+}
+
+
+function tratarIndexadoEm($texto){
+    $texto = str_replace("^a", "; ", $texto);
+    $texto = str_replace("^b", ", ", $texto);
+    $texto = str_replace("^c", ", ", $texto);
+    return $texto;
+}
+
+
+                    $pos = strpos($mystring, $findme);
+
+
                     if ($resource->online){
+
+                        
+
+
+
+
                         echo '<tr>';
-                        echo '  <td valign="top"><i class="fas fa-table"></i>online</td>';
-                        echo '    <td>';
+                        echo '  <td valign="top">Formato eletrônico</td>';
+                        echo '    <td colspan="3">';
                         $exclude_common_types = array('CooperatingCenters', 'ParticipantsUnits', 'VHLNetwork');
-                        foreach ( $resource->online as $type ){
-                            echo $type . '<br/>';
+                        $no = 1;
+                        foreach ( $resource->online as $type){
+//                            echo $type . '<br/>';
+                            $type = susbtituirSiglas($type);
+                            $resultados = separar_indices($type);
+//a - Texto Completo
+//^b - url
+//^c -
+// e - Disponível a partir de   	
+// f -  Terminando em   	
+// Exibir os resultados
+foreach ($resultados as $resultado) {
+    echo "<b>Opção " . $no . "</b>";
+    echo "<BR>Texto Completo: " . susbtituirSiglas($resultado['a']) . ' - ' . susbtituirSiglasD($resultado['d']);
+    echo ",<br> URL: " . $resultado['b'] . " (<a href='" .  $resultado['b']  ."' target='_blank'><i class='fas fa-long-arrow-right'></i>visitar link</a>)";
+    echo "<BR>Agregador/Fornecedor : " . $resultado['c'] . "<BR>Disponível a partir de: " . $resultado['e'] . " <BR>Terminando em : " . $resultado['f'];
+    echo "<Br><Br>";
+    $no += 1;
+    echo PHP_EOL;
+}
                         }
                         echo '   </td>';
                         echo '</tr>';
@@ -345,6 +423,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '   </td>';
                         echo '</tr>';
                     }
+                    ///////^p -portugues, i- inlges, ê -espanhol
                     if ($resource->online_notes){
                         echo '<tr>';
                         echo '  <td valign="top"><i class="fas fa-table"></i>online notes</td>';
