@@ -82,9 +82,11 @@ if ($response){
     $country_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->country;
     //var_dump($response_json->diaServerResponse[0]->facet_counts->facet_fields);
     $descriptor_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->descriptor_filter;
-    $text_language_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->text_language;
+    $language_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->language;
+    $status_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->status;
 
-    $text_language_list[0] = "en^Portuguese|pt-br^Português|es^Portugués";
+
+    //$language_list[0] = "en^Portuguese|pt-br^Português|es^Portugués";
 
     usort($type_list, function($a, $b) use ($patterns, $type_translated) {
         $a[0] = strtolower($type_translated[$a[0]]);
@@ -196,12 +198,12 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         _e('Titulo abreviado: ' , 'cc');
                         echo  $sortened . '<BR></span>';
                     }
-                    if($resource->text_language){
+                    if($resource->language){
                     echo '<span class="texto">Disponível no idioma: ';
                         $n = 0;
-                        foreach($resource->text_language as $text_language){
+                        foreach($resource->language as $language){
                         if($n > 0){echo ', ';}
-                        print_lang_value($text_language, $site_language);
+                        print_lang_value($language, $site_language);
                         $n++;
                         }
                         echo '<BR></span>';
@@ -318,7 +320,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                                     <li>
                                         <span class="filter-item">
                                             <?php
-                                                if ($ap_filter == 'country' or $ap_filter == 'text_language'){
+                                                if ($ap_filter == 'country' or $ap_filter == 'language'){
                                                     echo print_lang_value($value, $site_language);
                                                 }elseif ($ap_filter == 'institution_type'){
                                                     echo $type_translated[$value];
@@ -388,28 +390,68 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     </section>
                 <?php endif; ?>
              <!----------------------------->
-             <?php if ($text_language_list): ?>
+             <?php 
+             //var_dump($language_list);
+             if ($status_list): ?>
+                <section>
+                    <h5 class="box1Title"><?php _e('Status','cc'); ?></h5>
+                    <ul class="filter-list">
+                        <?php foreach ( $status_list as $status ) { ?>
+                            <?php
+                                $filter_link = '?';
+                                if ($query != ''){
+                                    $filter_link .= 'q=' . $query . '&';
+                                }
+                                $filter_link .= 'filter=status:"' . $status[0] . '"';
+                                if ($user_filter != ''){
+                                    $filter_link .= ' AND ' . $user_filter ;
+                                }
+                            ?>
+                            <li class="cat-item">
+                                <a href='<?php echo $filter_link; ?>'>
+                                <? if($status[0] == 1){
+                                    echo 'corrente';
+                                }else{
+                                    echo 'encerrado';
+                                }  ?>
+                                </a>
+                                <span class="cat-item-count"><?php echo $status[1] ?></span>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                    <?php if ( count($status_list) == 20 ) : ?>
+                        <div class="show-more text-center">
+                            <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="status"><?php _e('show more','cc'); ?></a>
+                            <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
+                        </div>
+                    <?php endif; ?>
+                </section>
+            <?php endif; ?>
+            <!---------------->
+            <?php
+             //var_dump($language_list);
+             if ($language_list): ?>
                     <section>
                         <h5 class="box1Title"><?php _e('Idioma','cc'); ?></h5>
                         <ul class="filter-list">
-                            <?php foreach ( $text_language_list as $country ) { ?>
+                            <?php foreach ( $language_list as $country ) { ?>
                                 <?php
                                     $filter_link = '?';
                                     if ($query != ''){
                                         $filter_link .= 'q=' . $query . '&';
                                     }
-                                    $filter_link .= 'filter=text_language:"' . $country . '"';
+                                    $filter_link .= 'filter=language:"' . $country[0] . '"';
                                     if ($user_filter != ''){
                                         $filter_link .= ' AND ' . $user_filter ;
                                     }
                                 ?>
                                 <li class="cat-item">
-                                    <a href='<?php echo $filter_link; ?>'><?php print_lang_value($country, $site_language)?></a>
-                                    <!--<span class="cat-item-count"></span>-->
+                                    <a href='<?php echo $filter_link; ?>'><?php print_lang_value($country[0], $site_language)?></a>
+                                    <span class="cat-item-count"><?php echo $country[1] ?></span>
                                 </li>
                             <?php } ?>
                         </ul>
-                        <?php if ( count($text_language_list) == 20 ) : ?>
+                        <?php if ( count($language_list) == 20 ) : ?>
                             <div class="show-more text-center">
                                 <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="country"><?php _e('show more','cc'); ?></a>
                                 <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>

@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Title Plugin
+Plugin Name: Journals Plugin
 Plugin URI: https://github.com/bireme/centers-wp-plugin/
-Description: VHL Title Plugin Directory WordPress plugin
+Description: Journals Plugin Directory WordPress plugin
 Author: BIREME/OPAS/OMS
 Version: 1.0
 Author URI: http://reddes.bvsalud.org/
@@ -88,7 +88,7 @@ if(!class_exists('CC_Plugin')) {
 
 		function admin_menu() {
 
-		    add_submenu_page( 'options-general.php', __('Title plugins Settings', 'cc'), __('Title Plugin', 'cc'), 'manage_options', 'cc', 'cc_page_admin');
+		    add_submenu_page( 'options-general.php', __('Journals plugins Settings', 'cc'), __('Journals Plugin', 'cc'), 'manage_options', 'cc', 'cc_page_admin');
 
 		    //call register settings function
 		    add_action( 'admin_init', array(&$this, 'register_settings') );
@@ -135,9 +135,9 @@ if(!class_exists('CC_Plugin')) {
 
 		function register_sidebars(){
 		    $args = array(
-		        'name' => 'Title Plugin Sidebar',
+		        'name' => 'Journals Plugin Sidebar',
 		        'id'   => 'cc-home',
-		        'description' => __('Titles', 'cc'),
+		        'description' => __('Journals', 'cc'),
 		        'before_widget' => '<section id="%1$s" class="row-fluid widget %2$s">',
 		        'after_widget'  => '</section>',
 		        'before_title'  => '<h2 class="widgettitle">',
@@ -146,9 +146,9 @@ if(!class_exists('CC_Plugin')) {
 		    register_sidebar( $args );
 
             $args2 = array(
-                'name' => 'Header Banner Plugin Title',
+                'name' => 'Header Banner Plugin Journals',
                 'id'   => 'cc-header',
-                'description' => __('Header Plugin Title', 'cc'),
+                'description' => __('Header Plugin Journals', 'cc'),
                 'before_widget' => '<section id="%1$s" class="row-fluid widget %2$s">',
                 'after_widget'  => '</section>',
                 'before_title'  => '<header class="row-fluid border-bottom marginbottom15"><h1 class="h1-header">',
@@ -156,9 +156,9 @@ if(!class_exists('CC_Plugin')) {
             );
             register_sidebar( $args2 );
             $args2 = array(
-                'name' => 'Banner Plugin Title',
+                'name' => 'Banner Plugin Journals',
                 'id'   => 'cc-banner',
-                'description' => __('Banner Plugin Title', 'cc'),
+                'description' => __('Banner Plugin Journals', 'cc'),
                 'before_widget' => '<section id="%1$s" class="row-fluid widget %2$s">',
                 'after_widget'  => '</section>',
                 'before_title'  => '<header class="row-fluid border-bottom marginbottom15"><h1 class="h1-header">',

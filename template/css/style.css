@@ -299,14 +299,14 @@ body{
 	font-size:12px;
 }
 .table-detail td:nth-child(odd) {
-	font-size:12px;
+	font-size:14px;
 	font-weight: bold;
 	color:#222;
 	text-align:left;
   }
   
   .table-detail td:nth-child(even) {
-	font-size:12px;
+	font-size:14px;
 	color:#222
   }
   .breadcrumb{
@@ -319,4 +319,7 @@ body{
   }
   .breadcrumb-item+.breadcrumb-item::before, .breadcrumb-item{
 	content: ">>"; font-size:12px; font-weight: bold;
+  }
+  h1{
+	font-size: 20px !important;
   }

@@ -56,7 +56,7 @@ if ($user_filter != ''){
 }
 $start = ($page * $count) - $count;
 
-$cc_search = $cc_service_url . 'api/title/'.$ide.'/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&lang=' . $lang;
+$cc_search = $cc_service_url . 'api/title/'.$ide.'/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&lang=' . $lang . '&format=json';
 
 if ( $user_filter != '' ) {
     $user_filter_list = preg_split("/ AND /", $user_filter);
@@ -71,6 +71,7 @@ if ( $user_filter != '' ) {
 }
 
 $response = @file_get_contents($cc_search);
+//echo $cc_search;
 if ($response){
     $response_json = json_decode($response);
     //var_dump($response_json);
@@ -103,6 +104,34 @@ if ($response){
     });
 
 }
+
+//////////////////////////////////cent4ro cooperantes para colections
+
+$cc_search2 = $cc_service_url . 'api/institution/';
+$cesta = array();
+//print_r($cesta);
+//echo 'seacrh'  .$cc_search2;
+
+$response = @file_get_contents($cc_search2);
+
+if ($response){
+    $response_json = json_decode($response);
+    //var_dump($response_json);
+    $cop_list = $response_json->response;
+}
+
+foreach ( $cop_list as $resource) {
+    array_push($cesta, $resource->cc_code);
+    //echo 'cc_code ' . $resource->cc_code;
+}
+//var_dump($cop_list);
+
+
+
+
+/////////////////////////
+
+
 
 $page_url_params = '?q=' . urlencode($query)  . '&filter=' . urlencode($user_filter);
 
@@ -151,11 +180,11 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     $pos++;
                     $resource = $center_list;
                     echo '<article class="col-lg-12">';
-                    echo '<h1>' . $center_list->title . '</h1>';
+                    echo '<h1 class="tituloArtigo" style="font-size:1.5rem; padding-left: 20px;">' . $center_list->title . '</h1>';
                     echo '<div class="box1">';
                     //echo '<span class="badge text-bg-info">' . strval( intval($start) + $pos ) . '/' . $total . '</span>';
                     echo '<h3 class="box1Title">';
-                    echo $center_list->title;
+                    //echo $center_list->title;
                     if ($resource->status == '2'){
                         echo ' <span class="badge text-bg-warning">' . __('INACTIVE', 'cc') . '</span>';
                     }elseif($resource->status == '3'){
@@ -170,8 +199,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     echo '</h3>';
                     echo '<table class="table table-sm table-detail">';
                     echo '<tr>';
-                    echo '  <td ></td>';
-                    //echo '  <td>' . $resource->cooperative_center_code . '</td>';
+                    echo '  <td style="min-width:140px;"></td>';
                     echo '</tr>';
                 
                     if ($resource->subtitle){
@@ -288,6 +316,16 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '   </td>';
                         echo '</tr>';
                     }
+                    if($center_list->absorbed != ''){
+                        echo '<tr>';
+                        echo '  <td >Absorveu a:</td>';
+                        echo '    <td>';
+                        foreach ( $resource->absorbed as $absorbed){
+                            echo $absorbed . ' <BR>';
+                        }
+                        echo '   </td>';
+                        echo '</tr>';
+                    }
                     if($center_list->thematic_area != ''){
                     echo '<tr>';
                     echo '  <td >Área temática:</td>';
@@ -314,11 +352,19 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '   </td>';
                         echo '</tr>';
                     }
+                    if($center_list->national_code != ''){
+                        echo '<tr>';
+                        echo '  <td >No CNN Brasil:</td>';
+                        echo '    <td>';
+                        echo  $center_list->national_code . ' <BR>';
+                        echo '   </td>';
+                        echo '</tr>';
+                    }
                     if ($resource->secs_number){
                         echo '<tr>';
                         echo '    <td>No secs Bireme:</td>';
                         echo '    <td>';
-                        echo '      <a href="https://www.google.com/maps/search/' . $resource->secs_number . '" target="_blank">' . $resource->secs_number . '</a>';
+                        echo $resource->secs_number;
                         echo '    </td>';
                         echo '</tr>';
                     }     
@@ -379,11 +425,6 @@ function tratarIndexadoEm($texto){
 
                     if ($resource->online){
 
-                        
-
-
-
-
                         echo '<tr>';
                         echo '  <td valign="top">Formato eletrônico</td>';
                         echo '    <td colspan="3">';
@@ -413,6 +454,14 @@ foreach ($resultados as $resultado) {
                         echo '</tr>';
                     }
 
+                    if ($resource->online_notes){
+                        $countnotes = 0;
+                        foreach ( $resource->online_notes as $type ){
+                            $arraynotes[$countnotes] = $type;
+                            $countnotes++;
+                        }
+                    }
+
                     if ($resource->online_type){
                         echo '<tr>';
                         echo '  <td valign="top"><i class="fas fa-table"></i>online type</td>';
@@ -424,12 +473,18 @@ foreach ($resultados as $resultado) {
                         echo '</tr>';
                     }
                     ///////^p -portugues, i- inlges, ê -espanhol
-                    if ($resource->online_notes){
+
+                  //  var_dump($cesta);
+
+                    if ($resource->collection){
                         echo '<tr>';
-                        echo '  <td valign="top"><i class="fas fa-table"></i>online notes</td>';
+                        echo '  <td valign="top"><i class="fas fa-table"></i>Collection</td>';
                         echo '    <td>';
-                        foreach ( $resource->online_notes as $type ){
-                            echo $type . '<br/>';
+                        foreach ( $resource->collection as $type ){
+                            $type = str_replace($cesta,'dgdgygyGONGO<br>',$type);
+                            echo nl2br($type) . '<BR>';
+                            $type = str_replace('\n','dgdgygyGONGO<br>',n12br($type));
+                            //echo $type . '<br/>';
                         }
                         echo '   </td>';
                         echo '</tr>';
