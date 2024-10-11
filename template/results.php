@@ -183,10 +183,10 @@ if ( function_exists( 'pll_the_languages' ) ) {
 
 
 
-                    if ($resource->status == '2'){
-                        echo ' <span class="badge text-bg-warning">' . __('INACTIVE', 'cc') . '</span>';
-                    }elseif($resource->status == '3'){
-                        echo ' <span class="badge text-bg-warning">' . __('CLOSED', 'cc') . '</span>';
+                    if ($resource->status == '1'){
+                        //echo ' <span class="badge text-bg-warning">' . __('INACTIVE', 'cc') . '</span>';
+                    }elseif($resource->status == '0'){
+                        //echo ' <span class="badge text-bg-warning">' . __('CLOSED', 'cc') . '</span>';
                     }
 
                     if($resource->responsibility_mention){
@@ -199,7 +199,8 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo  $sortened . '<BR></span>';
                     }
                     if($resource->language){
-                    echo '<span class="texto">Disponível no idioma: ';
+                        echo '<span class="texto">';
+                        _e('Disponível no idioma: ');
                         $n = 0;
                         foreach($resource->language as $language){
                         if($n > 0){echo ', ';}

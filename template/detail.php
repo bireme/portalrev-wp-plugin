@@ -2,6 +2,10 @@
 /*
 Template Name: CC Home
 */
+header_remove("X-Frame-Options");
+
+// Ou, para permitir apenas um domínio específico
+header("X-Frame-Options: ALLOW-FROM https:////contacto.bvsalud.org");
 global $cc_service_url, $cc_plugin_slug, $cc_plugin_title;
 
 require_once(CC_PLUGIN_PATH . '/lib/Paginator.php');
@@ -105,33 +109,24 @@ if ($response){
 
 }
 
-//////////////////////////////////cent4ro cooperantes para colections
+/*/////////////////////////////////cent4ro cooperantes para colections = treco a ser removido
 
 $cc_search2 = $cc_service_url . 'api/institution/';
 $cesta = array();
-//print_r($cesta);
-//echo 'seacrh'  .$cc_search2;
+
+
 
 $response = @file_get_contents($cc_search2);
 
 if ($response){
     $response_json = json_decode($response);
-    //var_dump($response_json);
     $cop_list = $response_json->response;
 }
 
 foreach ( $cop_list as $resource) {
     array_push($cesta, $resource->cc_code);
-    //echo 'cc_code ' . $resource->cc_code;
 }
-//var_dump($cop_list);
-
-
-
-
-/////////////////////////
-
-
+////////////////////////*/
 
 $page_url_params = '?q=' . urlencode($query)  . '&filter=' . urlencode($user_filter);
 
@@ -162,9 +157,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                 <a href="<?php echo real_site_url($cc_plugin_slug); ?>"><?php echo $plugin_title ?></a>
             </li>
             <li class="breadcrumb-item" aria-current="page">
-                <?php
-                       echo $center_list->title;
-                ?>
+                <?php echo $center_list->title;?>
             </li>
         </ol>
     </nav>
@@ -174,9 +167,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                 </div>
         <div class="col-12 col-md-8 col-lg-9">
             <div class="row">
-            
                 <?php
-
                     $pos++;
                     $resource = $center_list;
                     echo '<article class="col-lg-12">';
@@ -185,17 +176,17 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     //echo '<span class="badge text-bg-info">' . strval( intval($start) + $pos ) . '/' . $total . '</span>';
                     echo '<h3 class="box1Title">';
                     //echo $center_list->title;
+
+
                     if ($resource->status == '2'){
                         echo ' <span class="badge text-bg-warning">' . __('INACTIVE', 'cc') . '</span>';
                     }elseif($resource->status == '3'){
                         echo ' <span class="badge text-bg-warning">' . __('CLOSED', 'cc') . '</span>';
                     }
+
+
                     echo '<br/>';
-                    if ($resource->django_id){
-                        echo '<small>';
-                            //echo $resource->django_id . '<br/>';
-                        echo '</small>';
-                    }
+                 
                     echo '</h3>';
                     echo '<table class="table table-sm table-detail">';
                     echo '<tr>';
@@ -227,7 +218,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         foreach ( $resource->parallel_titles as $value ){
                     echo '<tr>';
                     echo '  <td>Título paralelo:</td>';
-                    echo '  <td>' . $value . '</td>';
+                    echo '  <td>' . tratarVariacoes($value) . '</td>';
                     echo '</tr>';
                         }
                     }
@@ -236,7 +227,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         foreach ( $resource->other_titles as $value ){
                     echo '<tr>';
                     echo '  <td>Outras variações:</td>';
-                    echo '  <td>' . $value . '</td>';
+                    echo '  <td>' . tratarVariacoes($value) . '</td>';
                     echo '</tr>';
                         }
                     }
@@ -296,27 +287,47 @@ if ( function_exists( 'pll_the_languages' ) ) {
                             echo '  <td> ' . $center_list->final_date . '</td>';
                             echo '</tr>';
                     }
-                    if($center_list->continued_by != ''){
+                    if($center_list->continuation[0] != ''){
+                        echo '<tr>';
+                        echo '  <td >Titulo anterior:</td>';
+                        echo '    <td>';
+                        foreach ( $resource->continuation as $values){
+                            echo tratarVariacoes($values) . ' <BR>';
+                        }
+                        echo '   </td>';
+                        echo '</tr>';
+                    }
+                    if($center_list->fusion[0] != ''){
+                        echo '<tr>';
+                        echo '  <td >Fusão com ... de ... :</td>';
+                        echo '    <td>';
+                        foreach ( $resource->fusion as $values){
+                            echo tratarVariacoes($values) . ' <BR>';
+                        }
+                        echo '   </td>';
+                        echo '</tr>';
+                    }
+                    if($center_list->continued_by[0] != ''){
                         echo '<tr>';
                         echo '  <td >Continuação por:</td>';
                         echo '    <td>';
                         foreach ( $resource->continued_by as $values){
-                            echo $values . ' <BR>';
+                            echo tratarVariacoes($values) . ' <BR>';
                         }
                         echo '   </td>';
                         echo '</tr>';
                     }
-                    if($center_list->partial_continuation != ''){
+                    if($center_list->partial_continuation[0] != ''){
                         echo '<tr>';
                         echo '  <td >Continuação parcial de:</td>';
                         echo '    <td>';
                         foreach ( $resource->partial_continuation as $values){
-                            echo $values . ' <BR>';
+                            echo tratarVariacoes($values) . ' <BR>';
                         }
                         echo '   </td>';
                         echo '</tr>';
                     }
-                    if($center_list->absorbed != ''){
+                    if($center_list->absorbed[0] != ''){
                         echo '<tr>';
                         echo '  <td >Absorveu a:</td>';
                         echo '    <td>';
@@ -339,34 +350,40 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         foreach ( $resource->descriptors as $descriptors){
                             echo $descriptors . ' <BR>';
                         }
-                        echo '   </td>';
-                        echo '</tr>';
+                        echo '</td></tr>';
                     }
                     if($center_list->index_range != ''){
                         echo '<tr>';
                         echo '  <td >Título indexado em:</td>';
                         echo '    <td>';
                         foreach ( $resource->index_range as $index_range){
-                            echo tratarIndexadoEm($index_range) . ' <BR>';
+                            $partes = explode("^a", $index_range);
+
+// Verifica se a divisão foi bem-sucedida e exibe as partes
+if (count($partes) == 2) {
+    $antes = trim($partes[0]); // Parte antes de "-b"
+    $depois = trim($partes[1]); // Parte depois de "-b"
+                            //echo tratarIndexadoEm($index_range) . ' <BR>';
+                            echo substituirSiglasIndexado($partes[0]) .  '; ' . tratarIndexadoEm($partes[1]) . ' <BR>';
+                            }else{ 
+                                echo substituirSiglasIndexado(tratarIndexadoEm($partes[0])). ' <BR>';
+                            }
                         }
-                        echo '   </td>';
-                        echo '</tr>';
+                        echo '</td></tr>';
                     }
                     if($center_list->national_code != ''){
                         echo '<tr>';
-                        echo '  <td >No CNN Brasil:</td>';
+                        echo '  <td >No. CCN Brasil:</td>';
                         echo '    <td>';
                         echo  $center_list->national_code . ' <BR>';
-                        echo '   </td>';
-                        echo '</tr>';
+                        echo '</td></tr>';
                     }
                     if ($resource->secs_number){
                         echo '<tr>';
-                        echo '    <td>No secs Bireme:</td>';
+                        echo '    <td>No. SECS Bireme:</td>';
                         echo '    <td>';
                         echo $resource->secs_number;
-                        echo '    </td>';
-                        echo '</tr>';
+                        echo '</td></tr>';
                     }     
 
 
@@ -395,7 +412,10 @@ function separar_indices($texto) {
     
     return $resultados;
 }
-
+?>
+<!--<iframe id="contact-form" width="100%" height="645px" src="//contacto.bvsalud.org/chat.php?group=e-blueinfo&ptl=<?php echo $contact_lang; ?>&hg=Pw__&hcgs=MQ__&htgs=MQ__&hinv=MQ__&hfk=MQ__" frameborder="0" scrolling="no"></iframe>        
+-->
+<?php
 function susbtituirSiglas($texto){
     $texto = str_replace("ALAP", "Permitido para assinantes do formato impresso", $texto);
     $texto = str_replace("AAEL", "Para assinantes do formato eletrônico", $texto);
@@ -410,18 +430,52 @@ function susbtituirSiglasD($texto){
     $texto = str_replace("IP/PASS", "Acesso controlado por IP e senha", $texto);
     return $texto;
 }
-
-
+function substituirSiglasIndexado($texto){
+    $texto = str_replace("LL", "LILACS", $texto);
+    $texto = str_replace("BA", "BIOLOGICAL ABSTRACTS", $texto);
+    $texto = str_replace("IM", "INDEX MEDICUS", $texto);
+    $texto = str_replace("EM", "EXCERPTA MEDICA", $texto);
+    return $texto;
+}
 function tratarIndexadoEm($texto){
+    //////////////////////////
+    $texto = str_replace("LL^a", "LILACS; ", $texto);
+    $texto = str_replace("BA^a", "BIOLOGICAL ABSTRACTS; ", $texto);
+    $texto = str_replace("IM^a", "INDEX MEDICUS; ", $texto);
+    $texto = str_replace("EM^a", "EXCERPTA MEDICA; ", $texto);
+
+    ////////////////////////////////
     $texto = str_replace("^a", "; ", $texto);
     $texto = str_replace("^b", ", ", $texto);
     $texto = str_replace("^c", ", ", $texto);
+    $texto = str_replace("^d", ", ", $texto);
+    $texto = str_replace("^e", ", ", $texto);
+    $texto = str_replace("^f", ", ", $texto);
+    $texto = str_replace("^g", ", ", $texto);
+    return $texto;
+}
+function tratarVariacoes($texto){
+    $texto = str_replace("^a", ", ", $texto);
+    $texto = str_replace("^i", " - issn: ", $texto);
     return $texto;
 }
 
-
-                    $pos = strpos($mystring, $findme);
-
+function tratarOnlineNotes($texto, $n){
+    $texto = str_replace("^xempty", "", $texto);
+    $texto = str_replace("^z".$n, "", $texto);
+    if(strpos($texto, '^xempty')> 0){
+        return '';
+    }
+    return $texto;
+}
+                    //prepara o array de notas 
+                    if ($resource->online_notes){
+                        $countnotes = 1;
+                        foreach ( $resource->online_notes as $type ){
+                            $arraynotes[$countnotes] = tratarOnlineNotes($type, $countnotes);
+                            $countnotes++;
+                        }
+                    }
 
                     if ($resource->online){
 
@@ -430,37 +484,42 @@ function tratarIndexadoEm($texto){
                         echo '    <td colspan="3">';
                         $exclude_common_types = array('CooperatingCenters', 'ParticipantsUnits', 'VHLNetwork');
                         $no = 1;
+                        $countonline = 1;
                         foreach ( $resource->online as $type){
-//                            echo $type . '<br/>';
+//                          echo $type . '<br/>';
                             $type = susbtituirSiglas($type);
                             $resultados = separar_indices($type);
-//a - Texto Completo
-//^b - url
-//^c -
-// e - Disponível a partir de   	
-// f -  Terminando em   	
-// Exibir os resultados
+                                            
+                            //a - Texto Completo
+                            //^b - url
+                            //^c -
+                            // e - Disponível a partir de   	
+                            // f -  Terminando em   	
+                            // Exibir os resultados
 foreach ($resultados as $resultado) {
     echo "<b>Opção " . $no . "</b>";
     echo "<BR>Texto Completo: " . susbtituirSiglas($resultado['a']) . ' - ' . susbtituirSiglasD($resultado['d']);
     echo ",<br> URL: " . $resultado['b'] . " (<a href='" .  $resultado['b']  ."' target='_blank'><i class='fas fa-long-arrow-right'></i>visitar link</a>)";
-    echo "<BR>Agregador/Fornecedor : " . $resultado['c'] . "<BR>Disponível a partir de: " . $resultado['e'] . " <BR>Terminando em : " . $resultado['f'];
-    echo "<Br><Br>";
+    echo ($resultado['c'] != '') ? "<BR>Agregador/Fornecedor : " . $resultado['c'] : '';
+    echo ($resultado['e'] != '') ? "<BR>Disponível a partir de: " . $resultado['e'] : '';
+    echo ($resultado['f'] != '') ? " <BR>Terminando em : " . $resultado['f'] : '';
+    echo "<br>";
     $no += 1;
     echo PHP_EOL;
 }
+
+echo ($arraynotes[$countonline] != '') ? 'Notas:' . $arraynotes[$countonline] : '';
+$countonline++;
+echo "<Br><Br>";
+
+
+
                         }
                         echo '   </td>';
                         echo '</tr>';
                     }
 
-                    if ($resource->online_notes){
-                        $countnotes = 0;
-                        foreach ( $resource->online_notes as $type ){
-                            $arraynotes[$countnotes] = $type;
-                            $countnotes++;
-                        }
-                    }
+
 
                     if ($resource->online_type){
                         echo '<tr>';
@@ -474,27 +533,42 @@ foreach ($resultados as $resultado) {
                     }
                     ///////^p -portugues, i- inlges, ê -espanhol
 
-                  //  var_dump($cesta);
 
                     if ($resource->collection){
-                        echo '<tr>';
-                        echo '  <td valign="top"><i class="fas fa-table"></i>Collection</td>';
-                        echo '    <td>';
+                        echo '<tr colspan="2">';
+                        echo '  <td valign="top"><button class="btnDetalhes" id="openModalBtn">Coleções no Catálogo Coletivo SeCS: </button></td>';
+                        /*echo '    <td>';
                         foreach ( $resource->collection as $type ){
-                            $type = str_replace($cesta,'dgdgygyGONGO<br>',$type);
                             echo nl2br($type) . '<BR>';
-                            $type = str_replace('\n','dgdgygyGONGO<br>',n12br($type));
-                            //echo $type . '<br/>';
                         }
-                        echo '   </td>';
+                        echo '   </td>';*/
                         echo '</tr>';
                     }
-
+                    include 'modal.php';
                     echo '</table>';
                     echo '</div>';
                     echo '</article>';
                 ?>
+<div class="row" style="overflow:hidden;">
+<?php
+/*
 
+$remote_url = 'https://contacto.bvsalud.org/chat.php?group=e-blueinfo&ptl=' . $_GET['lang'] . '&hg=Pw__&hcgs=MQ__&htgs=MQ__&hinv=MQ__&hfk=MQ__';
+
+// Inicia a solicitação cURL
+$ch = curl_init($remote_url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HEADER, false);
+
+// Obter o conteúdo
+$response = curl_exec($ch);
+curl_close($ch);
+
+// Exibe o conteúdo como se fosse local
+echo $response;
+*/
+?>
+</div>
             </div> <!-- /row results area -->
             <hr>
             <?php echo $pages->display_pages(); ?>
@@ -566,59 +640,7 @@ foreach ($resultados as $resultado) {
                     </ul>
                 </section>
 
-                <?php if ($thematic_list): ?>
-                    <section>
-                        <h5 class="box1Title"><?php _e('Thematic Networks','cc'); ?></h5>
-                        <ul class="filter-list">
-                            <?php foreach ($thematic_list as $thematic) { ?>
-                                <?php
-                                    $filter_link = '?';
-                                    if ($query != ''){
-                                        $filter_link .= 'q=' . $query . '&';
-                                    }
-                                    $filter_link .= 'filter=institution_thematic:"' . $thematic[0] . '"';
-                                    if ($user_filter != ''){
-                                        $filter_link .= ' AND ' . $user_filter ;
-                                    }
-                                ?>
-                                <li class="cat-item">
-                                    <a href='<?php echo $filter_link; ?>'><?php echo $thematic_translated[$thematic[0]] ?></a>
-                                    <span class="cat-item-count">(<?php echo $thematic[1] ?>)</span>
-                                </li>
-                            <?php } ?>
-                        </ul>
-                    </section>
-                <?php endif; ?>
-
-                <?php if ($country_list): ?>
-                    <section>
-                        <h5 class="box1Title"><?php _e('Country','cc'); ?></h5>
-                        <ul class="filter-list">
-                            <?php foreach ( $country_list as $country ) { ?>
-                                <?php
-                                    $filter_link = '?';
-                                    if ($query != ''){
-                                        $filter_link .= 'q=' . $query . '&';
-                                    }
-                                    $filter_link .= 'filter=country:"' . $country[0] . '"';
-                                    if ($user_filter != ''){
-                                        $filter_link .= ' AND ' . $user_filter ;
-                                    }
-                                ?>
-                                <li class="cat-item">
-                                    <a href='<?php echo $filter_link; ?>'><?php print_lang_value($country[0], $site_language)?></a>
-                                    <span class="cat-item-count">(<?php echo $country[1] ?>)</span>
-                                </li>
-                            <?php } ?>
-                        </ul>
-                        <?php if ( count($country_list) == 20 ) : ?>
-                            <div class="show-more text-center">
-                                <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="country"><?php _e('show more','cc'); ?></a>
-                                <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
-                            </div>
-                        <?php endif; ?>
-                    </section>
-                <?php endif; ?>
+                
                         -->
             </div>
         </div>
