@@ -390,7 +390,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         </ul>
                     </section>
                 <?php endif; ?>
-             <!----------------------------->
+             
              <?php 
              //var_dump($language_list);
              if ($status_list): ?>
@@ -409,7 +409,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                                 }
                             ?>
                             <li class="cat-item">
-                                <a href='<?php echo $filter_link; ?>'>
+                                <a href="<?php echo $filter_link;?>">
                                 <? if($status[0] == 1){
                                     echo 'corrente';
                                 }else{
