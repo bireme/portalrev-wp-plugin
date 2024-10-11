@@ -55,8 +55,8 @@ if ($user_filter != ''){
 }
 $start = ($page * $count) - $count;
 
-$cc_search = $cc_service_url . 'api/title/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&lang=' . $lang;
-//echo $cc_search;
+$cc_search = $cc_service_url . 'api/title/search/?q=' . urlencode($query) . '' . '&fq=' . urlencode($filter) . '&start=' . $start . '&lang=' . $lang;
+$cc_search .=  '&sort=title+ASC';
 if ( $user_filter != '' ) {
     $user_filter_list = preg_split("/ AND /", $user_filter);
     $applied_filter_list = array();
@@ -68,7 +68,7 @@ if ( $user_filter != '' ) {
         }
     }
 }
-
+echo $cc_search;
 $response = @file_get_contents($cc_search);
 if ($response){
     $response_json = json_decode($response);
@@ -409,12 +409,12 @@ if ( function_exists( 'pll_the_languages' ) ) {
                                 }
                             ?>
                             <li class="cat-item">
-                                <a href="<?php echo $filter_link;?>">
-                                <? if($status[0] == 1){
-                                    echo 'corrente';
-                                }else{
-                                    echo 'encerrado';
-                                }  ?>
+                                <a href="<?php echo $filter_link;?>"><?php print_lang_value($status[0], $site_language)?>
+                                <? if($status[0] == 1){ ?>
+                                    corrente
+                                <?php }else{ ?>
+                                    encerrado
+                                <?php }  ?>
                                 </a>
                                 <span class="cat-item-count"><?php echo $status[1] ?></span>
                             </li>
@@ -454,7 +454,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         </ul>
                         <?php if ( count($language_list) == 20 ) : ?>
                             <div class="show-more text-center">
-                                <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="country"><?php _e('show more','cc'); ?></a>
+                                <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="language_list"><?php _e('show more','cc'); ?></a>
                                 <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
                             </div>
                         <?php endif; ?>
@@ -514,7 +514,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         </ul>
                         <?php if ( count($descriptor_list) == 20 ) : ?>
                             <div class="show-more text-center">
-                                <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="country"><?php _e('show more','cc'); ?></a>
+                                <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="descriptor_list"><?php _e('show more','cc'); ?></a>
                                 <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
                             </div>
                         <?php endif; ?>
@@ -537,7 +537,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
 
             $(this).hide();
             $(this).next('.loading').show();
-
+console.log(cluster);
             $.ajax({
                 type: "POST",
                 url: cc_script_vars.ajaxurl,
