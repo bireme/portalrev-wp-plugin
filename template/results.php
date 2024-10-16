@@ -56,7 +56,7 @@ if ($user_filter != ''){
 $start = ($page * $count) - $count;
 
 $cc_search = $cc_service_url . 'api/title/search/?q=' . urlencode($query) . '' . '&fq=' . urlencode($filter) . '&start=' . $start . '&lang=' . $lang;
-$cc_search .=  '&sort=title+ASC';
+//$cc_search .=  '&sort=title+ASC';
 if ( $user_filter != '' ) {
     $user_filter_list = preg_split("/ AND /", $user_filter);
     $applied_filter_list = array();
@@ -409,8 +409,8 @@ if ( function_exists( 'pll_the_languages' ) ) {
                                 }
                             ?>
                             <li class="cat-item">
-                                <a href="<?php echo $filter_link;?>"><?php print_lang_value($status[0], $site_language)?>
-                                <? if($status[0] == 1){ ?>
+                                <a href='<?php echo $filter_link;?>'><?php print_lang_value($status[0], $site_language)?>
+                                <? $status[0]; if($status[0] == 1){   ?>
                                     corrente
                                 <?php }else{ ?>
                                     encerrado
@@ -419,6 +419,8 @@ if ( function_exists( 'pll_the_languages' ) ) {
                                 <span class="cat-item-count"><?php echo $status[1] ?></span>
                             </li>
                         <?php } ?>
+
+                        
                     </ul>
                     <?php if ( count($status_list) == 20 ) : ?>
                         <div class="show-more text-center">
