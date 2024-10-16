@@ -454,7 +454,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         </ul>
                         <?php if ( count($language_list) == 20 ) : ?>
                             <div class="show-more text-center">
-                                <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="language_list"><?php _e('show more','cc'); ?></a>
+                                <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="language"><?php _e('show more','cc'); ?></a>
                                 <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
                             </div>
                         <?php endif; ?>
@@ -514,7 +514,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         </ul>
                         <?php if ( count($descriptor_list) == 20 ) : ?>
                             <div class="show-more text-center">
-                                <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="descriptor_list"><?php _e('show more','cc'); ?></a>
+                                <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="descriptor_filter"><?php _e('show more','cc'); ?></a>
                                 <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
                             </div>
                         <?php endif; ?>
