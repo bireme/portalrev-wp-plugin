@@ -193,20 +193,6 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     echo '  <td style="min-width:140px;"></td>';
                     echo '</tr>';
                 
-                    if ($resource->status){
-                        if($resource->status == 'C'){
-                            $status = 'Corrente';
-                        }else{
-                            $status = 'Encerrado';
-                        }
-                        echo '<tr>';
-                        echo '  <td >Status</td>';
-                        echo '  <td colspan="3">' . $status . '</td>';
-                        echo '</tr>';
-                        }
-    
-
-
                     if ($resource->subtitle){
                     echo '<tr>';
                     echo '  <td >Subtitulo</td>';
@@ -457,7 +443,6 @@ function susbtituirSiglasD($texto){
     return $texto;
 }
 function substituirSiglasIndexado($texto){
-    //$texto = explode('^n', $texto)
     $texto = str_replace("LL", "LILACS", $texto);
     $texto = str_replace("BA", "BIOLOGICAL ABSTRACTS", $texto);
     $texto = str_replace("IM", "INDEX MEDICUS", $texto);
