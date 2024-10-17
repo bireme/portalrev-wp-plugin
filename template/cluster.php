@@ -99,7 +99,7 @@ if ($response){
                                     }
                                 ?>
                                 <li class="cat-item">
-                                    <a href='<?php echo $filter_link; ?>'><?php echo $country[0];?><?php print_lang_value($country[0], $site_language)?></a>
+                                    <a href='<?php echo $filter_link; ?>'><!--<?php echo $country[0];?>--><?php print_lang_value($country[0], $site_lang)?></a>
                                     <span class="cat-item-count"><?php echo $country[1] ?></span>
                                 </li>
                             <?php } ?>
