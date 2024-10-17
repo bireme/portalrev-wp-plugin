@@ -224,19 +224,12 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     }
 
                     if ($resource->other_titles){
+                        foreach ( $resource->other_titles as $value ){
                     echo '<tr>';
                     echo '  <td>Outras variações:</td>';
-                    echo '  <td>'; 
-                    foreach ( $resource->other_titles as $value ){
-
-                    echo tratarVariacoes($value) . '<BR>';
-                    }
-                    
-                    echo '</td>';
-                    
-                    
+                    echo '  <td>' . tratarVariacoes($value) . '</td>';
                     echo '</tr>';
-                        
+                        }
                     }
 
                     echo '<tr>';
@@ -299,8 +292,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '  <td >Titulo anterior:</td>';
                         echo '    <td>';
                         foreach ( $resource->continuation as $values){
-                            echo '<a = href="' . site_url($lang . '/' . $cc_plugin_slug) . '?lang=' . $lang . '&q=' . issnVariacoes($values) . '">';
-                            echo tratarVariacoes($values) . ' </a><BR>';
+                            echo tratarVariacoes($values) . ' <BR>';
                         }
                         echo '   </td>';
                         echo '</tr>';
@@ -310,8 +302,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '  <td >Fusão com ... de ... :</td>';
                         echo '    <td>';
                         foreach ( $resource->fusion as $values){
-                            echo '<a = href="' . site_url($lang . '/' . $cc_plugin_slug) . '?lang=' . $lang . '&q=' . issnVariacoes($values) . '">';
-                            echo tratarVariacoes($values) . ' </a><BR>';
+                            echo tratarVariacoes($values) . ' <BR>';
                         }
                         echo '   </td>';
                         echo '</tr>';
@@ -321,8 +312,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '  <td >Continuação por:</td>';
                         echo '    <td>';
                         foreach ( $resource->continued_by as $values){
-                            echo '<a = href="' . site_url($lang . '/' . $cc_plugin_slug) . '?lang=' . $lang . '&q=' . issnVariacoes($values) . '">';
-                            echo tratarVariacoes($values) . ' </a><BR>';
+                            echo tratarVariacoes($values) . ' <BR>';
                         }
                         echo '   </td>';
                         echo '</tr>';
@@ -332,8 +322,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '  <td >Continuação parcial de:</td>';
                         echo '    <td>';
                         foreach ( $resource->partial_continuation as $values){
-                            echo '<a = href="' . site_url($lang . '/' . $cc_plugin_slug) . '?lang=' . $lang . '&q=' . issnVariacoes($values) . '">';
-                            echo tratarVariacoes($values) . ' </a><BR>';
+                            echo tratarVariacoes($values) . ' <BR>';
                         }
                         echo '   </td>';
                         echo '</tr>';
@@ -343,8 +332,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '  <td >Absorveu a:</td>';
                         echo '    <td>';
                         foreach ( $resource->absorbed as $absorbed){
-                            echo '<a = href="' . site_url($lang . '/' . $cc_plugin_slug) . '?lang=' . $lang . '&q=' . issnVariacoes($absorbed) . '">';
-                            echo tratarVariacoes($absorbed) . '</a> <BR>';
+                            echo $absorbed . ' <BR>';
                         }
                         echo '   </td>';
                         echo '</tr>';
@@ -464,18 +452,12 @@ function tratarIndexadoEm($texto){
     $texto = str_replace("^e", ", ", $texto);
     $texto = str_replace("^f", ", ", $texto);
     $texto = str_replace("^g", ", ", $texto);
-    $texto = str_replace("^h", ", ", $texto);
-    $texto = str_replace("^i", ", ", $texto);
     return $texto;
 }
 function tratarVariacoes($texto){
     $texto = str_replace("^a", ", ", $texto);
     $texto = str_replace("^i", " - issn: ", $texto);
     return $texto;
-}
-function issnVariacoes($texto){
-    $partes = explode('^i', $texto);
-    return $partes[1];
 }
 
 function tratarOnlineNotes($texto, $n){
@@ -600,6 +582,7 @@ echo $response;
                         <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
                         <input type="hidden" name="q" id="query" value="<?php echo $query; ?>" >
                         <input type="hidden" name="filter" id="filter" value="" >
+
                         <?php foreach ( $applied_filter_list as $ap_filter => $ap_filter_values ) :?>
                             <?php if ($ap_filter != 'country_code'): ?>
                                 <h5><?php echo $filter_title_translated[$ap_filter]; ?></h5>

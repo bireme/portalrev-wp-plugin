@@ -15,7 +15,7 @@ $count = 1;
 $cc_service_request = $cc_service_url . 'api/title/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&fb=' . $cluster_fb . '&lang=' . $lang . '&count=' . $count;
 
 //echo "<pre>"; echo " | "; echo($cc_service_request); echo "</pre>"; die();
-echo $cc_service_request;
+
 $response = @file_get_contents($cc_service_request);
 if ($response){
     $response_json = json_decode($response);
@@ -24,13 +24,13 @@ if ($response){
     $start = $response_json->diaServerResponse[0]->response->start;
 
     $facet_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields;
-    $language_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->language;
 
     $country_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->country;
 }
 ?>
 
-<?php if($cluster == 'country'){ ?>
+
+<ul class="filter-list">
     <?php foreach ( $country_list as $filter_item ) { ?>
         <?php
             $filter_value = $filter_item[0];
@@ -54,23 +54,3 @@ if ($response){
         <?php endif; ?>
     <?php } ?>
 </ul>
-<?php } ?>
-<ul class="filter-list">
-   
-                            <?php foreach ( $language_list as $country ) { ?>
-                                <?php
-                                    $filter_link = '?';
-                                    if ($query != ''){
-                                        $filter_link .= 'q=' . $query . '&';
-                                    }
-                                    $filter_link .= 'filter=language:"' . $country[0] . '"';
-                                    if ($user_filter != ''){
-                                        $filter_link .= ' AND ' . $user_filter ;
-                                    }
-                                ?>
-                                <li class="cat-item">
-                                    <a href='<?php echo $filter_link; ?>'><?php print_lang_value($country[0], $site_lang)?></a>
-                                    <span class="cat-item-count"><?php echo $country[1] ?></span>
-                                </li>
-                            <?php } ?>
-                        </ul>
