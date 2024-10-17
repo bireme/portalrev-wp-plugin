@@ -391,45 +391,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     </section>
                 <?php endif; ?>
              
-             <?php 
-             //var_dump($language_list);
-             if ($status_list){ ?>
-                <section>
-                    <h5 class="box1Title"><?php _e('Status','cc'); ?></h5>
-                    <ul class="filter-list">
-                        <?php foreach ( $status_list as $status ) { ?>
-                            <?php
-                                $filter_link = '?';
-                                if ($query != ''){
-                                    $filter_link .= 'q=' . $query . '&';
-                                }
-                                $filter_link .= 'filter=status:"' . $status[0] . '"';
-                                if ($user_filter != ''){
-                                    $filter_link .= ' AND ' . $user_filter ;
-                                }
-                            ?>
-                            <li class="cat-item">
-                                <a href='<?php echo $filter_link;?>'><?php print_lang_value($status[0], $site_language)?>
-                                <? $status[0]; if($status[0] == 1){   ?>
-                                    corrente
-                                <?php }else{ ?>
-                                    encerrado
-                                <?php }  ?>
-                                </a>
-                                <span class="cat-item-count"><?php echo $status[1] ?></span>
-                            </li>
-                        <?php } ?>
-
-                        
-                    </ul>
-                    <?php if ( count($status_list) == 20 ) { ?>
-                        <div class="show-more text-center">
-                            <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="status"><?php _e('show more','cc'); ?></a>
-                            <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
-                        </div>
-                    <?php } ?>
-                </section>
-            <?php } ?>
+            
             <!---------------->
             <?php
              //var_dump($language_list);
