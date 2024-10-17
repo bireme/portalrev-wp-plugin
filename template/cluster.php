@@ -104,5 +104,4 @@ if ($response){
                                 </li>
                             <?php } ?>
                         </ul>
-                        <?php } 
-                        ?>
+                        <?php } ?>
