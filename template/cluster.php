@@ -17,7 +17,7 @@ $count = 1;
 $cc_service_request = $cc_service_url . 'api/title/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&fb=' . $cluster_fb . '&lang=' . $lang . '&count=' . $count;
 
 //echo "<pre>"; echo " | "; echo($cc_service_request); echo "</pre>"; die();
-//echo $cc_service_request;
+echo $cc_service_request;
 $response = @file_get_contents($cc_service_request);
 if ($response){
     $response_json = json_decode($response);
@@ -101,7 +101,7 @@ if ($response){
                                     }
                                 ?>
                                 <li class="cat-item">
-                                    <a href='<?php echo $filter_link; ?>'><?php=$country[0];?></a>
+                                    <a href='<?php echo $filter_link; ?>'><?=$country[0];?></a>
                                     <span class="cat-item-count"><?php echo $country[1] ?></span>
                                 </li>
                             <?php } ?>
