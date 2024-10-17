@@ -81,13 +81,21 @@
 
                             </div>
                             <div class="col-md-9"><?php
-    $link = explode('<br', nl2br($value));
-    echo "<a href='https://bvsalud.org/centros?lang=pt&q=".$link[0]."'>";                        
-                            echo nl2br($value) . '</a><BR></div>';
-                            $n++;
+    $link = explode('<br />', nl2br($value));
+    foreach ( $link  as $meriope ){
+
+    if ($n % 4 == 0){
+        echo "<a href='https://bvsalud.org/centros?lang=pt&q=".$link[$n]."'>";                        
+                            echo nl2br($meriope) . '</a>';
+    }else{
+                            echo nl2br($meriope) . '';
                             //$type = str_replace('\n','dgdgygyGONGO<br>',n12br($type));
-                            //echo $type . '<br/>';
-                        }
+                      }        
+                      $n++;
+                      //echo $type . '<br/>';
+                      //echo 'n' . $n;
+                    }
+                        }echo '</div>';
                      //   echo '   </td>';
                        // echo '</tr>';
                        // echo '</table>';
