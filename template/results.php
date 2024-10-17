@@ -409,7 +409,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                                 }
                             ?>
                             <li class="cat-item">
-                                <!---<a href='<?php echo $filter_link;?>'><?php print_lang_value($status[0], $site_language)?>-->
+                                <a href='<?php echo $filter_link;?>'><?php print_lang_value($status[0], $site_language)?>
                                 <? $status[0]; if($status[0] == 1){   ?>
                                     corrente
                                 <?php }else{ ?>
