@@ -4,7 +4,6 @@ ini_set('display_errors', '0');
 
 $lang = $_POST['lang'];
 $site_lang = $_POST['site_lang'];
-$site_lang = strtolower(get_bloginfo('language'));
 $query = stripslashes($_POST['query']);
 $filter = stripslashes($_POST['filter']);
 $user_filter = stripslashes($_POST['uf']);
@@ -12,11 +11,9 @@ $fb = $_POST['fb'];
 $cluster = $_POST['cluster'];
 $cluster_fb = ( $_POST['cluster'] ) ? $_POST['cluster'].':'.$fb : '';
 $count = 1;
-$cc_config = get_option('cc_config');
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-$cc_service_request = $cc_service_url . 'api/title/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&fb=' . $cluster_fb . '&lang=' . $lang . '&count=' . $count;
+
+
+$cc_service_request = $cc_service_url . 'api/title/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&fb=' . $cluster_fb . '&lang=' . $site_lang . '&count=' . $count;
 
 //echo "<pre>"; echo " | "; echo($cc_service_request); echo "</pre>"; die();
 //echo $cc_service_request;
@@ -103,8 +100,7 @@ if ($response){
                                     }
                                 ?>
                                 <li class="cat-item">
-                                    <a href='<?php echo $filter_link; ?>'><?php _e($country[0],'cc'); ?></a>
-                                    <?php print_lang_value($country[0], $site_lang)?>
+                                    <a href='<?php echo $filter_link; ?>'><?php=$country[0];?></a>
                                     <span class="cat-item-count"><?php echo $country[1] ?></span>
                                 </li>
                             <?php } ?>
