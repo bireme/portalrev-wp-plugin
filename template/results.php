@@ -413,7 +413,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                             ?>
                             <li class="cat-item">
                                 <a href='<?php echo $filter_link;?>'>
-                                <? if($status[0] == 1){?>
+                                <?php if($status[0] == 1){ ?>
 corrente
                                     <?php
                                     echo 'corrente';
