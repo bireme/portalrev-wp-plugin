@@ -99,7 +99,7 @@ if ($response){
                                     }
                                 ?>
                                 <li class="cat-item">
-                                    <a href='<?php echo $filter_link; ?>'><?php _e($country[0],'cc'); ?></a>
+                                    <a href='<?php echo $filter_link; ?>'><?=$country[0]; ?></a>
                                     <span class="cat-item-count"><?php echo $country[1] ?></span>
                                 </li>
                             <?php } ?>
