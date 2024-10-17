@@ -393,7 +393,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
              
              <?php 
              //var_dump($language_list);
-             if ($status_list): ?>
+             if ($status_list){ ?>
                 <section>
                     <h5 class="box1Title"><?php _e('Status','cc'); ?></h5>
                     <ul class="filter-list">
@@ -422,14 +422,14 @@ if ( function_exists( 'pll_the_languages' ) ) {
 
                         
                     </ul>
-                    <?php if ( count($status_list) == 20 ) : ?>
+                    <?php if ( count($status_list) == 20 ) { ?>
                         <div class="show-more text-center">
                             <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="status"><?php _e('show more','cc'); ?></a>
                             <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
                         </div>
-                    <?php endif; ?>
+                    <?php } ?>
                 </section>
-            <?php endif; ?>
+            <?php } ?>
             <!---------------->
             <?php
              //var_dump($language_list);
