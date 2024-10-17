@@ -192,7 +192,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         //echo ' <span class="badge text-bg-warning">' . __('CLOSED', 'cc') . '</span>';
                     }
 
-                    if($resource->responsibility_mention){
+                    if($resource->responsibality_mention){
                         //echo '<BR>Menção de responsabilidade:'. $resource->responsibility_mention ;
                     }
                     echo '</h3>';
@@ -412,7 +412,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                                 }
                             ?>
                             <li class="cat-item">
-                                <a href="<?php echo $filter_link;?>">
+                                <a href='<?php echo $filter_link;?>'>
                                 <? if($status[0] == 1){
                                     echo 'corrente';
                                 }else{
