@@ -4,11 +4,11 @@ Template Name: CC Home
 */
 global $cc_service_url, $cc_plugin_slug, $cc_plugin_title;
 
-/*
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-*/
+
 require_once(CC_PLUGIN_PATH . '/lib/Paginator.php');
 require_once(CC_PLUGIN_PATH . '/template/translations.php');
 
