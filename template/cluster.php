@@ -24,7 +24,6 @@ if ($response){
     $start = $response_json->diaServerResponse[0]->response->start;
 
     $facet_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields;
-    $language_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->language;
 
     $country_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->country;
 }
@@ -55,24 +54,3 @@ if ($response){
         <?php endif; ?>
     <?php } ?>
 </ul>
-
-
-<ul class="filter-list">
-   
-                            <?php foreach ( $language_list as $country ) { ?>
-                                <?php
-                                    $filter_link = '?';
-                                    if ($query != ''){
-                                        $filter_link .= 'q=' . $query . '&';
-                                    }
-                                    $filter_link .= 'filter=language:"' . $country[0] . '"';
-                                    if ($user_filter != ''){
-                                        $filter_link .= ' AND ' . $user_filter ;
-                                    }
-                                ?>
-                                <li class="cat-item">
-                                    <a href='<?php echo $filter_link; ?>'><?php print_lang_value($country[0], $site_lang)?></a>
-                                    <span class="cat-item-count"><?php echo $country[1] ?></span>
-                                </li>
-                            <?php } ?>
-                        </ul>
