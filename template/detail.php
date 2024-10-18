@@ -275,7 +275,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     if ($resource->editor_cc_code){
                         echo '<tr>';
                         echo '  <td >Código do editor:</td>';
-                        echo '  <td>' . $center_list->comercial_editor . '</td>';
+                        echo '  <td>' . $center_list->editor_cc_code . '</td>';
                         echo '</tr>';
                     }
                     if ($resource->comercial_editor){
