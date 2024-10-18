@@ -272,6 +272,12 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     echo '  <td>' . $center_list->responsibility_mention . '</td>';
                     echo '</tr>';
                     }
+                    if ($resource->editor_cc_code){
+                        echo '<tr>';
+                        echo '  <td >Código do editor:</td>';
+                        echo '  <td>' . $center_list->comercial_editor . '</td>';
+                        echo '</tr>';
+                    }
                     if ($resource->comercial_editor){
                         echo '<tr>';
                         echo '  <td >Editora:</td>';
@@ -294,7 +300,12 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     echo '</tr>';
                         }
                     }
-
+                    if ($resource->frequency){
+                        echo '<tr>';
+                        echo '  <td >Periodicidade: </td>';
+                        echo '  <td> ' . tratarFrequencia($center_list->frequencia) . '</td>';
+                        echo '</tr>';
+                        }
                     if ($resource->initial_date){
                         echo '<tr>';
                         echo '  <td >Publicação iniciada em: </td>';
@@ -442,6 +453,28 @@ function separar_indices($texto) {
 <!--<iframe id="contact-form" width="100%" height="645px" src="//contacto.bvsalud.org/chat.php?group=e-blueinfo&ptl=<?php echo $contact_lang; ?>&hg=Pw__&hcgs=MQ__&htgs=MQ__&hinv=MQ__&hfk=MQ__" frameborder="0" scrolling="no"></iframe>        
 -->
 <?php
+function tratarFrequencia($texto){
+    $texto = str_replace("A", "Anual", $texto);
+    $texto = str_replace("B", "Bimestral", $texto);
+    $texto = str_replace("C", "Bissemanal", $texto);
+    $texto = str_replace("D", "Diário", $texto);
+    $texto = str_replace("E", "Quinzenal", $texto);
+    $texto = str_replace("F", "Semestral/Bianual", $texto);
+    $texto = str_replace("G", "Bienal", $texto);
+    $texto = str_replace("H", "Trienal", $texto);
+    $texto = str_replace("H", "Três vezes por semana", $texto);
+    $texto = str_replace("H", "Três vezes por mês", $texto);
+    $texto = str_replace("H", "Irregular", $texto);
+    $texto = str_replace("H", "Mensal", $texto);
+    $texto = str_replace("H", "Trimestal", $texto);
+    $texto = str_replace("H", "Bimensal", $texto);
+    $texto = str_replace("H", "Quadrimestral", $texto);
+    $texto = str_replace("H", "Publicação contínua", $texto);
+    $texto = str_replace("H", "Outras frequências", $texto);
+    $texto = 'Frequência desconhecida';
+
+    return $texto;
+}
 function susbtituirSiglas($texto){
     $texto = str_replace("ALAP", "Permitido para assinantes do formato impresso", $texto);
     $texto = str_replace("AAEL", "Para assinantes do formato eletrônico", $texto);
