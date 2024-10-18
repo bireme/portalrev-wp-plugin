@@ -467,10 +467,11 @@ function tratarFrequencia($texto){
     $texto = str_replace("K", "Irregular", $texto);
     $texto = str_replace("M", "Mensal", $texto);
     $texto = str_replace("Q", "Trimestal", $texto);
-    $texto = str_replace("H", "Bimensal", $texto);
-    $texto = str_replace("H", "Quadrimestral", $texto);
-    $texto = str_replace("H", "Publicação contínua", $texto);
-    $texto = str_replace("H", "Outras frequências", $texto);
+    $texto = str_replace("S", "Bimensal", $texto);
+    $texto = str_replace("T", "Quadrimestral", $texto);
+    $texto = str_replace("U", "Publicação contínua", $texto);
+    $texto = str_replace("W", "Publicação contínua", $texto);
+    $texto = str_replace("Z", "Outras frequências", $texto);
     if($texto == ''){
     $texto = 'Frequência desconhecida';
     }
