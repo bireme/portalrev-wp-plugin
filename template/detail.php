@@ -471,8 +471,9 @@ function tratarFrequencia($texto){
     $texto = str_replace("H", "Quadrimestral", $texto);
     $texto = str_replace("H", "Publicação contínua", $texto);
     $texto = str_replace("H", "Outras frequências", $texto);
-   // $texto = 'Frequência desconhecida';
-
+    if($texto == ''){
+    $texto = 'Frequência desconhecida';
+    }
     return $texto;
 }
 function susbtituirSiglas($texto){
