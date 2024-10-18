@@ -303,7 +303,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     if ($resource->frequency){
                         echo '<tr>';
                         echo '  <td >Periodicidade: </td>';
-                        echo '  <td> ' . tratarFrequencia($center_list->frequencY) . '</td>';
+                        echo '  <td> ' . tratarFrequencia($center_list->frequency) . '</td>';
                         echo '</tr>';
                         }
                     if ($resource->initial_date){
