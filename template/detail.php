@@ -303,7 +303,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     if ($resource->frequency){
                         echo '<tr>';
                         echo '  <td >Periodicidade: </td>';
-                        echo '  <td> ' . tratarFrequencia($center_list->frequencia) . '</td>';
+                        echo '  <td> ' . tratarFrequencia($center_list->frequencY) . '</td>';
                         echo '</tr>';
                         }
                     if ($resource->initial_date){
@@ -462,11 +462,11 @@ function tratarFrequencia($texto){
     $texto = str_replace("F", "Semestral/Bianual", $texto);
     $texto = str_replace("G", "Bienal", $texto);
     $texto = str_replace("H", "Trienal", $texto);
-    $texto = str_replace("H", "Três vezes por semana", $texto);
-    $texto = str_replace("H", "Três vezes por mês", $texto);
-    $texto = str_replace("H", "Irregular", $texto);
-    $texto = str_replace("H", "Mensal", $texto);
-    $texto = str_replace("H", "Trimestal", $texto);
+    $texto = str_replace("I", "Três vezes por semana", $texto);
+    $texto = str_replace("J", "Três vezes por mês", $texto);
+    $texto = str_replace("K", "Irregular", $texto);
+    $texto = str_replace("M", "Mensal", $texto);
+    $texto = str_replace("Q", "Trimestal", $texto);
     $texto = str_replace("H", "Bimensal", $texto);
     $texto = str_replace("H", "Quadrimestral", $texto);
     $texto = str_replace("H", "Publicação contínua", $texto);
