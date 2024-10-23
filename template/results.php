@@ -164,8 +164,13 @@ if ( function_exists( 'pll_the_languages' ) ) {
         <?php //dynamic_sidebar('cc-banner');?>
                 </div>
         <div class="col-12 col-md-7 col-lg-8">
+        <?php
+                if ( isset($total) && strval($total) == 0) {
+                       echo '<BR><br><h5 class="text-center">' . __('No results found','cc') . '</h5>';
+                   }
+                   ?>
             <div class="row">
-            
+
                 <?php
                 $pos =0;
                 foreach ( $center_list as $resource) {

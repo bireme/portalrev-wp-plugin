@@ -79,7 +79,7 @@
                 <div class="clearfix"></div>
                
                 <div class="headerSearch" >
-                    <form action="<?php echo site_url($lang_slug . '/' . $cc_plugin_slug) . '/?results'?>">
+                    <form action="<?php echo site_url($lang . '/' . $cc_plugin_slug) . '/?results'?>">
                         <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
                         <div class="row">
                             <div class="col-md-10 inputBoxSearch">

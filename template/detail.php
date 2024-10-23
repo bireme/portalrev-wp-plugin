@@ -233,8 +233,11 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '<tr>';
                         echo '  <td>Outras variações:</td>';
                         echo '  <td>'; 
-                        foreach ( $resource->other_titles as $value ){
-                            echo tratarVariacoes($value) . '<BR>';
+                        foreach ( $resource->other_titles as $values){
+                            //echo tratarVariacoes($values) . '<BR>';
+
+                            echo '<a = href="' . site_url($lang . '/' . $cc_plugin_slug) . '?lang=' . $lang . '&q=' . issnVariacoes($values) . '">';
+                            echo tratarVariacoes($values) . ' </a><BR>';
                         }
                         echo '</td>';
                         echo '</tr>';
