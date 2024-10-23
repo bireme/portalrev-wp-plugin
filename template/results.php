@@ -163,7 +163,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
     <div class="col-12 cc-banner">
         <?php //dynamic_sidebar('cc-banner');?>
                 </div>
-        <div class="col-12 col-md-8 col-lg-9">
+        <div class="col-12 col-md-7 col-lg-8">
             <div class="row">
             
                 <?php
@@ -241,7 +241,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
         </div> <!-- /col results area -->
 
 
-        <div class="col-md-4 col-lg-3" id="filterRight">
+        <div class="col-md-5 col-lg-4" id="filterRight">
             <div class="boxFilter">
                 <?php if ($applied_filter_list) :?>
                     <section>
@@ -263,8 +263,9 @@ if ( function_exists( 'pll_the_languages' ) ) {
                                             <?php
                                                 if ($ap_filter == 'country' or $ap_filter == 'language'){
                                                     echo print_lang_value($value, $site_language);
-                                                }elseif ($ap_filter == 'institution_type'){
-                                                    echo $type_translated[$value];
+                                                }elseif ($ap_filter == 'status'){
+                                                    if($value == 0){ echo 'encerrado';}
+                                                    if($value == 1){ echo 'corrente';}
                                                 }elseif ($ap_filter == 'institution_thematic'){
                                                     echo $thematic_translated[$value];
                                                 }else{
@@ -287,7 +288,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                 <?php endif; ?>
 
                 <section>
-                    <h5 class="box1Title"><?php _e('Filtros','cc'); ?></h5>
+                    <h5 class="box1Title" style="border-bottom: 2px solid #ddd"><?php _e('Filtros','cc'); ?></h5>
                     <ul class="filter-list">
                         <?php foreach ( $type_list as $type ) { ?>
                             <li class="cat-item">
