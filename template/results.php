@@ -249,7 +249,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
                         <input type="hidden" name="q" id="query" value="<?php echo $query; ?>" >
                         <input type="hidden" name="filter" id="filter" value="" >
-                        <h5>Filtros aplicados</h5>
+                        <h5 style="border-bottom: 2px solid #ddd">Filtros aplicados</h5>
 
                         <?php foreach ( $applied_filter_list as $ap_filter => $ap_filter_values ) :?>
                             <?php if ($ap_filter != 'country_code'): ?>
