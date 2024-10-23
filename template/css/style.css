@@ -1,24 +1,27 @@
 /* @autor: BIREME | OPAS | OMS - > Márcio Alves */
 body{
- 	/*background: #f5f5f5;*/
- 	font-family: 'Source Sans Pro', sans-serif;
- 	font-weight: 400;
+	/*background: #f5f5f5;*/
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 400;
 	font-family: 'Poppins', sans-serif;
 }
 #header{
 	background: #f5f5f5; 
 	backgro/und:  radial-gradient(circle, rgba(238,238,238,1) 0%, rgba(232,232,232,1) 100%);;
 	padding: 30px 0px 0px 0px;
-    margin-top:0;
+	margin-top:0;
 	margin-bottom: 0px;
 }
 #logo img{
 	max-width: 100%;
 }
+#titleMain{
+	width:70%;
+}
 .titleMain1{
 	font-size: 27px; font-weight:bold;
-    float:left;
-    margin-bottom:30px;
+	float:left;
+	margin-bottom:30px;
 }
 .lang{
 	text-align: right;
@@ -53,11 +56,11 @@ body{
 	border:0;
 	border-radius: 3px;
 }
-	.btnBlue:hover{
-		background:#464bbb;
-		color: #fff;
-		text-decoration: none;
-	}
+.btnBlue:hover{
+	background:#464bbb;
+	color: #fff;
+	text-decoration: none;
+}
 .selectBoxSearch select{
 	width: 100%;
 	height: 100%;
@@ -69,8 +72,8 @@ body{
 	background: #fff;
 	border: 1px solid #ddd;
 	margin-top: 30px; border-radius: 4px 0px 0px 4px;
-    clear:both;
-    margin-top:20px;
+	clear:both;
+	margin-top:20px;
 }
 #fieldSearch{
 	padding-left: 30px;
@@ -139,47 +142,67 @@ body{
 	padding: 20px 20px 0 0 ;
 }
 #filterRight ul{
-	padding-left: 20px;
+	padding-left: 2rem!important;
 }
 .boxFilter{
 	top: 0;
 	font-size: 14px;
-	padding: 20px;
+	padding: 0 10px 0 10px;
 	background: #fff;
 	border-radius: 10px;
 	/*border-bottom: 3px solid #ddd;*/
 	/*border-top: 3px solid #ddd;*/
 }
 .boxFilter h5{
-	margin-bottom: 10px;
-	margin-top: 17px;
+	line-height: 30px;
+	font-size: 26px;
+	color: rgb(40, 54, 125);
+	font-weight: normal;
+	text-decoration: none;
+	margin: 0 0 10px 0;
+
 }
 .boxFilter a{
- font-weight: bold;
+	font-weight: bold;
 }
 .boxFilter ul{
 	padding: 0!important;
 }
 .boxFilter ul li{
 	list-style: none;
-	margin-bottom: 20px;
-}
-.boxFilter ul li{
+
+	position: relative;
+	width: 100%;
+	float: left;
+	color: rgb(102, 102, 102);
+	font-size: 13px !important;
+	margin-bottom: 10px;
+	padding-bottom:10px;
 	border-bottom: 1px solid #ddd;
-	padding: 0px;
 }
 .cat-item-count{
-	padding:1px 5px; color:#333;
-	background-color:#eee;
-	border-radius: 20px;
+	width: 36px;
+	font-size: 12px !important;
+	line-height: 20px !important;
+	position: absolute;
+	right: 0;
+	top: 1px;
+	overflow: hidden;
+	border-radius: 11px;
+	text-align: center;
+	background: rgb(172, 172, 172);
+	color: rgb(255, 255, 255);
 }
 .box1{
 	padding: 20px;
 	margin-bottom: 0px;
 	transition: border .5s ease;
-	word-break: break-word;     background: #f6f6f6;
-    border: 1px solid #ddd;
-	margin-top: 20px;     border-left: #0d2d2d 2px solid;
+	word-break: break-word;
+	background: #f5f5f5;
+	border: 1px solid #dfdfdf;
+	margin-top: 20px;
+	border-radius: 5px;
+	/* border-left: #0d2d2d 1px solid; */
 }
 .box1:hover{
 	background-color: #f0f0f0;
@@ -195,31 +218,47 @@ body{
 	height: 7px;
 }
 .text-center {
-    text-align: center;
+	text-align: center;
 }
 .show-more {
-    clear: both;
+	clear: both;
+	margin-bottom: 28px;
 }
 .loading {
-    display: none;
+	display: none;
 }
 .hide {
-    display: none;
+	display: none;
 }
 #speakBtn{
-    display:none;
+	display:none;
 }
 .cc-banner .wp-block-image img {
 	width: 100%;
+}
+#titleMain{
+	width:60%;
+}
+@media (max-width: 992px){
+	#titleMain{
+		width:100%;
+	}
+	.lang{
+		float:none;
+		text-align:center
+	}
 }
 @media (max-width: 768px){
 	#header{
 		text-align: center;
 	}
+	#logo img{
+		width:50%;
+	}
 	#titleMain{
-        float:none;
-        margin-top:20px;
-        margin-bottom:0;
+		float:none;
+		margin-top:20px;
+		margin-bottom:0;
 		display: block;
 		float: none!important;
 	}
@@ -227,9 +266,9 @@ body{
 		text-align: center;
 		margin-top: 20px;
 	}
-		.lang ul{
-			padding: 0;
-		}
+	.lang ul{
+		padding: 0;
+	}
 	.headerBt{
 		margin-top: 20px;
 		text-align: center;
@@ -265,9 +304,9 @@ body{
 }
 .more{
 	background-color: #3b8ab4;
-    color: #fff;
-    padding: 5px 20px;
-    border-radius: 6.5px;
+	color: #fff;
+	padding: 5px 20px;
+	border-radius: 6.5px;
 }
 .more a{
 	color: #fff;
@@ -276,24 +315,21 @@ body{
 	padding: 6px 10px; background-color:rgb(0,74,142); color:#fff; border-radius:4px; font-size: 12px;
 }
 .btnDetalhes{
-	padding: 4px 8px;
-    background-color: rgb(255 255 255); text-decoration:none;
-    color: #31286b;
-    border-radius: 4px;
-    font-size: 11px;
-    border: 2px solid #31286b; transition: 1s;
+	padding: 3px 5px;
+	background-color: rgb(0 74 142);
+	text-decoration:none;
+	color: var(--wp--preset--color--base-2);
+	border-radius: 4px;
+	font-size: 11px;
+	border: 2px solid #31286b;
 }
 .btnDetalhes:hover{
-	padding: 4px 8px;
-    background-color: #31286b; text-decoration:none;
-    color: #ffffff;
-    border-radius: 4px;
-	font-size: 11px;
-    border: 2px solid #31286b;
+	color: rgb(0,153,255);
+	text-decoration:none;
 }
 .linkTitulo{
 	color:#111;     font-size: 22px;
-    line-height: 32px;
+	line-height: 32px;
 }
 .texto{
 	font-size:12px;
@@ -303,23 +339,36 @@ body{
 	font-weight: bold;
 	color:#222;
 	text-align:left;
-  }
-  
-  .table-detail td:nth-child(even) {
+}
+
+.table-detail td:nth-child(even) {
 	font-size:14px;
 	color:#222
-  }
-  .breadcrumb{
+}
+.breadcrumb{
 	border-radius:  0px .25rem .25rem;
 	background-color: #f5f5f5;
-  }
-  .breadcrumb a{
-	font-size: 12px;
-	font-weight: bold;
-  }
-  .breadcrumb-item+.breadcrumb-item::before, .breadcrumb-item{
-	content: ">>"; font-size:12px; font-weight: bold;
-  }
-  h1{
+}
+.breadcrumb a{
+	/* font-size: 12px; */
+	/* font-weight: bold; */
+}
+.breadcrumb-item+.breadcrumb-item::before, .breadcrumb-item{
+	content: ">>";
+	/* font-size:12px; */
+	/* font-weight: bold; */
+}
+h1{
 	font-size: 20px !important;
-  }
+}
+#header{
+	margin-bottom:30px;
+}
+.breadcrumb {
+	background: #fff;
+	margin-top: 30px
+}
+.text-bg-info {
+	color: #000 !important;
+	background-color: #0dcaf0;
+}
