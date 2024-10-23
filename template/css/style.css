@@ -312,7 +312,7 @@ body{
 	color: #fff;
 }
 .btnDetaslhes{
-	padding: 6px 10px; background-color:rgb(0,74,142); color:#fff; border-radius:4px; font-size: 12px;
+	padding: 6px 10px; background-color:rgb(0,74,142); color:#fff; border-radius:4px; font-size: 12px; 
 }
 .btnDetalhes{
 	padding: 3px 5px;
@@ -321,7 +321,7 @@ body{
 	color: var(--wp--preset--color--base-2);
 	border-radius: 4px;
 	font-size: 11px;
-	border: 2px solid #31286b;
+	border: 2px solid #31286b; cursor: pointer;
 }
 .btnDetalhes:hover{
 	color: rgb(0,153,255);
@@ -371,4 +371,7 @@ h1{
 .text-bg-info {
 	color: #000 !important;
 	background-color: #0dcaf0;
+}
+.boxFilter section{
+	overflow: hidden;
 }

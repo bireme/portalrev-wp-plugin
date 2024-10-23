@@ -68,7 +68,6 @@ if ( $user_filter != '' ) {
     foreach($user_filter_list as $filters){
         preg_match('/([a-z_]+):(.+)/',$filters, $filter_parts);
         if ($filter_parts){
-            // convert to internal format
             $applied_filter_list[$filter_parts[1]][] = str_replace('"', '', $filter_parts[2]);
         }
     }
@@ -128,11 +127,6 @@ if ( function_exists( 'pll_the_languages' ) ) {
 ?>
 
 <?php include('header.php') ?>
-<?php //var_dump($cc_initial_filter);
-
-//echo 'gggggggg= ' . $cc_search;
-
-?>
 <nav>
         <div class="container">
         <ol class="breadcrumb">
@@ -232,68 +226,6 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     <?php
 
 
-
-
-  
-                    /*
-                    if ($resource->django_id){
-                        echo '<small>';
-                            echo $resource->django_id . '<br/>';
-                        echo '</small>';
-                    }
-                    echo '</h3>';
-/*
-                    echo '<table class="table table-sm ">';
-                    echo '<tr>';
-                    echo '  <td width="30px"></td>';
-                    echo '  <td>' . $resource->cooperative_center_code . '</td>';
-                    echo '</tr>';
-
-                    if ($resource->institution_type){
-                        echo '<tr>';
-                        echo '  <td valign="top"><i class="fas fa-table"></i></td>';
-                        echo '    <td>';
-                        $exclude_common_types = array('CooperatingCenters', 'ParticipantsUnits', 'VHLNetwork');
-                        foreach ( $resource->institution_type as $type ){
-                            echo $type_translated[$type] . '<br/>';
-                        }
-                        echo '   </td>';
-                        echo '</tr>';
-                    }
-
-                    /*
-                    if ($resource->title){
-                        echo '<tr>';
-                        echo '    <td valign="top"><i class="fas fa-map-marker-alt"></i></td>';
-                        echo '    <td>';
-                        echo '      <a href="https://www.google.com/maps/search/' . $resource->title . '" target="_blank">' . $resource->title . '</a>';
-                        echo '    </td>';
-                        echo '</tr>';
-                    }
-*//*
-                    if ($resource->contact){
-                        echo '<tr>';
-                        echo '    <td valign="top"><i class="far fa-envelope-open"></i></td>';
-                        echo '    <td>';
-                        foreach ( $resource->contact as $contact ){
-                            echo $contact . '<br/>';
-                        }
-                        echo '</td>';
-                        echo '</tr>';
-                    }
-                    /*
-                    if ($resource->link){
-                        echo '<tr>';
-                        echo '	<td valign="top"><i class="fas fa-tv"></i></td>';
-                        echo '  <td>';
-                        foreach ( $resource->link as $link ){
-                            $link_norm = ( substr($link, 0, 4) != 'http' ? 'http://' . $link : $link );
-                        	echo '<p><a href="' . $link_norm . '" target="_blank">'  . $link . '</a></p>';
-                        }
-                        echo '</td>';
-                        echo '</tr>';
-                    }
-                        */
                     ?>
                     <!--<span class="more"><a href="<?php echo real_site_url($cc_plugin_slug); ?>/detail/?id=<?php echo $resource->django_id; ?>"><?php _e('See more details','lis'); ?></a></span>
                 --><?php
@@ -312,14 +244,16 @@ if ( function_exists( 'pll_the_languages' ) ) {
         <div class="col-md-4 col-lg-3" id="filterRight">
             <div class="boxFilter">
                 <?php if ($applied_filter_list) :?>
-                    <form method="get" name="searchFilter" id="formFilters" action="?results">
+                    <section>
+                    <form method="get" name="searchFilter" id="formFilters" action="?results" style="overflow:hidden">
                         <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
                         <input type="hidden" name="q" id="query" value="<?php echo $query; ?>" >
                         <input type="hidden" name="filter" id="filter" value="" >
+                        <h5>Filtros aplicados</h5>
 
                         <?php foreach ( $applied_filter_list as $ap_filter => $ap_filter_values ) :?>
                             <?php if ($ap_filter != 'country_code'): ?>
-                                <h5><?php echo $filter_title_translated[$ap_filter]; ?></h5>
+                                <h5><?php //echo $filter_title_translated[$ap_filter]; ?></h5>
                                 <ul>
                                 <?php foreach ( $ap_filter_values as $value ) :?>
                                     <input type="hidden" name="apply_filter" class="apply_filter"
@@ -349,6 +283,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </form>
+                    <section>
                 <?php endif; ?>
 
                 <section>

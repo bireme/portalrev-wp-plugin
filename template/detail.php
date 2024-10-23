@@ -171,23 +171,17 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     $pos++;
                     $resource = $center_list;
                     echo '<article class="col-lg-12">';
-                    echo '<h1 class="tituloArtigo" style="font-size:1.5rem; padding-left: 20px;">' . $center_list->title . '</h1>';
                     echo '<div class="box1">';
+                    echo '<h1 class="tituloArtigo" style="font-size:1.5rem; padding-left: 6px;">' . $center_list->title . '</h1>';
                     //echo '<span class="badge text-bg-info">' . strval( intval($start) + $pos ) . '/' . $total . '</span>';
-                    echo '<h3 class="box1Title">';
                     //echo $center_list->title;
 
-
-                    if ($resource->status == '2'){
-                        echo ' <span class="badge text-bg-warning">' . __('INACTIVE', 'cc') . '</span>';
-                    }elseif($resource->status == '3'){
-                        echo ' <span class="badge text-bg-warning">' . __('CLOSED', 'cc') . '</span>';
+                    if ($resource->status == '1'){
+                       //echo ' <span class="badge text-bg-warning">' . __('INACTIVE', 'cc') . '</span>';
+                    }else{
+                       // echo ' <span class="badge text-bg-warning">' . __('CLOSED', 'cc') . '</span>';
                     }
-
-
-                    echo '<br/>';
-                 
-                    echo '</h3>';
+                    echo '<br>';
                     echo '<table class="table table-sm table-detail">';
                     echo '<tr>';
                     echo '  <td style="min-width:140px;"></td>';
@@ -205,13 +199,11 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '</tr>';
                         }
     
-
-
                     if ($resource->subtitle){
-                    echo '<tr>';
-                    echo '  <td >Subtitulo</td>';
-                    echo '  <td colspan="3">' . $center_list->subtitle . '</td>';
-                    echo '</tr>';
+                        echo '<tr>';
+                        echo '  <td >Subtitulo</td>';
+                        echo '  <td colspan="3">' . $center_list->subtitle . '</td>';
+                        echo '</tr>';
                     }
 
                     if ($resource->section){
@@ -230,27 +222,22 @@ if ( function_exists( 'pll_the_languages' ) ) {
 
                     if ($resource->parallel_titles){
                         foreach ( $resource->parallel_titles as $value ){
-                    echo '<tr>';
-                    echo '  <td>Título paralelo:</td>';
-                    echo '  <td>' . tratarVariacoes($value) . '</td>';
-                    echo '</tr>';
+                            echo '<tr>';
+                            echo '  <td>Título paralelo:</td>';
+                            echo '  <td>' . tratarVariacoes($value) . '</td>';
+                            echo '</tr>';
                         }
                     }
 
                     if ($resource->other_titles){
-                    echo '<tr>';
-                    echo '  <td>Outras variações:</td>';
-                    echo '  <td>'; 
-                    foreach ( $resource->other_titles as $value ){
-
-                    echo tratarVariacoes($value) . '<BR>';
-                    }
-                    
-                    echo '</td>';
-                    
-                    
-                    echo '</tr>';
-                        
+                        echo '<tr>';
+                        echo '  <td>Outras variações:</td>';
+                        echo '  <td>'; 
+                        foreach ( $resource->other_titles as $value ){
+                            echo tratarVariacoes($value) . '<BR>';
+                        }
+                        echo '</td>';
+                        echo '</tr>';
                     }
 
                     echo '<tr>';
@@ -259,13 +246,13 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     echo '  <td width="220px">' . '</td>';
                     echo '</tr>';
 
-
                     /*
                     echo '<tr>';
                     echo '  <td >Editora: </td>';
                     echo '  <td>' . $center_list->medline_shortened_title . '</td>';
                     echo '</tr>';
                     */
+
                     if ($resource->responsibility_mention){
                     echo '<tr>';
                     echo '  <td >Menção de responsabilidade:</td>';
@@ -363,6 +350,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '   </td>';
                         echo '</tr>';
                     }
+
                     if($center_list->absorbed[0] != ''){
                         echo '<tr>';
                         echo '  <td >Absorveu a:</td>';
@@ -374,11 +362,12 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '   </td>';
                         echo '</tr>';
                     }
+
                     if($center_list->thematic_area != ''){
-                    echo '<tr>';
-                    echo '  <td >Área temática:</td>';
-                    echo '  <td> ' . $center_list->thematic_area . '</td>';
-                    echo '</tr>';
+                        echo '<tr>';
+                        echo '  <td >Área temática:</td>';
+                        echo '  <td> ' . $center_list->thematic_area . '</td>';
+                        echo '</tr>';
                     }  
                     if($center_list->descriptors != ''){
                         echo '<tr>';
@@ -392,19 +381,9 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     if($center_list->index_range != ''){
                         echo '<tr>';
                         echo '  <td >Título indexado em:</td>';
-                        echo '    <td>';
+                        echo '    <td colspan="2">';
                         foreach ( $resource->index_range as $index_range){
-                            $partes = explode("^a", $index_range);
-
-// Verifica se a divisão foi bem-sucedida e exibe as partes
-if (count($partes) == 2) {
-    $antes = trim($partes[0]); // Parte antes de "-b"
-    $depois = trim($partes[1]); // Parte depois de "-b"
-                            //echo tratarIndexadoEm($index_range) . ' <BR>';
-                            echo substituirSiglasIndexado($partes[0]) .  '; ' . tratarIndexadoEm($partes[1]) . ' <BR>';
-                            }else{ 
-                                echo substituirSiglasIndexado(tratarIndexadoEm($partes[0])). ' <BR>';
-                            }
+                            echo tratarIndexo($index_range) .  ' <BR>';
                         }
                         echo '</td></tr>';
                     }
@@ -454,6 +433,11 @@ function separar_indices($texto) {
 -->
 <?php
 function tratarFrequencia($texto){
+//$status = ($idade >= 18) ? 'Maior de idade' : 'Menor de idade';
+
+    $texto = str_replace("Q", "Trimestral", $texto);
+    if($texto == 'T'){ $texto = str_replace("T", "Quadrimestral", $texto);}
+    $texto = str_replace("S", "Bimensal", $texto);
     $texto = str_replace("A", "Anual", $texto);
     $texto = str_replace("B", "Bimestral", $texto);
     $texto = str_replace("C", "Bissemanal", $texto);
@@ -466,11 +450,8 @@ function tratarFrequencia($texto){
     $texto = str_replace("J", "Três vezes por mês", $texto);
     $texto = str_replace("K", "Irregular", $texto);
     $texto = str_replace("M", "Mensal", $texto);
-    $texto = str_replace("Q", "Trimestal", $texto);
-    $texto = str_replace("S", "Bimensal", $texto);
-    $texto = str_replace("T", "Quadrimestral", $texto);
     $texto = str_replace("U", "Publicação contínua", $texto);
-    $texto = str_replace("W", "Publicação contínua", $texto);
+    $texto = str_replace("W", "Semanal", $texto);
     $texto = str_replace("Z", "Outras frequências", $texto);
     if($texto == ''){
     $texto = 'Frequência desconhecida';
@@ -492,12 +473,51 @@ function susbtituirSiglasD($texto){
     return $texto;
 }
 function substituirSiglasIndexado($texto){
-    //$texto = explode('^n', $texto)
-    $texto = str_replace("LL", "LILACS", $texto);
-    $texto = str_replace("BA", "BIOLOGICAL ABSTRACTS", $texto);
-    $texto = str_replace("IM", "INDEX MEDICUS", $texto);
-    $texto = str_replace("EM", "EXCERPTA MEDICA", $texto);
+    //$texto = explode('^n', $texto);
+    //$texto = str_replace("LL", "LILACS", $texto);
+    //$texto = str_replace("BA", "BIOLOGICAL ABSTRACTS", $texto);
+    //$texto = str_replace("IM", "INDEX MEDICUS", $texto);
+    ///$texto = str_replace("EM", "EXCERPTA MEDICA", $texto);
     return $texto;
+}
+function tratarIndexo($texto){
+    preg_match('/\^n([^\\^]*)/', $texto, $nMatch);
+    preg_match('/\^a([^\\^]*)/', $texto, $aMatch);
+    preg_match('/\^b([^\\^]*)/', $texto, $bMatch);
+    preg_match('/\^c([^\\^]*)/', $texto, $cMatch);
+    preg_match('/\^d([^\\^]*)/', $texto, $dMatch);
+    preg_match('/\^e([^\\^]*)/', $texto, $eMatch);
+    preg_match('/\^f([^\\^]*)/', $texto, $fMatch);
+    preg_match('/\^g([^\\^]*)/', $texto, $gMatch);
+    preg_match('/\^h([^\\^]*)/', $texto, $hMatch);
+    preg_match('/\^i([^\\^]*)/', $texto, $iMatch);
+
+    // O valor de ^n é obrigatório
+    $nValue = isset($nMatch[1]) ? $nMatch[1] : '';
+
+    // Cria um array de valores de subcampos (de ^a a ^i)
+    $subcampos = [];
+
+    // Adiciona cada valor ao array de subcampos, se existir
+    if (isset($aMatch[1])) $subcampos[] = $aMatch[1];
+    if (isset($bMatch[1])) $subcampos[] = $bMatch[1];
+    if (isset($cMatch[1])) $subcampos[] = $cMatch[1];
+    if (isset($dMatch[1])) $subcampos[] = $dMatch[1];
+    if (isset($eMatch[1])) $subcampos[] = $eMatch[1];
+    if (isset($fMatch[1])) $subcampos[] = $fMatch[1];
+    if (isset($gMatch[1])) $subcampos[] = $gMatch[1];
+    if (isset($hMatch[1])) $subcampos[] = $hMatch[1];
+    if (isset($iMatch[1])) $subcampos[] = $iMatch[1];
+
+    // Concatena o valor de ^n com os outros subcampos, separados por vírgulas
+    $resultado = $nValue;
+
+    if (!empty($subcampos)) {
+        // Adiciona a vírgula entre o valor de ^n e os outros subcampos, se existirem
+        $resultado .= ', ' . implode(', ', $subcampos);
+    }
+
+    return $resultado;
 }
 function tratarIndexadoEm($texto){
     //////////////////////////
@@ -505,6 +525,11 @@ function tratarIndexadoEm($texto){
     $texto = str_replace("BA^a", "BIOLOGICAL ABSTRACTS; ", $texto);
     $texto = str_replace("IM^a", "INDEX MEDICUS; ", $texto);
     $texto = str_replace("EM^a", "EXCERPTA MEDICA; ", $texto);
+
+    $array = explode('^', $texto);
+    $texto = $array[1];
+    $array = explode('^n', $texto);
+    $texto = $array[1] . $array[0];
 
     ////////////////////////////////
     $texto = str_replace("^a", "; ", $texto);
@@ -525,7 +550,13 @@ function tratarVariacoes($texto){
 }
 function issnVariacoes($texto){
     $partes = explode('^i', $texto);
-    return $partes[1];
+
+    if($partes[1] != ''){
+        return $partes[1];
+    }else{
+        return $partes[0];
+    }
+
 }
 
 function tratarOnlineNotes($texto, $n){
@@ -599,7 +630,7 @@ echo "<Br><Br>";
                         echo '   </td>';
                         echo '</tr>';
                     }
-                    ///////^p -portugues, i- inlges, ê -espanhol
+                    ///////^p -portugues, i- ingles, ê -espanhol
 
 
                     if ($resource->collection){
