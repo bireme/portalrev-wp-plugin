@@ -420,7 +420,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
              //var_dump($language_list);
              if ($indexed_database): ?>
                     <section>
-                        <h5 class="box1Title"><?php _e('Datab','cc'); ?></h5>
+                        <h5 class="box1Title"><?php _e('Base de Dados','cc'); ?></h5>
                         <ul class="filter-list">
                             <?php foreach ( $indexed_database as $country ) { ?>
                                 <?php
