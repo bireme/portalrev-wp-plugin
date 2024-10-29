@@ -154,11 +154,12 @@ if ( function_exists( 'pll_the_languages' ) ) {
         </ol>
                 </div>
     </nav>
+    <!--
     <div class="row">
     <div class="col-12 cc-banner">
         <?php //dynamic_sidebar('cc-banner');?>
                 </div>
-                </div>
+                </div>-->
 <section class="container" id="main_container">
     
 

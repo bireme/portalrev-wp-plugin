@@ -98,6 +98,6 @@
             </div>
         </div>
     </div>
-    <div class="row" style="background-color:#31286b!important">dd
+    <div class="row" style="background-color:#31286b!important; margin:0px; padding:10px;">
                         </div>
 </header>
