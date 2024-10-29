@@ -61,6 +61,7 @@ if ($user_filter != ''){
 $start = ($page * $count) - $count;
 
 $cc_search = $cc_service_url . 'api/title/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&lang=' . $lang;
+$cc_search .= '&sort=title_sort+asc';
 //echo $cc_search;
 if ( $user_filter != '' ) {
     $user_filter_list = preg_split("/ AND /", $user_filter);
@@ -88,6 +89,8 @@ if ($response){
     $descriptor_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->descriptor_filter;
     $language_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->language;
     $status_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->status;
+    $indexed_database = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->indexed_database;
+
 
 
     //$language_list[0] = "en^Portuguese|pt-br^Português|es^Portugués";
@@ -183,10 +186,14 @@ if ( function_exists( 'pll_the_languages' ) ) {
                                     
 
 <?php 
-                    ?><a href="<?php echo real_site_url($cc_plugin_slug); ?>/detail/?id=<?php echo $resource->django_id; ?>" class="linkTitulo">
-                    <?php echo $resource->title . '</a>';
+                    ?>
+                    
+                    <a href='<?php echo real_site_url($cc_plugin_slug); ?>/detail/?id=<?php echo $resource->django_id; ?>' class="linkTitulo">
+                    <?php 
+                  //  $tit = str_replace('<', '', $resource->title);
+                  //  $tit = str_replace('>', '', $resource->title);
 
-
+                    echo htmlspecialchars($resource->title) . '</a>';
 
                     if ($resource->status == '1'){
                         //echo ' <span class="badge text-bg-warning">' . __('INACTIVE', 'cc') . '</span>';
@@ -403,6 +410,38 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         <?php if ( count($language_list) == 20 ) : ?>
                             <div class="show-more text-center">
                                 <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="language"><?php _e('show more','cc'); ?></a>
+                                <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
+                            </div>
+                        <?php endif; ?>
+                    </section>
+                <?php endif; ?>
+                <!---------------->
+                <?php
+             //var_dump($language_list);
+             if ($indexed_database): ?>
+                    <section>
+                        <h5 class="box1Title"><?php _e('Datab','cc'); ?></h5>
+                        <ul class="filter-list">
+                            <?php foreach ( $indexed_database as $country ) { ?>
+                                <?php
+                                    $filter_link = '?';
+                                    if ($query != ''){
+                                        $filter_link .= 'q=' . $query . '&';
+                                    }
+                                    $filter_link .= 'filter=indexed_database:"' . $country[0] . '"';
+                                    if ($user_filter != ''){
+                                        $filter_link .= ' AND ' . $user_filter ;
+                                    }
+                                ?>
+                                <li class="cat-item">
+                                    <a href='<?php echo $filter_link; ?>'><?php echo $country[0];?></a>
+                                    <span class="cat-item-count"><?php echo $country[1] ?></span>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                        <?php if ( count($indexed_database) == 20 ) : ?>
+                            <div class="show-more text-center">
+                                <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="indexed_database"><?php _e('show more','cc'); ?></a>
                                 <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
                             </div>
                         <?php endif; ?>
