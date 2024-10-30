@@ -18,10 +18,35 @@ body{
 #titleMain{
 	width:70%;
 }
+#nav-iahx{
+	background-color:#31286b!important;
+	margin:0px; padding:10px;
+	text-align: right;
+}
+#nav-iahx a{
+	color: #fff;
+	text-decoration: none;
+}
+#nav-iahx a:hover{
+	color: #ddd;
+}
 .titleMain1{
 	font-size: 27px; font-weight:bold;
 	float:left;
 	margin-bottom:30px;
+	position:relative
+}
+.titleMain1::before{
+	content:"V. Beta";
+	font-size: 12px;
+	float:left;
+	background: #31286b;
+	color:#fff;
+	border-radius: 03px;
+	padding:0 6px;
+	font-weight:500;
+	position:absolute;
+	top:-18px;
 }
 .lang{
 	text-align: right;

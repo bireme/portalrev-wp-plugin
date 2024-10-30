@@ -98,6 +98,42 @@
             </div>
         </div>
     </div>
-    <div class="row" style="background-color:#31286b!important; margin:0px; padding:10px;">
+
+    <div id="nav-iahx">
+    <div class="container ">
+        
+<!-- livezilla.net PLACE WHERE YOU WANT TO SHOW GRAPHIC BUTTON -->
+<a href="javascript:void(window.open('//contacto.bvsalud.org/chat.php?group=Atendimento&ptl=pt-br&htgs=MQ__&hfk=MQ__','','width=400,height=600,left=0,top=0,resizable=yes,menubar=no,location=no,status=yes,scrollbars=yes'))" class="lz_cbl">Contato</a>
+<!-- livezilla.net PLACE WHERE YOU WANT TO SHOW GRAPHIC BUTTON -->
+
+<!-- livezilla.net PLACE SOMEWHERE IN BODY -->
+<!-- PASS THRU DATA OBJECT -->
+<script type="text/javascript">
+var lz_data = {overwrite:false,language:'pt-br'};
+</script>
+<!-- PASS THRU DATA OBJECT -->
+
+<div id="lvztr_ee0" style="display:none"></div><script id="lz_r_scr_8d3063714732d133ba17c3d23be22dbf" type="text/javascript" defer>lz_code_id="8d3063714732d133ba17c3d23be22dbf";var script = document.createElement("script");script.async=true;script.type="text/javascript";var src = "//contacto.bvsalud.org/server.php?rqst=track&output=jcrpt&group=Atendimento&htgs=MQ__&hfk=MQ__&nse="+Math.random();script.src=src;document.getElementById('lvztr_ee0').appendChild(script);</script>
+<!-- livezilla.net PLACE SOMEWHERE IN BODY -->
+
+<style>
+.livezilla {    padding-left: 25% !important;}
+.image-ultimate-hover-2 .iheu-info{background: transparent !important;}
+@media (max-width: 568px) {
+.storytitle, .storycontent{margin-left: 0px !important;}
+.top #parent {padding: 12px !important;}
+}
+</style>
+    </div>
+
+
+
+
+
+
+
+
+
+
                         </div>
 </header>
