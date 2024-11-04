@@ -1,21 +1,21 @@
 # Copyright (C) 2023 BIREME/OPAS/OMS
 # This file is distributed under the same license as the Cooperating Centers plugin.
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Cooperating Centers 2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/centers\n"
+"POT-Creation-Date: 2024-10-30 17:57-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-09-25T14:36:43+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.8.1\n"
+"X-Generator: Poedit 3.5\n"
 
 #. Plugin Name of the plugin
-#: centers.php:91
-#: centers.php:226
+#: centers.php:91 centers.php:226
 msgid "Cooperating Centers"
 msgstr ""
 
@@ -35,8 +35,7 @@ msgstr ""
 msgid "http://reddes.bvsalud.org/"
 msgstr ""
 
-#: centers.php:91
-#: settings.php:8
+#: centers.php:91 settings.php:8
 msgid "Cooperating Centers Settings"
 msgstr ""
 
@@ -48,14 +47,9 @@ msgstr ""
 msgid "Cooperating Centers Header"
 msgstr ""
 
-#: lib/Paginator.php:34
-#: lib/Paginator.php:35
-#: lib/Paginator.php:46
-#: lib/Paginator.php:52
-#: lib/Paginator.php:61
-#: lib/Paginator.php:62
-#: lib/Paginator.php:68
-#: lib/Paginator.php:69
+#: lib/Paginator.php:34 lib/Paginator.php:35 lib/Paginator.php:46
+#: lib/Paginator.php:52 lib/Paginator.php:61 lib/Paginator.php:62
+#: lib/Paginator.php:68 lib/Paginator.php:69
 msgid "go to page"
 msgstr ""
 
@@ -71,13 +65,11 @@ msgstr ""
 msgid "Initial filter query"
 msgstr ""
 
-#: settings.php:38
-#: settings.php:51
+#: settings.php:38 settings.php:51
 msgid "Page title"
 msgstr ""
 
-#: settings.php:43
-#: settings.php:56
+#: settings.php:43 settings.php:56
 msgid "Home URL"
 msgstr ""
 
@@ -97,101 +89,79 @@ msgstr ""
 msgid "Privacy Policy"
 msgstr ""
 
-#: template/header.php:6
-#: template/header.php:51
-#: template/home.php:97
+#: template/header.php:6 template/header.php:51 template/home.php:97
 msgid "VHL Network Directory"
 msgstr ""
 
-#: template/header.php:79
-#: template/header.php:85
+#: template/header.php:79 template/header.php:85
 msgid "Search"
 msgstr ""
 
-#: template/home.php:70
-#: template/translations.php:14
+#: template/home.php:70 template/translations.php:14
 msgid "CoordinatingCentersRg"
 msgstr ""
 
-#: template/home.php:71
-#: template/translations.php:15
+#: template/home.php:71 template/translations.php:15
 msgid "CoordinatingCentersNc"
 msgstr ""
 
-#: template/home.php:72
-#: template/translations.php:17
+#: template/home.php:72 template/translations.php:17
 msgid "CooperatingCenters"
 msgstr ""
 
-#: template/home.php:73
-#: template/translations.php:18
+#: template/home.php:73 template/translations.php:18
 msgid "CooperatingCentersLILACS"
 msgstr ""
 
-#: template/home.php:74
-#: template/translations.php:19
+#: template/home.php:74 template/translations.php:19
 msgid "CooperatingCentersLEYES"
 msgstr ""
 
-#: template/home.php:75
-#: template/translations.php:20
+#: template/home.php:75 template/translations.php:20
 msgid "ParticipantsUnits"
 msgstr ""
 
-#: template/home.php:76
-#: template/translations.php:21
+#: template/home.php:76 template/translations.php:21
 msgid "VHLNetwork"
 msgstr ""
 
-#: template/home.php:77
-#: template/translations.php:22
+#: template/home.php:77 template/translations.php:22
 msgid "Editor"
 msgstr ""
 
-#: template/home.php:79
-#: template/translations.php:24
+#: template/home.php:79 template/translations.php:24
 msgid "MedCarib"
 msgstr ""
 
-#: template/home.php:80
-#: template/translations.php:25
+#: template/home.php:80 template/translations.php:25
 msgid "Nursing"
 msgstr ""
 
-#: template/home.php:81
-#: template/translations.php:26
+#: template/home.php:81 template/translations.php:26
 msgid "Border"
 msgstr ""
 
-#: template/home.php:82
-#: template/translations.php:27
+#: template/home.php:82 template/translations.php:27
 msgid "Disastres"
 msgstr ""
 
-#: template/home.php:83
-#: template/translations.php:28
+#: template/home.php:83 template/translations.php:28
 msgid "Psychology"
 msgstr ""
 
-#: template/home.php:84
-#: template/translations.php:29
+#: template/home.php:84 template/translations.php:29
 msgid "MTCI"
 msgstr ""
 
-#: template/home.php:94
-#: template/results.php:123
+#: template/home.php:94 template/results.php:123
 msgid "Home"
 msgstr ""
 
-#: template/home.php:340
-#: template/results.php:272
-#: template/translations.php:38
+#: template/home.php:340 template/results.php:272 template/translations.php:38
 msgid "VHL Network"
 msgstr ""
 
-#: template/home.php:360
-#: template/results.php:295
-#: template/translations.php:39
+#: template/home.php:360 template/results.php:295 template/translations.php:39
 msgid "Thematic Networks"
 msgstr ""
 
@@ -211,8 +181,7 @@ msgstr ""
 msgid "CLOSED"
 msgstr ""
 
-#: template/results.php:319
-#: template/translations.php:40
+#: template/results.php:319 template/translations.php:40
 msgid "Country"
 msgstr ""
 
@@ -255,3 +224,52 @@ msgstr ""
 #: template/translations.php:36
 msgid "SMS-SP"
 msgstr ""
+
+msgid "titles"
+msgstr ""
+
+msgid "Subtitulo"
+msgstr ""
+
+msgid "Seção/Parte"
+msgstr ""
+
+msgid "Titulo abreviado"
+msgstr ""
+
+msgid "Titulo paralelo"
+msgstr ""
+
+msgid "Outras variações"
+msgstr ""
+
+
+msgid "Menção de responsabilidade"
+msgstr ""
+
+
+msgid "Código do editor"
+msgstr ""
+
+
+msgid "Editora"
+msgstr ""
+
+
+msgid "Cidade"
+msgstr ""
+
+
+msgid "País"
+msgstr ""
+
+
+msgid ""
+msgstr ""
+
+
+msgid "Absorveu a"
+msgstr ""
+
+
+

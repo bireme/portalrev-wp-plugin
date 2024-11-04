@@ -201,7 +201,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
     
                     if ($resource->subtitle){
                         echo '<tr>';
-                        echo '  <td >Subtitulo</td>';
+                        echo '  <td>'. __('Subtitulo','cc') . ':</td>';
                         echo '  <td colspan="3">' . $center_list->subtitle . '</td>';
                         echo '</tr>';
                     }
@@ -209,21 +209,21 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     if ($resource->section){
                         foreach ( $resource->section as $value ){
                         echo '<tr>';
-                        echo '  <td >Seção/Parte:</td>';
+                        echo '  <td>'. __('Seção/Parte','cc') . ':</td>';
                         echo '  <td>'.$value . '</td>';
                         echo '</tr>';
                         }
                     }
 
                     echo '<tr>';
-                    echo '  <td >Titulo abreviado:</td>';
+                    echo '  <td>'. __('Titulo abreviado','cc') . ':</td>';
                     echo '  <td >'. $center_list->shortened_title . '</td>';
                     echo '</tr>';
 
                     if ($resource->parallel_titles){
                         foreach ( $resource->parallel_titles as $value ){
                             echo '<tr>';
-                            echo '  <td>Título paralelo:</td>';
+                            echo '  <td>'. __('Titulo paralelo','cc') . ':</td>';
                             echo '  <td>' . tratarVariacoes($value) . '</td>';
                             echo '</tr>';
                         }
@@ -231,7 +231,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
 
                     if ($resource->other_titles){
                         echo '<tr>';
-                        echo '  <td>Outras variações:</td>';
+                        echo '  <td>'. __('Outras variações','cc') . ':</td>';
                         echo '  <td>'; 
                         foreach ( $resource->other_titles as $values){
                             //echo tratarVariacoes($values) . '<BR>';
@@ -257,14 +257,14 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     */
 
                     if ($resource->responsibility_mention){
-                    echo '<tr>';
-                    echo '  <td >Menção de responsabilidade:</td>';
-                    echo '  <td>' . $center_list->responsibility_mention . '</td>';
-                    echo '</tr>';
+                        echo '<tr>';
+                        echo '  <td>'. __('Menção de responsabilidade','cc') . ':</td>';
+                        echo '  <td>' . $center_list->responsibility_mention . '</td>';
+                        echo '</tr>';
                     }
                     if ($resource->editor_cc_code){
                         echo '<tr>';
-                        echo '  <td >Código do editor:</td>';
+                        echo '  <td>'. __('Código do editor','cc') . ':</td>';
                         echo '  <td>';
                         echo  "<a href='https://bvsalud.org/centros?lang=pt&q=".$center_list->editor_cc_code."' target='_blank'>";                        
                         echo $center_list->editor_cc_code . '</a></td>';
@@ -272,48 +272,48 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     }
                     if ($resource->comercial_editor){
                         echo '<tr>';
-                        echo '  <td >Editora:</td>';
+                        echo '  <td>'. __('Editora','cc') . ':</td>';
                         echo '  <td>' . $center_list->comercial_editor . '</td>';
                         echo '</tr>';
                     }
 
                     if ($resource->city){
-                    echo '<tr>';
-                    echo '  <td >Cidade:</td>';
-                    echo '  <td> ' . $center_list->city . '</td>';
-                    echo '</tr>';
+                        echo '<tr>';
+                        echo '  <td>'. __('Cidade','cc') . ':</td>';
+                        echo '  <td> ' . $center_list->city . '</td>';
+                        echo '</tr>';
                     }
 
                     if ($resource->country){
                         foreach ( $resource->country as $value ){
-                    echo '<tr>';
-                    echo '  <td>País</td>';
-                    echo '  <td>' . $value . '</td>';
-                    echo '</tr>';
+                            echo '<tr>';
+                            echo '  <td>'. __('País','cc') . ':</td>';
+                            echo '  <td>' . $value . '</td>';
+                            echo '</tr>';
                         }
                     }
                     if ($resource->frequency){
                         echo '<tr>';
-                        echo '  <td >Periodicidade: </td>';
+                        echo '  <td>'. __('Periodicidade','cc') . ':</td>';
                         echo '  <td> ' . tratarFrequencia($center_list->frequency) . '</td>';
                         echo '</tr>';
                         }
                     if ($resource->initial_date){
                         echo '<tr>';
-                        echo '  <td >Publicação iniciada em: </td>';
+                        echo '  <td>'. __('Publicação iniciada em','cc') . ':</td>';
                         echo '  <td> ' . $center_list->initial_date . '</td>';
                         echo '</tr>';
                         }
 
                     if ($resource->final_date){
-                            echo '<tr>';
-                            echo '  <td >Publicação encerrada em: </td>';
-                            echo '  <td> ' . $center_list->final_date . '</td>';
-                            echo '</tr>';
+                        echo '<tr>';
+                        echo '  <td >Publicação encerrada em: </td>';
+                        echo '  <td> ' . $center_list->final_date . '</td>';
+                        echo '</tr>';
                     }
                     if($center_list->continuation[0] != ''){
                         echo '<tr>';
-                        echo '  <td >Titulo anterior:</td>';
+                        echo '  <td>'. __('Titulo anterior','cc') . ':</td>';
                         echo '    <td>';
                         foreach ( $resource->continuation as $values){
                             echo '<a = href="' . site_url($lang . '/' . $cc_plugin_slug) . '?lang=' . $lang . '&q=' . issnVariacoes($values) . '">';
@@ -324,7 +324,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     }
                     if($center_list->fusion[0] != ''){
                         echo '<tr>';
-                        echo '  <td >Fusão com ... de ... :</td>';
+                        echo '  <td>'. __('Fusão com ... de ... ','cc') . ':</td>';
                         echo '    <td>';
                         foreach ( $resource->fusion as $values){
                             echo '<a = href="' . site_url($lang . '/' . $cc_plugin_slug) . '?lang=' . $lang . '&q=' . issnVariacoes($values) . '">';
@@ -335,7 +335,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     }
                     if($center_list->continued_by[0] != ''){
                         echo '<tr>';
-                        echo '  <td >Continuação por:</td>';
+                        echo '  <td>'. __('Continuação por','cc') . ':</td>';
                         echo '    <td>';
                         foreach ( $resource->continued_by as $values){
                             echo '<a = href="' . site_url($lang . '/' . $cc_plugin_slug) . '?lang=' . $lang . '&q=' . issnVariacoes($values) . '">';
@@ -346,7 +346,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     }
                     if($center_list->partial_continuation[0] != ''){
                         echo '<tr>';
-                        echo '  <td >Continuação parcial de:</td>';
+                        echo '  <td>'. __('Continuação parcial de','cc') . ':</td>';
                         echo '    <td>';
                         foreach ( $resource->partial_continuation as $values){
                             echo '<a = href="' . site_url($lang . '/' . $cc_plugin_slug) . '?lang=' . $lang . '&q=' . issnVariacoes($values) . '">';
@@ -358,7 +358,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
 
                     if($center_list->absorbed[0] != ''){
                         echo '<tr>';
-                        echo '  <td >Absorveu a:</td>';
+                        echo '  <td>'. __('Absorveu a','cc') . ':</td>';
                         echo '    <td>';
                         foreach ( $resource->absorbed as $absorbed){
                             echo '<a = href="' . site_url($lang . '/' . $cc_plugin_slug) . '?lang=' . $lang . '&q=' . issnVariacoes($absorbed) . '">';
@@ -370,7 +370,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
 
                     if($center_list->thematic_area != ''){
                         echo '<tr>';
-                        echo '  <td >Área temática:</td>';
+                        echo '  <td>'. __('Área temática','cc') . ':</td>';
                         echo '  <td> ' . $center_list->thematic_area . '</td>';
                         echo '</tr>';
                     }  
@@ -385,7 +385,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     }
                     if($center_list->index_range != ''){
                         echo '<tr>';
-                        echo '  <td >Título indexado em:</td>';
+                        echo '  <td>'. __('Título indexado em','cc') . ':</td>';
                         echo '    <td colspan="2">';
                         foreach ( $resource->index_range as $index_range){
                             echo tratarIndexo($index_range) .  ' <BR>';
@@ -394,7 +394,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     }
                     if($center_list->national_code != ''){
                         echo '<tr>';
-                        echo '  <td >No. CCN Brasil:</td>';
+                        echo '  <td>'. __('No. CCN Brasil','cc') . ':</td>';
                         echo '    <td>';
                         echo  $center_list->national_code . ' <BR>';
                         echo '</td></tr>';
@@ -407,7 +407,6 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         echo '</td></tr>';
                     }     
 
-
 function separar_indices($texto) {
     // Regex para capturar os campos ^a até ^f
     preg_match_all('/\^a([^\^]*)/', $texto, $matches_a);
@@ -417,19 +416,18 @@ function separar_indices($texto) {
     preg_match_all('/\^e([^\^]*)/', $texto, $matches_e);
     preg_match_all('/\^f([^\^]*)/', $texto, $matches_f);
     
-    $resultados = [];
-    
+    $i = 0;
     // Iterar através dos resultados e construir um array associativo
-    for ($i = 0; $i < count($matches_a[1]); $i++) {
+    //for ($i = 0; $i < count($matches_a[1]); $i++) {
         $resultados[] = [
-            'a' => $matches_a[1][$i],
+            'a' => isset($matches_a[1][$i]) ? $matches_a[1][$i] : '',
             'b' => isset($matches_b[1][$i]) ? $matches_b[1][$i] : '',
             'c' => isset($matches_c[1][$i]) ? $matches_c[1][$i] : '',
             'd' => isset($matches_d[1][$i]) ? $matches_d[1][$i] : '',
             'e' => isset($matches_e[1][$i]) ? $matches_e[1][$i] : '',
             'f' => isset($matches_f[1][$i]) ? $matches_f[1][$i] : ''
         ];
-    }
+    //}
     
     return $resultados;
 }
@@ -590,7 +588,7 @@ function tratarOnlineNotes($texto, $n){
                         $no = 1;
                         $countonline = 1;
                         foreach ( $resource->online as $type){
-//                          echo $type . '<br/>';
+                          echo $type . '<br/>';
                             $type = susbtituirSiglas($type);
                             $resultados = separar_indices($type);
                                             
@@ -602,7 +600,9 @@ function tratarOnlineNotes($texto, $n){
                             // Exibir os resultados
 foreach ($resultados as $resultado) {
     echo "<b>Opção " . $no . "</b>";
+    if($resultado['a']){
     echo "<BR>Texto Completo: " . susbtituirSiglas($resultado['a']) . ' - ' . susbtituirSiglasD($resultado['d']);
+    }
     echo ",<br> URL: " . $resultado['b'] . " (<a href='" .  $resultado['b']  ."' target='_blank'><i class='fas fa-long-arrow-right'></i>visitar link</a>)";
     echo ($resultado['c'] != '') ? "<BR>Agregador/Fornecedor : " . $resultado['c'] : '';
     echo ($resultado['e'] != '') ? "<BR>Disponível a partir de: " . $resultado['e'] : '';
