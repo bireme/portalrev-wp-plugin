@@ -588,7 +588,7 @@ function tratarOnlineNotes($texto, $n){
                         $no = 1;
                         $countonline = 1;
                         foreach ( $resource->online as $type){
-                          echo $type . '<br/>';
+                          //echo $type . '<br/>';
                             $type = susbtituirSiglas($type);
                             $resultados = separar_indices($type);
                                             
