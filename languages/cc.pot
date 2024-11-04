@@ -181,9 +181,28 @@ msgstr ""
 msgid "CLOSED"
 msgstr ""
 
+msgid "Contato"
+msgstr ""
+
+msgid "Filtros aplicados"
+msgstr ""
+
+msgid "Filtros"
+msgstr ""
+
 #: template/results.php:319 template/translations.php:40
 msgid "Country"
 msgstr ""
+
+msgid "Base de Dados"
+msgstr ""
+
+msgid "Idioma"
+msgstr ""
+
+msgid "Disponível no idioma"
+msgstr ""
+
 
 #: template/results.php:340
 msgid "show more"
@@ -264,12 +283,64 @@ msgid "País"
 msgstr ""
 
 
+msgid "Periodicidade"
+msgstr ""
+msgid "Titulo anterior"
+msgstr ""
+msgid "Publicação iniciada em"
+msgstr ""
+msgid "Publicação encerrada em"
+msgstr ""
+msgid "Fusão com ... de ..."
+msgstr ""
+msgid "Continuação por"
+msgstr ""
+msgid "Continuação parcial de"
+msgstr ""
+msgid "Absorveu a"
+msgstr ""
+msgid "Área temática"
+msgstr ""
+
+msgid "Título indexado em"
+msgstr ""
+
+msgid "Formato eletrônico"
+msgstr ""
+
+msgid "Opção"
+msgstr ""
+
+msgid "Texto Completo"
+msgstr ""
+
+msgid "Agregador/Fornecedor"
+msgstr ""
+
+msgid "Disponível a partir de"
+msgstr ""
+
+msgid "Terminando em"
+msgstr ""
+
+
 msgid ""
 msgstr ""
 
 
-msgid "Absorveu a"
-msgstr ""
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

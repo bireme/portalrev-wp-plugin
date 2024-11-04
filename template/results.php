@@ -208,12 +208,12 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     echo '</h3>';
                     foreach($resource->shortened_title as $sortened){
                         echo '<span class="texto">';
-                        _e('Titulo abreviado: ' , 'cc');
+                        echo __('Titulo abreviado','cc') . ': ';
                         echo  $sortened . '<BR></span>';
                     }
                     if($resource->language){
                         echo '<span class="texto">';
-                        _e('Disponível no idioma: ');
+                        echo __('Disponível no idioma','cc') . ': ';
                         $n = 0;
                         foreach($resource->language as $language){
                         if($n > 0){echo ', ';}
@@ -224,7 +224,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     }
                     if($resource->country){
                         echo '<span class="texto"> ';
-                        _e('País: ','cc');
+                        echo __('País','cc') . ': ';
                         print_lang_value($resource->country, $site_language);
                         echo '<BR></span>';
                     }
@@ -262,7 +262,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
                         <input type="hidden" name="q" id="query" value="<?php echo $query; ?>" >
                         <input type="hidden" name="filter" id="filter" value="" >
-                        <h5 style="border-bottom: 2px solid #ddd">Filtros aplicados</h5>
+                        <h5 style="border-bottom: 2px solid #ddd"><?php _e('Filtros aplicados', 'cc');?></h5>
 
                         <?php foreach ( $applied_filter_list as $ap_filter => $ap_filter_values ) :?>
                             <?php if ($ap_filter != 'country_code'): ?>

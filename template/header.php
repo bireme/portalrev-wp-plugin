@@ -103,7 +103,7 @@
     <div class="container ">
         
 <!-- livezilla.net PLACE WHERE YOU WANT TO SHOW GRAPHIC BUTTON -->
-<a href="javascript:void(window.open('//contacto.bvsalud.org/chat.php?group=Atendimento&ptl=pt-br&htgs=MQ__&hfk=MQ__','','width=400,height=600,left=0,top=0,resizable=yes,menubar=no,location=no,status=yes,scrollbars=yes'))" class="lz_cbl">Contato</a>
+<a href="javascript:void(window.open('//contacto.bvsalud.org/chat.php?group=Atendimento&ptl=pt-br&htgs=MQ__&hfk=MQ__','','width=400,height=600,left=0,top=0,resizable=yes,menubar=no,location=no,status=yes,scrollbars=yes'))" class="lz_cbl"><?php _e('Contato', 'cc');?></a>
 <!-- livezilla.net PLACE WHERE YOU WANT TO SHOW GRAPHIC BUTTON -->
 
 <!-- livezilla.net PLACE SOMEWHERE IN BODY -->

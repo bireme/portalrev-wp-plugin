@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cooperating Centers 0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/centers\n"
-"POT-Creation-Date: 2023-09-25T14:36:43+00:00\n"
-"PO-Revision-Date: 2023-09-25 12:17-0300\n"
+"POT-Creation-Date: 2024-10-30 17:57-0300\n"
+"PO-Revision-Date: 2024-11-04 15:59-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.5\n"
 
 #. Plugin Name of the plugin
 #: centers.php:91 centers.php:226
@@ -186,9 +186,27 @@ msgstr ""
 msgid "CLOSED"
 msgstr ""
 
+msgid "Contato"
+msgstr "Contact"
+
+msgid "Filtros aplicados"
+msgstr "Applied filters"
+
+msgid "Filtros"
+msgstr "Filters"
+
 #: template/results.php:319 template/translations.php:40
 msgid "Country"
 msgstr ""
+
+msgid "Base de Dados"
+msgstr "Database"
+
+msgid "Idioma"
+msgstr "Language"
+
+msgid "Disponível no idioma"
+msgstr "Available in the language"
 
 #: template/results.php:340
 msgid "show more"
@@ -229,3 +247,84 @@ msgstr "São Paulo State Health Department"
 #: template/translations.php:36
 msgid "SMS-SP"
 msgstr "São Paulo Municipal Health Department"
+
+msgid "titles"
+msgstr ""
+
+msgid "Subtitulo"
+msgstr "Subtitle"
+
+msgid "Seção/Parte"
+msgstr ""
+
+msgid "Titulo abreviado"
+msgstr "Shortened title"
+
+msgid "Titulo paralelo"
+msgstr ""
+
+msgid "Outras variações"
+msgstr ""
+
+msgid "Menção de responsabilidade"
+msgstr ""
+
+msgid "Código do editor"
+msgstr ""
+
+msgid "Editora"
+msgstr ""
+
+msgid "Cidade"
+msgstr "City"
+
+msgid "País"
+msgstr "Country"
+
+msgid "Periodicidade"
+msgstr ""
+
+msgid "Titulo anterior"
+msgstr ""
+
+msgid "Publicação iniciada em"
+msgstr ""
+
+msgid "Publicação encerrada em"
+msgstr ""
+
+msgid "Fusão com ... de ..."
+msgstr ""
+
+msgid "Continuação por"
+msgstr ""
+
+msgid "Continuação parcial de"
+msgstr ""
+
+msgid "Absorveu a"
+msgstr ""
+
+msgid "Área temática"
+msgstr ""
+
+msgid "Título indexado em"
+msgstr ""
+
+msgid "Formato eletrônico"
+msgstr ""
+
+msgid "Opção"
+msgstr "Option"
+
+msgid "Texto Completo"
+msgstr ""
+
+msgid "Agregador/Fornecedor"
+msgstr ""
+
+msgid "Disponível a partir de"
+msgstr ""
+
+msgid "Terminando em"
+msgstr ""
