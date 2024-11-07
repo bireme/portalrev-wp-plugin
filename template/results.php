@@ -46,7 +46,7 @@ $sanitize_user_filter = sanitize_text_field($_GET['filter']);
 $user_filter = stripslashes($sanitize_user_filter);
 $page = ( isset($_GET['page']) ? sanitize_text_field($_GET['page']) : 1 );
 $total = 0;
-$count = 10;
+$count = 20;
 $filter = '';
 
 if ($user_filter != ''){
@@ -60,7 +60,7 @@ if ($user_filter != ''){
 }
 $start = ($page * $count) - $count;
 
-$cc_search = $cc_service_url . 'api/title/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&lang=' . $lang;
+$cc_search = $cc_service_url . 'api/title/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&lang=' . $lang . "&count=20";
 $cc_search .= '&sort=title_sort+asc';
 //echo $cc_search;
 if ( $user_filter != '' ) {
@@ -115,11 +115,20 @@ if ($response){
 
 $page_url_params = '?q=' . urlencode($query)  . '&filter=' . urlencode($user_filter);
 
+
+
+//echo 'total' . $total;
+
+//echo 'start' . $start;
 $pages = new Paginator($total, $start, $count);
 $pages->paginate($page_url_params);
+//var_dump($pages);
 
 $home_url = isset($cc_config['home_url_' . $lang]) ? $cc_config['home_url_' . $lang] : $cc_config['home_url'];
 $plugin_title = isset($cc_config['plugin_title_' . $lang]) ? $cc_config['plugin_title_' . $lang] : $cc_config['plugin_title'];
+
+
+//echo $cc_search;
 
 if ( function_exists( 'pll_the_languages' ) ) {
     $available_languages = pll_languages_list();
@@ -189,7 +198,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
 <?php 
                     ?>
                     
-                    <a href='<?php echo real_site_url($cc_plugin_slug); ?>/detail/?id=<?php echo $resource->django_id; ?>' class="linkTitulo">
+                    <a href='<?php echo real_site_url($cc_plugin_slug) ; ?>/detail/?id=<?php echo $resource->django_id; ?>' class="linkTitulo">
                     <?php 
                   //  $tit = str_replace('<', '', $resource->title);
                   //  $tit = str_replace('>', '', $resource->title);
@@ -277,8 +286,8 @@ if ( function_exists( 'pll_the_languages' ) ) {
                                                 if ($ap_filter == 'country' or $ap_filter == 'language'){
                                                     echo print_lang_value($value, $site_language);
                                                 }elseif ($ap_filter == 'status'){
-                                                    if($value == 0){ echo 'encerrado';}
-                                                    if($value == 1){ echo 'corrente';}
+                                                    if($value == 0){ echo __('encerrado', 'cc');}
+                                                    if($value == 1){ echo __('corrente', 'cc');}
                                                 }elseif ($ap_filter == 'institution_thematic'){
                                                     echo $thematic_translated[$value];
                                                 }else{
@@ -367,9 +376,9 @@ if ( function_exists( 'pll_the_languages' ) ) {
                                 <a href='<?php echo $filter_link;?>'>
                                 <?php if($status[0] == 1){ ?>
                                     <?php
-                                    echo 'corrente';
+                                    echo __('corrente', 'cc');
                                 }else{
-                                    echo 'encerrado';
+                                    echo __('encerrado', 'cc');
                                 }  ?>
                                 </a>
                                 <span class="cat-item-count"><?php echo $status[1] ?></span>

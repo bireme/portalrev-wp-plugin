@@ -295,7 +295,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     if ($resource->frequency){
                         echo '<tr>';
                         echo '  <td>'. __('Periodicidade','cc') . ':</td>';
-                        echo '  <td> ' . tratarFrequencia($center_list->frequency) . '</td>';
+                        echo '  <td> ' . tratarFrequencia($center_list->frequency, $lang) . '</td>';
                         echo '</tr>';
                         }
                     if ($resource->initial_date){
@@ -376,7 +376,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     }  
                     if($center_list->descriptors != ''){
                         echo '<tr>';
-                        echo '  <td >Assuntos:</td>';
+                        echo '  <td>'. __('Assuntos','cc') . ':</td>';
                         echo '    <td>';
                         foreach ( $resource->descriptors as $descriptors){
                             echo $descriptors . ' <BR>';
@@ -435,29 +435,73 @@ function separar_indices($texto) {
 <!--<iframe id="contact-form" width="100%" height="645px" src="//contacto.bvsalud.org/chat.php?group=e-blueinfo&ptl=<?php echo $contact_lang; ?>&hg=Pw__&hcgs=MQ__&htgs=MQ__&hinv=MQ__&hfk=MQ__" frameborder="0" scrolling="no"></iframe>        
 -->
 <?php
-function tratarFrequencia($texto){
-//$status = ($idade >= 18) ? 'Maior de idade' : 'Menor de idade';
-
-    $texto = str_replace("Q", "Trimestral", $texto);
-    if($texto == 'T'){ $texto = str_replace("T", "Quadrimestral", $texto);}
-    $texto = str_replace("S", "Bimensal", $texto);
-    $texto = str_replace("A", "Anual", $texto);
-    $texto = str_replace("B", "Bimestral", $texto);
-    $texto = str_replace("C", "Bissemanal", $texto);
-    $texto = str_replace("D", "Diário", $texto);
-    $texto = str_replace("E", "Quinzenal", $texto);
-    $texto = str_replace("F", "Semestral/Bianual", $texto);
-    $texto = str_replace("G", "Bienal", $texto);
-    $texto = str_replace("H", "Trienal", $texto);
-    $texto = str_replace("I", "Três vezes por semana", $texto);
-    $texto = str_replace("J", "Três vezes por mês", $texto);
-    $texto = str_replace("K", "Irregular", $texto);
-    $texto = str_replace("M", "Mensal", $texto);
-    $texto = str_replace("U", "Publicação contínua", $texto);
-    $texto = str_replace("W", "Semanal", $texto);
-    $texto = str_replace("Z", "Outras frequências", $texto);
-    if($texto == ''){
-    $texto = 'Frequência desconhecida';
+function tratarFrequencia($texto, $olang) {
+    if ($olang == 'en') {
+        $texto = str_replace("Q", "Quarterly", $texto);
+        if($texto == 'T'){ $texto = str_replace("T", "Four-monthly", $texto); }
+        $texto = str_replace("S", "Bimonthly", $texto);
+        $texto = str_replace("A", "Annual", $texto);
+        $texto = str_replace("B", "Bimonthly", $texto);
+        $texto = str_replace("C", "Biweekly", $texto);
+        $texto = str_replace("D", "Daily", $texto);
+        $texto = str_replace("E", "Fortnightly", $texto);
+        $texto = str_replace("F", "Semiannual/Biannual", $texto);
+        $texto = str_replace("G", "Biennial", $texto);
+        $texto = str_replace("H", "Triennial", $texto);
+        $texto = str_replace("I", "Three times a week", $texto);
+        $texto = str_replace("J", "Three times a month", $texto);
+        $texto = str_replace("K", "Irregular", $texto);
+        $texto = str_replace("M", "Monthly", $texto);
+        $texto = str_replace("U", "Continuous publication", $texto);
+        $texto = str_replace("W", "Weekly", $texto);
+        $texto = str_replace("Z", "Other frequencies", $texto);
+        if ($texto == '') {
+            $texto = 'Unknown frequency';
+        }
+    } elseif ($olang == 'es') {
+        $texto = str_replace("Q", "Trimestral", $texto);
+        if($texto == 'T'){ $texto = str_replace("T", "Cuatrimestral", $texto); }
+        $texto = str_replace("S", "Bimestral", $texto);
+        $texto = str_replace("A", "Anual", $texto);
+        $texto = str_replace("B", "Bimestral", $texto);
+        $texto = str_replace("C", "Bisemanario", $texto);
+        $texto = str_replace("D", "Diario", $texto);
+        $texto = str_replace("E", "Quincenal", $texto);
+        $texto = str_replace("F", "Semestral/Bianual", $texto);
+        $texto = str_replace("G", "Bienal", $texto);
+        $texto = str_replace("H", "Trienal", $texto);
+        $texto = str_replace("I", "Tres veces por semana", $texto);
+        $texto = str_replace("J", "Tres veces al mes", $texto);
+        $texto = str_replace("K", "Irregular", $texto);
+        $texto = str_replace("M", "Mensual", $texto);
+        $texto = str_replace("U", "Publicación continua", $texto);
+        $texto = str_replace("W", "Semanal", $texto);
+        $texto = str_replace("Z", "Otras frecuencias", $texto);
+        if ($texto == '') {
+            $texto = 'Frecuencia desconocida';
+        }
+    } else { // Default to Portuguese
+        $texto = str_replace("Q", "Trimestral", $texto);
+        if($texto == 'T'){ $texto = str_replace("T", "Quadrimestral", $texto); }
+        $texto = str_replace("S", "Bimensal", $texto);
+        $texto = str_replace("A", "Anual", $texto);
+        $texto = str_replace("B", "Bimestral", $texto);
+        $texto = str_replace("C", "Bissemanal", $texto);
+        $texto = str_replace("D", "Diário", $texto);
+        $texto = str_replace("E", "Quinzenal", $texto);
+        $texto = str_replace("F", "Semestral/Bianual", $texto);
+        $texto = str_replace("G", "Bienal", $texto);
+        $texto = str_replace("H", "Trienal", $texto);
+        $texto = str_replace("I", "Três vezes por semana", $texto);
+        $texto = str_replace("J", "Três vezes por mês", $texto);
+        $texto = str_replace("K", "Irregular", $texto);
+        $texto = str_replace("M", "Mensal", $texto);
+        $texto = str_replace("U", "Publicação contínua", $texto);
+        $texto = str_replace("W", "Semanal", $texto);
+        $texto = str_replace("Z", "Outras frequências", $texto);
+        if ($texto == '') {
+            $texto = 'Frequência desconhecida';
+        }
     }
     return $texto;
 }
@@ -582,7 +626,7 @@ function tratarOnlineNotes($texto, $n){
                     if ($resource->online){
 
                         echo '<tr>';
-                        echo '  <td valign="top">Formato eletrônico</td>';
+                        echo '  <td valign="top">' .  __('Formato eletrônico','cc') . '</td>';
                         echo '    <td colspan="3">';
                         $exclude_common_types = array('CooperatingCenters', 'ParticipantsUnits', 'VHLNetwork');
                         $no = 1;
@@ -599,13 +643,13 @@ function tratarOnlineNotes($texto, $n){
                             // f -  Terminando em   	
                             // Exibir os resultados
 foreach ($resultados as $resultado) {
-    echo "<b>Opção " . $no . "</b>";
+    echo "<b>" . __('Opção','cc')  . $no . "</b>";
     if($resultado['a']){
-    echo "<BR>Texto Completo: " . susbtituirSiglas($resultado['a']) . ' - ' . susbtituirSiglasD($resultado['d']);
+    echo "<BR>" . __('Texto Completo','cc') . ': ' .susbtituirSiglas($resultado['a']) . ' - ' . susbtituirSiglasD($resultado['d']);
     }
     echo ",<br> URL: " . $resultado['b'] . " (<a href='" .  $resultado['b']  ."' target='_blank'><i class='fas fa-long-arrow-right'></i>visitar link</a>)";
-    echo ($resultado['c'] != '') ? "<BR>Agregador/Fornecedor : " . $resultado['c'] : '';
-    echo ($resultado['e'] != '') ? "<BR>Disponível a partir de: " . $resultado['e'] : '';
+    echo ($resultado['c'] != '') ? "<BR>" . __('Agregador/Fornecedor','cc') . ": " . $resultado['c'] : '';
+    echo ($resultado['e'] != '') ? "<BR>" . __('Disponível a partir de','cc') . ": " . $resultado['e'] : '';
     echo ($resultado['f'] != '') ? " <BR>Terminando em : " . $resultado['f'] : '';
     echo "<br>";
     $no += 1;
@@ -640,7 +684,7 @@ echo "<Br><Br>";
 
                     if ($resource->collection){
                         echo '<tr colspan="2">';
-                        echo '  <td valign="top"><button class="btnDetalhes" id="openModalBtn">Coleções no Catálogo Coletivo SeCS: </button></td>';
+                        echo '  <td valign="top"><button class="btnDetalhes" id="openModalBtn">' . __('Coleções no Catálogo Coletivo SeCS', 'cc') . '</button></td>';
                         /*echo '    <td>';
                         foreach ( $resource->collection as $type ){
                             echo nl2br($type) . '<BR>';

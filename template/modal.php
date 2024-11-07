@@ -75,9 +75,10 @@
                         foreach ( $resource->collection as $value ){
                             ?>
                             <div class="col-md-3">
-                            <B>Codigo do centro<br>
-                            Nome do centro<br>
-                            Colecoes</b>
+                            <B>
+                                <?=_e('Código do centro','cc');?><br>
+                                <?=_e('Nome do centro','cc');?><br>
+                                <?=_e('Coleções','cc');?></b>
 
                             </div>
                             <div class="col-md-9"><?php

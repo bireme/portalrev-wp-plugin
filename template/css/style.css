@@ -347,6 +347,7 @@ body{
 	border-radius: 4px;
 	font-size: 11px;
 	border: 2px solid #31286b; cursor: pointer;
+	color: #fff;
 }
 .btnDetalhes:hover{
 	color: rgb(0,153,255);

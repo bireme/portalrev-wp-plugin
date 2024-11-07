@@ -143,12 +143,19 @@ if ( !function_exists('real_site_url') ) {
                 $site_url .= '/' . $current_language;
             }
         }
-        if ($path != ''){
-            $site_url .= '/' . $path;
-        }
-        $site_url .= '/';
 
 
+
+            $current_language = substr( strtolower(get_bloginfo('language')),0,2 );
+
+            if ( $mlf_config['default_language'] != $current_language ){
+                $site_url .= '/' . $current_language;
+            }
+
+            if ($path != ''){
+                $site_url .= '/' . $path;
+            }
+            $site_url .= '/';
         return $site_url;
     }
 }

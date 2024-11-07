@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Cooperating Centers 0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/centers\n"
 "POT-Creation-Date: 2024-10-30 17:57-0300\n"
-"PO-Revision-Date: 2024-11-04 15:59-0300\n"
+"PO-Revision-Date: 2024-11-06 13:59-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -255,19 +255,19 @@ msgid "Subtitulo"
 msgstr "Subtitle"
 
 msgid "Seção/Parte"
-msgstr ""
+msgstr "Section/Part"
 
 msgid "Titulo abreviado"
 msgstr "Shortened title"
 
 msgid "Titulo paralelo"
-msgstr ""
+msgstr "Paralel titles"
 
 msgid "Outras variações"
-msgstr ""
+msgstr "Variant titles"
 
 msgid "Menção de responsabilidade"
-msgstr ""
+msgstr "Responsibility mention"
 
 msgid "Código do editor"
 msgstr ""
@@ -282,49 +282,103 @@ msgid "País"
 msgstr "Country"
 
 msgid "Periodicidade"
-msgstr ""
+msgstr "Periodicity"
 
 msgid "Titulo anterior"
-msgstr ""
+msgstr "Previous Title"
 
 msgid "Publicação iniciada em"
-msgstr ""
+msgstr "Publication initiated in"
 
 msgid "Publicação encerrada em"
-msgstr ""
+msgstr "Publication closed since"
 
 msgid "Fusão com ... de ..."
-msgstr ""
+msgstr "Fusion of ... with ..."
 
 msgid "Continuação por"
 msgstr ""
 
 msgid "Continuação parcial de"
-msgstr ""
+msgstr "Partial continuation of"
 
 msgid "Absorveu a"
 msgstr ""
 
 msgid "Área temática"
-msgstr ""
+msgstr "Thematic area"
 
 msgid "Título indexado em"
-msgstr ""
+msgstr "Title indexed in"
 
 msgid "Formato eletrônico"
-msgstr ""
+msgstr "Eletronic version"
 
 msgid "Opção"
 msgstr "Option"
 
 msgid "Texto Completo"
-msgstr ""
+msgstr "Full text"
 
 msgid "Agregador/Fornecedor"
-msgstr ""
+msgstr "Aggregator/Supplier"
 
 msgid "Disponível a partir de"
-msgstr ""
+msgstr "Available since"
 
 msgid "Terminando em"
 msgstr ""
+
+msgid "Assunto"
+msgstr "Subject"
+
+msgid "Assuntos"
+msgstr "Subjects"
+
+msgid "ver mais detalhes"
+msgstr "see more details"
+
+msgid "Coleções no Catálogo Coletivo SeCS"
+msgstr "SeCS Catalog's Holdings"
+
+msgid "Código do centro"
+msgstr "Center code"
+
+msgid "Nome do centro"
+msgstr "Center name"
+
+msgid "Coleções"
+msgstr "Holdings"
+
+msgid "corrente"
+msgstr "current"
+
+msgid "encerrado"
+msgstr "closed"
+
+msgid "Rodapé"
+msgstr "Footer"
+
+msgid "Alto Contraste"
+msgstr "High Contrast"
+
+msgid "Conteúdo Principal"
+msgstr "Main content"
+
+msgid "Busca"
+msgstr "Search"
+
+msgid ""
+"A BVS é um produto colaborativo, coordenado pela BIREME/OPAS/OMS. Como "
+"biblioteca, oferece acesso abrangente à informação científica e técnica em "
+"saúde. A BVS coleta, indexa e armazena citações de documentos publicados por "
+"diversas organizações. A inclusão de qualquer artigo, documento ou citação "
+"na coleção da BVS não implica endosso ou concordância da BIREME/OPAS/OMS com "
+"o seu conteúdo."
+msgstr ""
+"The VHL is a collaborative product coordinated by BIREME/PAHO/WHO. As a "
+"library, it provides comprehensive access to scientific and technical health "
+"information. The VHL collects, indexes, and stores citations of documents "
+"published by various organizations. The inclusion of any article, document, "
+"or citation in the VHL collection does not imply endorsement or agreement by "
+"BIREME/PAHO/WHO with its contente."

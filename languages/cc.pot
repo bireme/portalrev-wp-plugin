@@ -323,9 +323,48 @@ msgstr ""
 msgid "Terminando em"
 msgstr ""
 
-
-msgid ""
+msgid "Assunto"
 msgstr ""
+
+msgid "Assuntos"
+msgstr ""
+
+
+msgid "ver mais detalhes"
+msgstr ""
+
+msgid "Coleções no Catálogo Coletivo SeCS"
+msgstr ""
+
+msgid "Código do centro"
+msgstr ""
+
+msgid "Nome do centro"
+msgstr ""
+
+msgid "Coleções"
+msgstr ""
+
+msgid "corrente"
+msgstr ""
+
+msgid "encerrado"
+msgstr ""                
+
+msgid "Rodapé"
+msgstr ""  
+
+msgid "Alto Contraste"
+msgstr ""  
+
+msgid "Conteúdo Principal"
+msgstr ""  
+
+msgid "Busca"
+msgstr ""  
+
+msgid "A BVS é um produto colaborativo, coordenado pela BIREME/OPAS/OMS. Como biblioteca, oferece acesso abrangente à informação científica e técnica em saúde. A BVS coleta, indexa e armazena citações de documentos publicados por diversas organizações. A inclusão de qualquer artigo, documento ou citação na coleção da BVS não implica endosso ou concordância da BIREME/OPAS/OMS com o seu conteúdo."
+msgstr ""   
 
 
 

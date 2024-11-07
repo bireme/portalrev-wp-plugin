@@ -4,15 +4,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LeisRef 0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/centers\n"
-"POT-Creation-Date: 2023-09-25T14:36:43+00:00\n"
-"PO-Revision-Date: 2023-09-25 12:12-0300\n"
+"POT-Creation-Date: 2024-10-30 17:57-0300\n"
+"PO-Revision-Date: 2024-11-06 15:25-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.5\n"
 
 #. Plugin Name of the plugin
 #: centers.php:91 centers.php:226
@@ -181,9 +181,29 @@ msgstr "INACTIVA"
 msgid "CLOSED"
 msgstr "CERRADA"
 
+msgid "Contato"
+msgstr ""
+
+msgid "Filtros aplicados"
+msgstr ""
+
+#, fuzzy
+#| msgid "Filters"
+msgid "Filtros"
+msgstr "Filtros"
+
 #: template/results.php:319 template/translations.php:40
 msgid "Country"
 msgstr "País"
+
+msgid "Base de Dados"
+msgstr ""
+
+msgid "Idioma"
+msgstr ""
+
+msgid "Disponível no idioma"
+msgstr "Disponible en el idioma"
 
 #: template/results.php:340
 msgid "show more"
@@ -225,6 +245,143 @@ msgstr "Departamento de Salud del Estado de São Paulo"
 msgid "SMS-SP"
 msgstr "Departamento Municipal de Salud de São Paulo"
 
+#, fuzzy
+#| msgid "Page title"
+msgid "titles"
+msgstr "Titulo"
+
+msgid "Subtitulo"
+msgstr "Subtítulo"
+
+msgid "Seção/Parte"
+msgstr "Sección/Parte"
+
+msgid "Titulo abreviado"
+msgstr "Título abreviado"
+
+msgid "Titulo paralelo"
+msgstr "Títulos Paralelos"
+
+msgid "Outras variações"
+msgstr "Otras Variaciones"
+
+msgid "Menção de responsabilidade"
+msgstr "Mención de la Responsabilidad"
+
+msgid "Código do editor"
+msgstr "Código del editor"
+
+msgid "Editora"
+msgstr "Editora"
+
+msgid "Cidade"
+msgstr "Ciudad"
+
+msgid "País"
+msgstr "País"
+
+msgid "Periodicidade"
+msgstr "Periodicidad"
+
+msgid "Titulo anterior"
+msgstr "Título Anterior"
+
+msgid "Publicação iniciada em"
+msgstr "Publicación iniciada em"
+
+msgid "Publicação encerrada em"
+msgstr "Publicación encerrada em"
+
+msgid "Fusão com ... de ..."
+msgstr "Fusión de ... con..."
+
+msgid "Continuação por"
+msgstr "Continua como"
+
+msgid "Continuação parcial de"
+msgstr "Continuación parcial de"
+
+msgid "Absorveu a"
+msgstr "Absorbió a"
+
+msgid "Área temática"
+msgstr "Area tematica"
+
+msgid "Título indexado em"
+msgstr "Título indexado en"
+
+msgid "Formato eletrônico"
+msgstr "Online"
+
+msgid "Opção"
+msgstr "Opción"
+
+msgid "Texto Completo"
+msgstr "Texto Completo"
+
+msgid "Agregador/Fornecedor"
+msgstr "Agregador/Proveedor"
+
+msgid "Disponível a partir de"
+msgstr "Disponible a partir de"
+
+msgid "Terminando em"
+msgstr "Terminando en"
+
+msgid "Assunto"
+msgstr "Asunto"
+
+msgid "Assuntos"
+msgstr "Asuntos"
+
+msgid "ver mais detalhes"
+msgstr "ver más detalles"
+
+msgid "Coleções no Catálogo Coletivo SeCS"
+msgstr "Colecciones en el Catálogo Colectivo SeCS"
+
+msgid "Código do centro"
+msgstr "Código del centro"
+
+msgid "Nome do centro"
+msgstr "Nombre del centro"
+
+msgid "Coleções"
+msgstr "Colecciones"
+
+msgid "corrente"
+msgstr "corriente"
+
+msgid "encerrado"
+msgstr "cerrado"
+
+msgid "Rodapé"
+msgstr "Pie de página"
+
+msgid "Alto Contraste"
+msgstr ""
+
+msgid "Conteúdo Principal"
+msgstr "Contenido Principal"
+
+msgid "Busca"
+msgstr ""
+
+msgid ""
+"A BVS é um produto colaborativo, coordenado pela BIREME/OPAS/OMS. Como "
+"biblioteca, oferece acesso abrangente à informação científica e técnica em "
+"saúde. A BVS coleta, indexa e armazena citações de documentos publicados por "
+"diversas organizações. A inclusão de qualquer artigo, documento ou citação "
+"na coleção da BVS não implica endosso ou concordância da BIREME/OPAS/OMS com "
+"o seu conteúdo."
+msgstr ""
+"La BVS es un producto colaborativo, coordinado por BIREME/OPS/OMS. Como "
+"biblioteca, ofrece acceso amplio a la información científica y técnica en "
+"salud. La BVS recopila, indexa y almacena citas de documentos publicados por "
+"diversas organizaciones. La inclusión de cualquier artículo, documento o "
+"cita en la colección de la BVS no implica respaldo o conformidad de BIREME/"
+"OPS/OMS con su contenido."
+
 #~ msgid "Page layout"
 #~ msgstr "Diseño de página"
 
@@ -248,9 +405,6 @@ msgstr "Departamento Municipal de Salud de São Paulo"
 
 #~ msgid "Enter one or more words"
 #~ msgstr "Ingrese una o más palabras"
-
-#~ msgid "Filters"
-#~ msgstr "Filtros"
 
 #~ msgid "Selected filters"
 #~ msgstr "Filtros seleccionados"
