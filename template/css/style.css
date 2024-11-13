@@ -36,16 +36,23 @@ body{
 	margin-bottom:30px;
 	position:relative
 }
-.titleMain1::before{
-	content:"V. Beta";
+.titleVersion{
 	font-size: 12px;
-	float:left;
 	background: #31286b;
 	color:#fff;
 	border-radius: 03px;
 	padding:0 6px;
 	font-weight:500;
-	position:absolute;
+	top:-18px;
+}
+.titleMain1x::after{
+	content:"V. Beta";
+	font-size: 12px;
+	background: #31286b;
+	color:#fff;
+	border-radius: 03px;
+	padding:0 6px;
+	font-weight:500;
 	top:-18px;
 }
 .lang{

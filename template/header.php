@@ -51,7 +51,7 @@
             <div class="col-md-10">
                 <div id="titleMain" class="float-left">
                     <?php if($cc_plugin_title != ''){?>
-                    <div class="titleMain1"><?php _e($cc_plugin_title, 'cc'); ?></div>
+                    <div class="titleMain1"><?php _e($cc_plugin_title, 'cc'); ?><sup class="titleVersion">V. Beta</sup></div>
                     <?php }else{ ?>
                     <div class="titleMain1"><?php _e('Defina um titulo nas configuracoes do plugin', 'cc'); ?></div>
                     <?php } ?>
