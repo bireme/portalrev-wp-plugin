@@ -393,33 +393,31 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     <?php endif; ?>
                 </section>
             <?php endif; ?>
-            <!---------------->
-            <?php
-             //var_dump($language_list);
-             if ($language_list): ?>
+                <!----------------------------->
+                <?php if ($descriptor_list): ?>
                     <section>
-                        <h5 class="box1Title"><?php _e('Idioma','cc'); ?></h5>
+                        <h5 class="box1Title"><?php _e('Assunto','cc'); ?></h5>
                         <ul class="filter-list">
-                            <?php foreach ( $language_list as $country ) { ?>
+                            <?php foreach ( $descriptor_list as $country ) { ?>
                                 <?php
                                     $filter_link = '?';
                                     if ($query != ''){
                                         $filter_link .= 'q=' . $query . '&';
                                     }
-                                    $filter_link .= 'filter=language:"' . $country[0] . '"';
+                                    $filter_link .= 'filter=descriptor:"' . $country[0] . '"';
                                     if ($user_filter != ''){
                                         $filter_link .= ' AND ' . $user_filter ;
                                     }
                                 ?>
                                 <li class="cat-item">
-                                    <a href='<?php echo $filter_link; ?>'><?php print_lang_value($country[0], $site_language)?></a>
+                                    <a href='<?php echo $filter_link; ?>'><?php echo $country[0];?></a>
                                     <span class="cat-item-count"><?php echo $country[1] ?></span>
                                 </li>
                             <?php } ?>
                         </ul>
-                        <?php if ( count($language_list) == 20 ) : ?>
+                        <?php if ( count($descriptor_list) == 20 ) : ?>
                             <div class="show-more text-center">
-                                <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="language"><?php _e('show more','cc'); ?></a>
+                                <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="descriptor_filter"><?php _e('show more','cc'); ?></a>
                                 <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
                             </div>
                         <?php endif; ?>
@@ -458,6 +456,39 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     </section>
                 <?php endif; ?>
                 <!---------------->
+                <!---------------->
+            <?php
+             //var_dump($language_list);
+             if ($language_list): ?>
+                    <section>
+                        <h5 class="box1Title"><?php _e('Idioma','cc'); ?></h5>
+                        <ul class="filter-list">
+                            <?php foreach ( $language_list as $country ) { ?>
+                                <?php
+                                    $filter_link = '?';
+                                    if ($query != ''){
+                                        $filter_link .= 'q=' . $query . '&';
+                                    }
+                                    $filter_link .= 'filter=language:"' . $country[0] . '"';
+                                    if ($user_filter != ''){
+                                        $filter_link .= ' AND ' . $user_filter ;
+                                    }
+                                ?>
+                                <li class="cat-item">
+                                    <a href='<?php echo $filter_link; ?>'><?php print_lang_value($country[0], $site_language)?></a>
+                                    <span class="cat-item-count"><?php echo $country[1] ?></span>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                        <?php if ( count($language_list) == 20 ) : ?>
+                            <div class="show-more text-center">
+                                <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="language"><?php _e('show more','cc'); ?></a>
+                                <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
+                            </div>
+                        <?php endif; ?>
+                    </section>
+                <?php endif; ?>
+                <!---------------->
                 <?php if ($country_list): ?>
                     <section>
                         <h5 class="box1Title"><?php _e('Country','cc'); ?></h5>
@@ -487,37 +518,6 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         <?php endif; ?>
                     </section>
                 <?php endif; ?>
-                <!----------------------------->
-                <?php if ($descriptor_list): ?>
-                    <section>
-                        <h5 class="box1Title"><?php _e('Assunto','cc'); ?></h5>
-                        <ul class="filter-list">
-                            <?php foreach ( $descriptor_list as $country ) { ?>
-                                <?php
-                                    $filter_link = '?';
-                                    if ($query != ''){
-                                        $filter_link .= 'q=' . $query . '&';
-                                    }
-                                    $filter_link .= 'filter=descriptor:"' . $country[0] . '"';
-                                    if ($user_filter != ''){
-                                        $filter_link .= ' AND ' . $user_filter ;
-                                    }
-                                ?>
-                                <li class="cat-item">
-                                    <a href='<?php echo $filter_link; ?>'><?php echo $country[0];?></a>
-                                    <span class="cat-item-count"><?php echo $country[1] ?></span>
-                                </li>
-                            <?php } ?>
-                        </ul>
-                        <?php if ( count($descriptor_list) == 20 ) : ?>
-                            <div class="show-more text-center">
-                                <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="descriptor_filter"><?php _e('show more','cc'); ?></a>
-                                <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
-                            </div>
-                        <?php endif; ?>
-                    </section>
-                <?php endif; ?>
-                <!---------------->
             </div>
         </div>
     </div>
