@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: LeisRef 0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/centers\n"
 "POT-Creation-Date: 2024-10-30 17:57-0300\n"
-"PO-Revision-Date: 2024-11-04 14:12-0300\n"
+"PO-Revision-Date: 2024-11-13 10:51-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -181,9 +181,29 @@ msgstr "INATIVA"
 msgid "CLOSED"
 msgstr "FECHADA"
 
+msgid "Contato"
+msgstr ""
+
+msgid "Filtros aplicados"
+msgstr ""
+
+#, fuzzy
+#| msgid "Filters"
+msgid "Filtros"
+msgstr "Filtros"
+
 #: template/results.php:319 template/translations.php:40
 msgid "Country"
 msgstr "País"
+
+msgid "Base de Dados"
+msgstr ""
+
+msgid "Idioma"
+msgstr ""
+
+msgid "Disponível no idioma"
+msgstr ""
 
 #: template/results.php:340
 msgid "show more"
@@ -231,8 +251,132 @@ msgstr "titulos"
 msgid "Subtitulo"
 msgstr "Subtitulo"
 
+msgid "Seção/Parte"
+msgstr ""
+
+msgid "Titulo abreviado"
+msgstr ""
+
+msgid "Titulo paralelo"
+msgstr ""
+
+msgid "Outras variações"
+msgstr ""
+
+msgid "Menção de responsabilidade"
+msgstr ""
+
+msgid "Código do editor"
+msgstr ""
+
+#, fuzzy
+#| msgid "Editor"
+msgid "Editora"
+msgstr "Editor"
+
+msgid "Cidade"
+msgstr ""
+
+msgid "País"
+msgstr ""
+
+msgid "Periodicidade"
+msgstr ""
+
+msgid "Titulo anterior"
+msgstr ""
+
+#, fuzzy
+#| msgid "Publication date"
+msgid "Publicação iniciada em"
+msgstr "Data de publicação"
+
+msgid "Publicação encerrada em"
+msgstr ""
+
+msgid "Fusão com ... de ..."
+msgstr ""
+
+msgid "Continuação por"
+msgstr ""
+
+msgid "Continuação parcial de"
+msgstr ""
+
 msgid "Absorveu a"
 msgstr "Absorveu a"
+
+msgid "Área temática"
+msgstr ""
+
+msgid "Título indexado em"
+msgstr ""
+
+msgid "Formato eletrônico"
+msgstr ""
+
+msgid "Opção"
+msgstr ""
+
+msgid "Texto Completo"
+msgstr ""
+
+msgid "Agregador/Fornecedor"
+msgstr ""
+
+msgid "Disponível a partir de"
+msgstr ""
+
+msgid "Terminando em"
+msgstr ""
+
+msgid "Assunto"
+msgstr ""
+
+msgid "Assuntos"
+msgstr ""
+
+msgid "ver mais detalhes"
+msgstr ""
+
+msgid "Coleções no Catálogo Coletivo SeCS"
+msgstr ""
+
+msgid "Código do centro"
+msgstr ""
+
+msgid "Nome do centro"
+msgstr ""
+
+msgid "Coleções"
+msgstr ""
+
+msgid "corrente"
+msgstr "Corrente"
+
+msgid "encerrado"
+msgstr "Encerrado"
+
+msgid "Rodapé"
+msgstr ""
+
+msgid "Alto Contraste"
+msgstr ""
+
+msgid "Conteúdo Principal"
+msgstr ""
+
+msgid "Busca"
+msgstr ""
+
+msgid ""
+"A BVS é um produto colaborativo, coordenado pela BIREME/OPAS/OMS. Como "
+"biblioteca, oferece acesso abrangente à informação científica e técnica em "
+"saúde. A BVS coleta, indexa e armazena citações de documentos publicados por "
+"diversas organizações. A inclusão de qualquer artigo, documento ou citação "
+"na coleção da BVS não implica endosso ou concordância da BIREME/OPAS/OMS com "
+"o seu conteúdo."
+msgstr ""
 
 #~ msgid "Results"
 #~ msgstr "Resultados"
@@ -263,9 +407,6 @@ msgstr "Absorveu a"
 
 #~ msgid "Enter one or more words"
 #~ msgstr "Entre uma ou mais palavras"
-
-#~ msgid "Filters"
-#~ msgstr "Filtros"
 
 #~ msgid "Centers"
 #~ msgstr "Centros"
@@ -341,9 +482,6 @@ msgstr "Absorveu a"
 
 #~ msgid "Collection"
 #~ msgstr "Coleção"
-
-#~ msgid "Publication date"
-#~ msgstr "Data de publicação"
 
 #~ msgid "Text in"
 #~ msgstr "Texto em"

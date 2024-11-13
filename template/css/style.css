@@ -195,7 +195,6 @@ body{
 }
 .boxFilter ul li{
 	list-style: none;
-
 	position: relative;
 	width: 100%;
 	float: left;
@@ -204,9 +203,10 @@ body{
 	margin-bottom: 10px;
 	padding-bottom:10px;
 	border-bottom: 1px solid #ddd;
+	padding-right: 36px
 }
 .cat-item-count{
-	width: 36px;
+	min-width: 36px;
 	font-size: 12px !important;
 	line-height: 20px !important;
 	position: absolute;
@@ -215,8 +215,10 @@ body{
 	overflow: hidden;
 	border-radius: 11px;
 	text-align: center;
-	background: rgb(172, 172, 172);
+	background: rgb(83, 83, 83);
+	font-weight: bold;
 	color: rgb(255, 255, 255);
+	padding: 0px 2px;
 }
 .box1{
 	padding: 20px;
@@ -396,7 +398,7 @@ h1{
 }
 .text-bg-info {
 	color: #000 !important;
-	background-color: #0dcaf0;
+	background-color: #e3e3e3;
 }
 .boxFilter section{
 	overflow: hidden;

@@ -246,7 +246,6 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     echo '<tr>';
                     echo '  <td >ISSN:</td>';
                     echo '  <td >' . $center_list->issn . '</td>';
-                    echo '  <td width="220px">' . '</td>';
                     echo '</tr>';
 
                     /*
