@@ -363,6 +363,9 @@ msgstr ""
 msgid "Busca"
 msgstr ""  
 
+msgid "Status"
+msgstr ""  
+
 msgid "A BVS é um produto colaborativo, coordenado pela BIREME/OPAS/OMS. Como biblioteca, oferece acesso abrangente à informação científica e técnica em saúde. A BVS coleta, indexa e armazena citações de documentos publicados por diversas organizações. A inclusão de qualquer artigo, documento ou citação na coleção da BVS não implica endosso ou concordância da BIREME/OPAS/OMS com o seu conteúdo."
 msgstr ""   
 

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Cooperating Centers 0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/centers\n"
 "POT-Creation-Date: 2024-10-30 17:57-0300\n"
-"PO-Revision-Date: 2024-11-13 10:51-0300\n"
+"PO-Revision-Date: 2024-12-04 15:47-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -367,6 +367,9 @@ msgstr "Main content"
 
 msgid "Busca"
 msgstr "Search"
+
+msgid "Status"
+msgstr "Publication Status"
 
 msgid ""
 "A BVS é um produto colaborativo, coordenado pela BIREME/OPAS/OMS. Como "
