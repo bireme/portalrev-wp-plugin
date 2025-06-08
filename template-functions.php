@@ -147,9 +147,10 @@ if ( !function_exists('real_site_url') ) {
 
 
             $current_language = substr( strtolower(get_bloginfo('language')),0,2 );
-
-            if ( $mlf_config['default_language'] != $current_language ){
-                $site_url .= '/' . $current_language;
+            if(isset($mlf_config['default_language'])){
+                if ( $mlf_config['default_language'] != $current_language ){
+                    $site_url .= '/' . $current_language;
+                }
             }
 
             if ($path != ''){

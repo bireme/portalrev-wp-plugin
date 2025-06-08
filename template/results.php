@@ -18,11 +18,10 @@ $cc_initial_filter = $cc_config['initial_filter'];
 $site_language = strtolower(get_bloginfo('language'));
 $lang = substr($site_language,0,2);
 
-//compatibility with older version
-$search = sanitize_text_field($_GET['search']);
-$country = sanitize_text_field($_GET['country']);
-$country = sanitize_text_field($_GET['descriptor']);
-$user = sanitize_text_field($_GET['user']);
+$search = isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '';
+$country = isset($_GET['country']) ? sanitize_text_field($_GET['country']) : '';
+$descriptor = isset($_GET['descriptor']) ? sanitize_text_field($_GET['descriptor']) : '';
+$user = isset($_GET['user']) ? sanitize_text_field($_GET['user']) : '';
 
 if ($search != ''){
     $old_query = str_replace('=', ':',  urldecode($search));
@@ -37,12 +36,14 @@ if ($user != ''){
 
 $query = ( isset($_GET['s']) ? sanitize_text_field($_GET['s']) : sanitize_text_field($_GET['q']) );
 
-if ($old_query != ''){
-    $query .= $old_query;
+if(isset($old_query)){
+    if ($old_query != ''){
+        $query .= $old_query;
+    }
 }
 
 $query = stripslashes($query);
-$sanitize_user_filter = sanitize_text_field($_GET['filter']);
+$sanitize_user_filter = isset($_GET['filter']) ? sanitize_text_field($_GET['filter']) : '';
 $user_filter = stripslashes($sanitize_user_filter);
 $page = ( isset($_GET['page']) ? sanitize_text_field($_GET['page']) : 1 );
 $total = 0;
@@ -118,7 +119,6 @@ $page_url_params = '?q=' . urlencode($query)  . '&filter=' . urlencode($user_fil
 
 
 //echo 'total' . $total;
-
 //echo 'start' . $start;
 $pages = new Paginator($total, $start, $count);
 $pages->paginate($page_url_params);
@@ -139,7 +139,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
 ?>
 
 <?php include('header.php') ?>
-<nav>
+    <nav>
         <div class="container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -200,8 +200,6 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     
                     <a href='<?php echo real_site_url($cc_plugin_slug) ; ?>/detail/?id=<?php echo $resource->django_id; ?>' class="linkTitulo">
                     <?php 
-                  //  $tit = str_replace('<', '', $resource->title);
-                  //  $tit = str_replace('>', '', $resource->title);
 
                     echo htmlspecialchars($resource->title) . '</a>';
 
@@ -211,9 +209,9 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         //echo ' <span class="badge text-bg-warning">' . __('CLOSED', 'cc') . '</span>';
                     }
 
-                    if($resource->responsibality_mention){
+                    //if($resource->responsibality_mention){
                         //echo '<BR>Menção de responsabilidade:'. $resource->responsibility_mention ;
-                    }
+                    //}
                     echo '</h3>';
                     foreach($resource->shortened_title as $sortened){
                         echo '<span class="texto">';
@@ -237,9 +235,11 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         print_lang_value($resource->country, $site_language);
                         echo '<BR></span>';
                     }
-                    foreach($resource->issn as $issn){
-                        echo '<span class="texto">ISSN: '. $issn . '</span><br>';
+                    if(isset($issn)){
+                        foreach($resource->issn as $issn){
+                            echo '<span class="texto">ISSN: '. $issn . '</span><br>';
                         }
+                    }
                     ?>
                     <br>
                     <a href="<?php echo real_site_url($cc_plugin_slug); ?>/detail/?id=<?php echo $resource->django_id; ?>" class="btnDetalhes">
@@ -262,10 +262,11 @@ if ( function_exists( 'pll_the_languages' ) ) {
             <?php echo $pages->display_pages(); ?>
         </div> <!-- /col results area -->
 
-
         <div class="col-md-5 col-lg-4" id="filterRight">
             <div class="boxFilter">
-                <?php if ($applied_filter_list) :?>
+                <?php
+                    if(isset($applied_filter_list)){
+                    if ($applied_filter_list) :?>
                     <section>
                     <form method="get" name="searchFilter" id="formFilters" action="?results" style="overflow:hidden">
                         <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
@@ -307,7 +308,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         <?php endforeach; ?>
                     </form>
                     <section>
-                <?php endif; ?>
+                <?php endif; } ?>
 
                 <section>
                     <h5 class="box1Title" style="border-bottom: 2px solid #ddd"><?php _e('Filtros','cc'); ?></h5>
@@ -455,7 +456,6 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         <?php endif; ?>
                     </section>
                 <?php endif; ?>
-                <!---------------->
                 <!---------------->
             <?php
              //var_dump($language_list);
