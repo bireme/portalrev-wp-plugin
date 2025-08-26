@@ -46,7 +46,7 @@
         <?php //dynamic_sidebar('cc-header');?>
             </div>
             <div class="col-md-2" id="logo">
-                <a href="index.php"><img src="http://logos.bireme.org/img/<?php echo $lang; ?>/bvs_color.svg" alt="" class="img-fluid imgBlack" ></a>
+                <a href="https://bvsalud.org/"><img src="http://logos.bireme.org/img/<?php echo $lang; ?>/bvs_color.svg" alt="" class="img-fluid imgBlack" ></a>
             </div>
             <div class="col-md-10">
                 <div id="titleMain" class="float-left">
