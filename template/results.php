@@ -91,7 +91,7 @@ if ($response){
     $language_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->language;
     $status_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->status;
     $indexed_database = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->indexed_database;
-
+    $thematic_area_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->thematic_area_display;
 
 
     //$language_list[0] = "en^Portuguese|pt-br^Português|es^Portugués";
@@ -394,6 +394,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
                     <?php endif; ?>
                 </section>
             <?php endif; ?>
+            
                 <!----------------------------->
                 <?php if ($descriptor_list): ?>
                     <section>
@@ -518,6 +519,37 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         <?php endif; ?>
                     </section>
                 <?php endif; ?>
+                <!----------------------------->
+                <?php if ($thematic_area_list): ?>
+                    <section>
+                        <h5 class="box1Title"><?php _e('Aréa temática','cc'); ?></h5>
+                        <ul class="filter-list">
+                            <?php foreach ( $thematic_area_list as $thematic ) { ?>
+                                <?php
+                                    $filter_link = '?';
+                                    if ($query != ''){
+                                        $filter_link .= 'q=' . $query . '&';
+                                    }
+                                    $filter_link .= 'filter=thematic_area_display:"' . $thematic[0] . '"';
+                                    if ($user_filter != ''){
+                                        $filter_link .= ' AND ' . $user_filter ;
+                                    }
+                                ?>
+                                <li class="cat-item">
+                                    <a href='<?php echo $filter_link; ?>'><?php echo $thematic[0];?></a>
+                                    <span class="cat-item-count"><?php echo $thematic[1] ?></span>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                        <?php if ( count($thematic_area_list) == 20 ) : ?>
+                            <div class="show-more text-center">
+                                <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="thematic_area"><?php _e('show more','cc'); ?></a>
+                                <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
+                            </div>
+                        <?php endif; ?>
+                    </section>
+                <?php endif; ?>
+                <!---------------->
             </div>
         </div>
     </div>
