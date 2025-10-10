@@ -29,6 +29,7 @@ if ($response){
     $descriptor_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->descriptor_filter;
     $country_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->country;
     $indexed_database = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->indexed_database;
+    $thematic_area_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields->thematic_area_display;
 }
 ?>
 
@@ -127,6 +128,30 @@ if ($response){
                                 <li class="cat-item">
                                     <a href='<?php echo $filter_link; ?>'><?=$country[0];?></a>
                                     <span class="cat-item-count"><?php echo $country[1] ?></span>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                        <?php } ?>
+
+
+                        <?php if($cluster == 'indexed_database'){ ?>
+
+<ul class="filter-list">
+   
+                            <?php foreach ( $thematic_area as $thematic ) { ?>
+                                <?php
+                                    $filter_link = '?';
+                                    if ($query != ''){
+                                        $filter_link .= 'q=' . $query . '&';
+                                    }
+                                    $filter_link .= 'filter=indexed_database:"' . $thematic[0] . '"';
+                                    if ($user_filter != ''){
+                                        $filter_link .= ' AND ' . $user_filter ;
+                                    }
+                                ?>
+                                <li class="cat-item">
+                                    <a href='<?php echo $filter_link; ?>'><?=$thematic[0];?></a>
+                                    <span class="cat-item-count"><?php echo $thematic[1] ?></span>
                                 </li>
                             <?php } ?>
                         </ul>
