@@ -161,4 +161,30 @@ if ( !function_exists('real_site_url') ) {
     }
 }
 
+function cluster_to_text($cluster_name){ 
+switch ($cluster_name) {
+    case "status":
+        _e('Status', 'cc');
+        break;
+    case 'descriptor_filter':
+        _e("Assunto",'cc');
+        break;
+    case 'indexed_database':
+        _e("Base de Dados",'cc');
+        break;
+    case 'language':
+        _e("Idioma",'cc');
+        break;
+    case 'country':
+        _e("Country",'cc');
+        break;
+    case 'thematic_area_display':
+        _e('Área temática','cc');
+        break;
+    default:
+        echo "Undefined";
+        break;
+    }
+}
+
 ?>

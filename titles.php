@@ -28,6 +28,7 @@ require_once(CC_PLUGIN_PATH . '/template-functions.php');
 if(!class_exists('CC_Plugin')) {
     class CC_Plugin {
 
+        private $available_filter = array();
         private $plugin_slug = 'centers';
         private $service_url = 'https://fi-admin-api.bvsalud.org/';
 
@@ -78,18 +79,31 @@ if(!class_exists('CC_Plugin')) {
 		}
 
 		function plugin_init() {
+            global $biblio_texts;
 		    $cc_config = get_option('cc_config');
+            $cc_config['use_translation'] = true;
 
 		    if ( $cc_config && $cc_config['plugin_slug'] != ''){
 		        $this->plugin_slug = $cc_config['plugin_slug'];
 		    }
 
+            if ($cc_config['use_translation']){
+                $site_language = strtolower(get_bloginfo('language'));
+                $lang = substr($site_language,0,2);
+
+                $biblio_texts = @parse_ini_file(CC_PLUGIN_DIR . "/languages/texts_".$lang.".ini", true);
+                if ( !$biblio_texts ) {
+                    $biblio_texts = @parse_ini_file(CC_PLUGIN_DIR . "/languages/texts_".$lang."-SAMPLE.ini", true);
+                    if ( !$biblio_texts ) {
+                        $biblio_texts = @parse_ini_file(CC_PLUGIN_DIR . "/languages/texts_en-SAMPLE.ini", true);
+                    }
+                }
+            }
 		}
 
 		function admin_menu() {
 
 		    add_submenu_page( 'options-general.php', __('Journals plugins Settings', 'cc'), __('Journals Plugin', 'cc'), 'manage_options', 'cc', 'cc_page_admin');
-
 		    //call register settings function
 		    add_action( 'admin_init', array(&$this, 'register_settings') );
 
