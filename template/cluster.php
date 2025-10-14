@@ -134,17 +134,17 @@ if ($response){
                         <?php } ?>
 
 
-                        <?php if($cluster == 'indexed_database'){ ?>
+                        <?php if($cluster == 'thematic_area_display'){ ?>
 
-<ul class="filter-list">
+                        <ul class="filter-list">
    
-                            <?php foreach ( $thematic_area as $thematic ) { ?>
+                            <?php foreach ( $thematic_area_list as $thematic ) { ?>
                                 <?php
                                     $filter_link = '?';
                                     if ($query != ''){
                                         $filter_link .= 'q=' . $query . '&';
                                     }
-                                    $filter_link .= 'filter=indexed_database:"' . $thematic[0] . '"';
+                                    $filter_link .= 'filter=thematic_area_display:"' . $thematic[0] . '"';
                                     if ($user_filter != ''){
                                         $filter_link .= ' AND ' . $user_filter ;
                                     }

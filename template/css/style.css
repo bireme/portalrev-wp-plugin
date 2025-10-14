@@ -191,8 +191,8 @@ body{
 	color: rgb(40, 54, 125);
 	font-weight: normal;
 	text-decoration: none;
-	margin: 0 0 10px 0;
-
+	margin: 0 0 12px 0;
+	text-transform: none;
 }
 .boxFilter a{
 	font-weight: bold;

@@ -1,12 +1,17 @@
 #sortable1 , #sortable2 {
-	width: 200px;
-	min-height: 300px;
+	width: 160px; min-height: 300px;
 	background: #fff;
-	border: 1px solid #ccc;
+	border: 1px solid #ccc; border-radius: 2px;
+	padding: 0px;
+	margin-left: -5.85px;
 }
 #sortable2 li, #sortable1 li {
-  border: 1px solid #ccc;
-margin: 4px;
-padding: 5px;
-background: #f3f3f3;
+  	border: 1px solid #ccc;
+	margin: 4px; padding: 5px;
+	background: #f3f3f3;
+	cursor: pointer;
+}
+#sortable2 li:hover, #sortable1 li:hover{
+	background:rgb(0 74 142);
+	color: #fff;
 }

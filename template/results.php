@@ -2,7 +2,7 @@
 /*
 Template Name: CC Home
 */
-global $cc_service_url, $cc_plugin_slug, $cc_plugin_title;
+global $cc_service_url, $cc_plugin_slug, $cc_plugin_title,$biblio_texts;
 
 /*
 ini_set('display_errors', 1);
@@ -20,8 +20,10 @@ $lang = substr($site_language,0,2);
 
 $search = isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '';
 $country = isset($_GET['country']) ? sanitize_text_field($_GET['country']) : '';
-$descriptor = isset($_GET['descriptor']) ? sanitize_text_field($_GET['descriptor']) : '';
+$descriptor = isset($_GET['descriptor']) ? sanitize_text_field($_GET['descriptor_filter']) : '';
 $user = isset($_GET['user']) ? sanitize_text_field($_GET['user']) : '';
+
+$lang_dir = isset($lang_dir) ? $lang_dir : 'pt';
 
 if ($search != ''){
     $old_query = str_replace('=', ':',  urldecode($search));
@@ -75,6 +77,28 @@ if ( $user_filter != '' ) {
     }
 }
 
+$filter_list = explode(";", $cc_config['available_filter']);
+
+foreach ($filter_list as $filter_field){
+    $cc_search.= "&facet.field=" . urlencode($filter_field);
+}
+
+$response = @file_get_contents($cc_search);
+if ($response){
+    $response_json = json_decode($response);
+    // echo "<pre>"; print_r($response_json); echo "</pre>";
+    $total = $response_json->diaServerResponse[0]->response->numFound;
+    $start = $response_json->diaServerResponse[0]->response->start;
+    $center_list = $response_json->diaServerResponse[0]->response->docs;
+    $facet_list = (array) $response_json->diaServerResponse[0]->facet_counts->facet_fields;
+    if ( array_key_exists('country', $facet_list)) {
+        usort($facet_list['country'], function($a, $b) {
+            return $b[0] <=> $a[0];
+        });
+    }
+}
+    
+/*
 $response = @file_get_contents($cc_search);
 if ($response){
     $response_json = json_decode($response);
@@ -112,7 +136,7 @@ if ($response){
         return $a[0] <=> $b[0];
     });
 
-}
+}*/
 
 $page_url_params = '?q=' . urlencode($query)  . '&filter=' . urlencode($user_filter);
 
@@ -265,6 +289,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
         <div class="col-md-5 col-lg-4" id="filterRight">
             <div class="boxFilter">
                 <?php
+                
                     if(isset($applied_filter_list)){
                     if ($applied_filter_list) :?>
                     <section>
@@ -308,248 +333,66 @@ if ( function_exists( 'pll_the_languages' ) ) {
                         <?php endforeach; ?>
                     </form>
                     <section>
-                <?php endif; } ?>
-
-                <section>
-                    <h5 class="box1Title" style="border-bottom: 2px solid #ddd"><?php _e('Filtros','cc'); ?></h5>
-                    <ul class="filter-list">
-                        <?php foreach ( $type_list as $type ) { ?>
-                            <li class="cat-item">
-                                <?php
-                                    $filter_link = '?';
-                                    if ($query != ''){
-                                        $filter_link .= 'q=' . $query . '&';
-                                    }
-                                    $filter_link .= 'filter=institution_type:"' . $type[0] . '"';
-                                    if ($user_filter != ''){
-                                        $filter_link .= ' AND ' . $user_filter ;
-                                    }
-                                ?>
-                                <a href='<?php echo $filter_link; ?>'><?php echo $type_translated[$type[0]]; ?></a>
-                                <span class="cat-item-count">(<?php echo $type[1]; ?>)</span>
-                            </li>
-                        <?php } ?>
-                    </ul>
-                </section>
-
-                <?php if ($thematic_list): ?>
-                    <section>
-                        <h5 class="box1Title"><?php _e('Thematic Networks','cc'); ?></h5>
-                        <ul class="filter-list">
-                            <?php foreach ($thematic_list as $thematic) { ?>
-                                <?php
-                                    $filter_link = '?';
-                                    if ($query != ''){
-                                        $filter_link .= 'q=' . $query . '&';
-                                    }
-                                    $filter_link .= 'filter=institution_thematic:"' . $thematic[0] . '"';
-                                    if ($user_filter != ''){
-                                        $filter_link .= ' AND ' . $user_filter ;
-                                    }
-                                ?>
-                                <li class="cat-item">
-                                    <a href='<?php echo $filter_link; ?>'><?php echo $thematic_translated[$thematic[0]] ?></a>
-                                    <span class="cat-item-count">(<?php echo $thematic[1] ?>)</span>
-                                </li>
-                            <?php } ?>
-                        </ul>
-                    </section>
-                <?php endif; ?>
-             
-             <?php 
-             //var_dump($language_list);
-             if ($status_list): ?>
-                <section>
-                    <h5 class="box1Title"><?php _e('Status','cc'); ?></h5>
-                    <ul class="filter-list">
-                        <?php foreach ( $status_list as $status ) { ?>
-                            <?php
-                                $filter_link = '?';
-                                if ($query != ''){
-                                    $filter_link .= 'q=' . $query . '&';
-                                }
-                                $filter_link .= 'filter=status:"' . $status[0] . '"';
-                                if ($user_filter != ''){
-                                    $filter_link .= ' AND ' . $user_filter ;
-                                }
-                            ?>
-                            <li class="cat-item">
-                                <a href='<?php echo $filter_link;?>'>
-                                <?php if($status[0] == 1){ ?>
-                                    <?php
-                                    echo __('corrente', 'cc');
-                                }else{
-                                    echo __('encerrado', 'cc');
-                                }  ?>
-                                </a>
-                                <span class="cat-item-count"><?php echo $status[1] ?></span>
-                            </li>
-                        <?php } ?>
-                    </ul>
-                    <?php if ( count($status_list) == 20 ) : ?>
-                        <div class="show-more text-center">
-                            <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="status"><?php _e('show more','cc'); ?></a>
-                            <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
-                        </div>
-                    <?php endif; ?>
-                </section>
-            <?php endif; ?>
+                <?php endif; }  ?>
+                <!----------------------->
+                 
             
                 <!----------------------------->
-                <?php if ($descriptor_list): ?>
-                    <section>
-                        <h5 class="box1Title"><?php _e('Assunto','cc'); ?></h5>
-                        <ul class="filter-list">
-                            <?php foreach ( $descriptor_list as $country ) { ?>
-                                <?php
-                                    $filter_link = '?';
-                                    if ($query != ''){
-                                        $filter_link .= 'q=' . $query . '&';
-                                    }
-                                    $filter_link .= 'filter=descriptor:"' . $country[0] . '"';
-                                    if ($user_filter != ''){
-                                        $filter_link .= ' AND ' . $user_filter ;
-                                    }
-                                ?>
-                                <li class="cat-item">
-                                    <a href='<?php echo $filter_link; ?>'><?php echo $country[0];?></a>
-                                    <span class="cat-item-count"><?php echo $country[1] ?></span>
-                                </li>
+                <?php 
+                                foreach($filter_list as $filter_field) {?>
+                                <?php if ($facet_list[$filter_field] ): ?>
+                                    <section>
+                                        <h5 class="box1Title"><?php echo cluster_to_text($filter_field);//[$filter_field]; ?></h5>
+                                        <ul class="filter-list">
+                                            <?php foreach ( $facet_list[$filter_field] as $filter_item ) { ?>
+                                                <?php
+                                                    $cluster = $filter_field;
+                                                    $filter_value = $filter_item[0];
+                                                    $filter_count = $filter_item[1];
+
+                                                    if ('descriptor_filter' == $cluster) {
+                                                        $cluster = 'descriptor';
+                                                    }
+                                                ?>
+                                                <?php //$class = ( 'mj' != $cluster || filter_var($filter_value, FILTER_VALIDATE_INT) === false ) ? 'cat-item' : 'cat-item hide'; ?>
+                                                <li class="cat-item">
+                                                    <?php
+                                                        $filter_link = '?';
+                                                        if ($query != ''){
+                                                            $filter_link .= 'q=' . $query . '&';
+                                                        }
+                                                        $filter_link .= 'filter=' . $cluster . ':"' . $filter_value . '"';
+                                                        if ($user_filter != ''){
+                                                            $filter_link .= ' AND ' . $user_filter ;
+                                                        }
+                                                    ?>
+                                                    <?php if ( strpos($filter_value, '^') !== false ): ?>
+                                                        <a href='<?php echo $filter_link; ?>'><?php print_lang_value($filter_value, $site_language); ?></a>
+                                                    <?php elseif($filter_value == 0): ?>
+                                                        <a href='<?php echo $filter_link; ?>'><?php echo __('encerrado', 'cc'); ?></a>
+                                                    <?php elseif($filter_value == 1): ?>
+                                                        <a href='<?php echo $filter_link; ?>'><?php echo __('corrente', 'cc'); ?></a>
+                                                    <?php else: ?>
+                                                        <a href='<?php echo $filter_link; ?>'><?php echo $filter_value; ?></a>
+                                                    <?php endif; ?>
+
+                                                    <span class="cat-item-count"><?php echo $filter_count; ?></span>
+                                                </li>
+                                            <?php } ?>
+                                        </ul>
+                                        <?php if ( count($facet_list[$filter_field]) == 20 ) : ?>
+                                        <div class="show-more text-center">
+                                            <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="<?php echo $filter_field; ?>"><?php _e('show more','cc'); ?></a>
+                                            <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
+                                        </div>
+                                        <?php endif; ?>
+                                    </section>
+                                <?php endif; ?>
                             <?php } ?>
-                        </ul>
-                        <?php if ( count($descriptor_list) == 20 ) : ?>
-                            <div class="show-more text-center">
-                                <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="descriptor_filter"><?php _e('show more','cc'); ?></a>
-                                <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
-                            </div>
-                        <?php endif; ?>
-                    </section>
-                <?php endif; ?>
-                <!---------------->
-                <?php
-             //var_dump($language_list);
-             if ($indexed_database): ?>
-                    <section>
-                        <h5 class="box1Title"><?php _e('Base de Dados','cc'); ?></h5>
-                        <ul class="filter-list">
-                            <?php foreach ( $indexed_database as $country ) { ?>
-                                <?php
-                                    $filter_link = '?';
-                                    if ($query != ''){
-                                        $filter_link .= 'q=' . $query . '&';
-                                    }
-                                    $filter_link .= 'filter=indexed_database:"' . $country[0] . '"';
-                                    if ($user_filter != ''){
-                                        $filter_link .= ' AND ' . $user_filter ;
-                                    }
-                                ?>
-                                <li class="cat-item">
-                                    <a href='<?php echo $filter_link; ?>'><?php echo $country[0];?></a>
-                                    <span class="cat-item-count"><?php echo $country[1] ?></span>
-                                </li>
-                            <?php } ?>
-                        </ul>
-                        <?php if ( count($indexed_database) == 20 ) : ?>
-                            <div class="show-more text-center">
-                                <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="indexed_database"><?php _e('show more','cc'); ?></a>
-                                <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
-                            </div>
-                        <?php endif; ?>
-                    </section>
-                <?php endif; ?>
-                <!---------------->
-            <?php
-             //var_dump($language_list);
-             if ($language_list): ?>
-                    <section>
-                        <h5 class="box1Title"><?php _e('Idioma','cc'); ?></h5>
-                        <ul class="filter-list">
-                            <?php foreach ( $language_list as $country ) { ?>
-                                <?php
-                                    $filter_link = '?';
-                                    if ($query != ''){
-                                        $filter_link .= 'q=' . $query . '&';
-                                    }
-                                    $filter_link .= 'filter=language:"' . $country[0] . '"';
-                                    if ($user_filter != ''){
-                                        $filter_link .= ' AND ' . $user_filter ;
-                                    }
-                                ?>
-                                <li class="cat-item">
-                                    <a href='<?php echo $filter_link; ?>'><?php print_lang_value($country[0], $site_language)?></a>
-                                    <span class="cat-item-count"><?php echo $country[1] ?></span>
-                                </li>
-                            <?php } ?>
-                        </ul>
-                        <?php if ( count($language_list) == 20 ) : ?>
-                            <div class="show-more text-center">
-                                <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="language"><?php _e('show more','cc'); ?></a>
-                                <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
-                            </div>
-                        <?php endif; ?>
-                    </section>
-                <?php endif; ?>
-                <!---------------->
-                <?php if ($country_list): ?>
-                    <section>
-                        <h5 class="box1Title"><?php _e('Country','cc'); ?></h5>
-                        <ul class="filter-list">
-                            <?php foreach ( $country_list as $country ) { ?>
-                                <?php
-                                    $filter_link = '?';
-                                    if ($query != ''){
-                                        $filter_link .= 'q=' . $query . '&';
-                                    }
-                                    $filter_link .= 'filter=country:"' . $country[0] . '"';
-                                    if ($user_filter != ''){
-                                        $filter_link .= ' AND ' . $user_filter ;
-                                    }
-                                ?>
-                                <li class="cat-item">
-                                    <a href='<?php echo $filter_link; ?>'><?php print_lang_value($country[0], $site_language)?></a>
-                                    <span class="cat-item-count"><?php echo $country[1] ?></span>
-                                </li>
-                            <?php } ?>
-                        </ul>
-                        <?php if ( count($country_list) == 20 ) : ?>
-                            <div class="show-more text-center">
-                                <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="country"><?php _e('show more','cc'); ?></a>
-                                <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
-                            </div>
-                        <?php endif; ?>
-                    </section>
-                <?php endif; ?>
-                <!----------------------------->
-                <?php if ($thematic_area_list): ?>
-                    <section>
-                        <h5 class="box1Title"><?php _e('Aréa temática','cc'); ?></h5>
-                        <ul class="filter-list">
-                            <?php foreach ( $thematic_area_list as $thematic ) { ?>
-                                <?php
-                                    $filter_link = '?';
-                                    if ($query != ''){
-                                        $filter_link .= 'q=' . $query . '&';
-                                    }
-                                    $filter_link .= 'filter=thematic_area_display:"' . $thematic[0] . '"';
-                                    if ($user_filter != ''){
-                                        $filter_link .= ' AND ' . $user_filter ;
-                                    }
-                                ?>
-                                <li class="cat-item">
-                                    <a href='<?php echo $filter_link; ?>'><?php echo $thematic[0];?></a>
-                                    <span class="cat-item-count"><?php echo $thematic[1] ?></span>
-                                </li>
-                            <?php } ?>
-                        </ul>
-                        <?php if ( count($thematic_area_list) == 20 ) : ?>
-                            <div class="show-more text-center">
-                                <a href="javascript:void(0)" class="btn-ajax" data-fb="30" data-cluster="thematic_area"><?php _e('show more','cc'); ?></a>
-                                <a href="javascript:void(0)" class="loading"><?php _e('loading','cc'); ?>...</a>
-                            </div>
-                        <?php endif; ?>
-                    </section>
-                <?php endif; ?>
-                <!---------------->
+
+
+
+
             </div>
         </div>
     </div>
