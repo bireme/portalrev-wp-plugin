@@ -4,11 +4,11 @@ Plugin Name: Journals Plugin
 Plugin URI: https://github.com/bireme/centers-wp-plugin/
 Description: Journals Plugin Directory WordPress plugin
 Author: BIREME/OPAS/OMS
-Version: 1.0
+Version: 1.3
 Author URI: http://reddes.bvsalud.org/
 */
 
-define('CC_VERSION', '1.0' );
+define('CC_VERSION', '1.3' );
 
 define('CC_SYMBOLIC_LINK', false );
 define('CC_PLUGIN_DIRNAME', 'cc' );
