@@ -606,11 +606,19 @@ function issnVariacoes($texto){
 }
 
 function tratarOnlineNotes($texto, $n){
+    // Remove marcadores antigos
     $texto = str_replace("^xempty", "", $texto);
     $texto = str_replace("^z".$n, "", $texto);
-    if(strpos($texto, '^xempty')> 0){
+
+    // Substitui marcadores de idioma
+    $texto = str_replace("^p", " (pt): ", $texto);
+    $texto = str_replace("^i", " (en): ", $texto);
+
+    // Se ainda existir ^xempty, retorna vazio
+    if (strpos($texto, '^xempty') !== false) {
         return '';
     }
+
     return $texto;
 }
                     //prepara o array de notas 
